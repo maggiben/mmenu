@@ -1,0 +1,353 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GDIUSAGE_DIALOG DIALOGEX 0, 0, 184, 273
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "GdiUsage -- MSDN Mag -- C. Nasarre"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_APPLICATION,6,5,173,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Start!",IDC_BTN_START,6,19,173,14
+    PUSHBUTTON      "Ta&ke Snapshot!",ID_BTN_TAKE_SNAPSHOT,6,51,74,16
+    PUSHBUTTON      "&Details",ID_BTN_DETAILS_SNAPSHOT,45,253,34,16
+    PUSHBUTTON      "&Compare!",ID_BTN_COMPARE,101,51,78,16
+    PUSHBUTTON      "D&etails",ID_BTN_DETAILS_COMPARE,101,253,34,16
+    ICON            IDR_MAINFRAME,IDC_STATIC,4,253,20,20
+    RTEXT           "Bitmap:",IDC_STATIC,25,87,32,8
+    RTEXT           "Brush:",IDC_STATIC,25,100,32,8
+    RTEXT           "DC:",IDC_STATIC,25,113,32,8
+    RTEXT           "Pen:",IDC_STATIC,25,126,32,8
+    RTEXT           "Mem DC:",IDC_STATIC,25,139,32,8
+    RTEXT           "Font:",IDC_STATIC,25,152,32,8
+    RTEXT           "Region:",IDC_STATIC,25,165,32,8
+    RTEXT           "Palette:",IDC_STATIC,25,178,32,8
+    RTEXT           "-",IDC_BITMAP_SET,63,87,18,8
+    RTEXT           "-",IDC_BRUSH_SET,63,100,18,8
+    RTEXT           "-",IDC_DC_SET,63,113,18,8
+    RTEXT           "-",IDC_PEN_SET,63,127,18,8
+    RTEXT           "-",IDC_MEMDC_SET,63,139,18,8
+    RTEXT           "-",IDC_FONT_SET,63,152,18,8
+    RTEXT           "-",IDC_REGION_SET,63,165,18,8
+    RTEXT           "-",IDC_PALETTE_SET,63,178,18,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDVERT,89,40,1,234
+    RTEXT           "-",IDC_BITMAP_COMPARE_NEW,95,87,22,8
+    RTEXT           "-",IDC_BRUSH_COMPARE_NEW,95,100,22,8
+    RTEXT           "-",IDC_DC_COMPARE_NEW,95,113,22,8
+    RTEXT           "-",IDC_PEN_COMPARE_NEW,95,127,22,8
+    RTEXT           "-",IDC_MEMDC_COMPARE_NEW,95,139,22,8
+    RTEXT           "-",IDC_FONT_COMPARE_NEW,95,152,22,8
+    RTEXT           "-",IDC_REGION_COMPARE_NEW,95,165,22,8
+    RTEXT           "-",IDC_PALETTE_COMPARE_NEW,95,178,22,8
+    RTEXT           "New",IDC_STATIC,103,75,18,8
+    RTEXT           "MetaFile:",IDC_STATIC,25,192,32,8
+    RTEXT           "-",IDC_METAFILE_SET,63,192,18,8
+    RTEXT           "-",IDC_METAFILE_COMPARE_NEW,95,192,22,8
+    RTEXT           "-",IDC_BITMAP_COMPARE_FREE,149,87,22,8
+    RTEXT           "-",IDC_BRUSH_COMPARE_FREE,149,100,22,8
+    RTEXT           "-",IDC_DC_COMPARE_FREE,149,113,22,8
+    RTEXT           "-",IDC_PEN_COMPARE_FREE,149,127,22,8
+    RTEXT           "-",IDC_MEMDC_COMPARE_FREE,149,139,22,8
+    RTEXT           "-",IDC_FONT_COMPARE_FREE,149,152,22,8
+    RTEXT           "-",IDC_REGION_COMPARE_FREE,149,165,22,8
+    RTEXT           "-",IDC_PALETTE_COMPARE_FREE,149,178,22,8
+    RTEXT           "-",IDC_METAFILE_COMPARE_FREE,149,192,22,8
+    RTEXT           "Same",IDC_STATIC,130,75,21,8
+    RTEXT           "Free",IDC_STATIC,153,75,23,8
+    RTEXT           "-",IDC_BITMAP_COMPARE_SAME,125,87,22,8
+    RTEXT           "-",IDC_BRUSH_COMPARE_SAME,125,100,22,8
+    RTEXT           "-",IDC_DC_COMPARE_SAME,125,113,22,8
+    RTEXT           "-",IDC_PEN_COMPARE_SAME,125,127,22,8
+    RTEXT           "-",IDC_MEMDC_COMPARE_SAME,125,139,22,8
+    RTEXT           "-",IDC_FONT_COMPARE_SAME,125,152,22,8
+    RTEXT           "-",IDC_REGION_COMPARE_SAME,125,165,22,8
+    RTEXT           "-",IDC_PALETTE_COMPARE_SAME,125,178,22,8
+    RTEXT           "-",IDC_METAFILE_COMPARE_SAME,125,192,22,8
+    RTEXT           "EnhMetaFile:",IDC_STATIC,15,207,42,8
+    RTEXT           "-",IDC_ENHMETAFILE_SET,63,207,18,8
+    RTEXT           "-",IDC_ENHMETAFILE_COMPARE_NEW,95,207,22,8
+    RTEXT           "-",IDC_ENHMETAFILE_COMPARE_FREE,149,207,22,8
+    RTEXT           "-",IDC_ENHMETAFILE_COMPARE_SAME,125,207,22,8
+    RTEXT           "MetaFileDC:",IDC_STATIC,12,221,45,8
+    RTEXT           "-",IDC_METAFILEDC_SET,63,221,18,8
+    RTEXT           "-",IDC_METAFILEDC_COMPARE_NEW,95,221,22,8
+    RTEXT           "-",IDC_METAFILEDC_COMPARE_FREE,149,221,22,8
+    RTEXT           "-",IDC_METAFILEDC_COMPARE_SAME,125,221,22,8
+    RTEXT           "EnhMetaFileDC:",IDC_STATIC,3,235,54,8
+    RTEXT           "-",IDC_ENHMETAFILEDC_SET,63,235,18,8
+    RTEXT           "-",IDC_ENHMETAFILEDC_COMPARE_NEW,95,235,22,8
+    RTEXT           "-",IDC_ENHMETAFILEDC_COMPARE_FREE,149,235,22,8
+    RTEXT           "-",IDC_ENHMETAFILEDC_COMPARE_SAME,125,235,22,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,0,38,185,1
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 164, 41
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About GDIUsage"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,9,10,20,20
+    LTEXT           "Shoud help you finding GDI leaks",IDC_STATIC,40,10,119,
+                    8,SS_NOPREFIX
+    LTEXT           "By Christophe Nasarre 2002",IDC_STATIC,48,22,95,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,2,2,159,37
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,7
+ PRODUCTVERSION 1,0,0,7
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "GDI Usage for Windows XP/2000/NT 4.0"
+            VALUE "FileVersion", "1, 0, 0, 7"
+            VALUE "InternalName", "GdiUsage"
+            VALUE "LegalCopyright", "Christophe Nasarre 2002"
+            VALUE "OriginalFilename", "GdiUsage.EXE"
+            VALUE "ProductName", "GdiUsage Application"
+            VALUE "ProductVersion", "1, 0, 0, 7"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GDIUSAGE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 266
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 157
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 34
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\GdiUsage.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About GdiUsage..."
+    IDS_WIN2000_ONLY        "This application runs only under Windows XP/2000/NT 4.0\nSorry...\n"
+    IDS_ALWAYSONTOP         "Always on top"
+    IDS_CHOOSE_APPLICATION_NAME 
+                            "You have to choose an application to launch first..."
+    IDS_NOT_ENOUGH_MEMORY   "Not enough memory..."
+    IDS_ERROR_MENU_DISPLAY  "Impossible to display menu..."
+    IDS_OPEN_CLIPBOARD      "Impossible to open the clipboard..."
+    IDS_NO_SELECTION        "There is no selection to copy to clipboard..."
+    IDS_FIND_FAILED         "Impossible to find the string..."
+    IDS_SESSION_FAILED      "Debugging session failed"
+    IDS_NO_LAUNCH           "Impossible to launch the process..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOTHING_TO_DISPLAY  "Nothing to display..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FIND DIALOG  0, 0, 273, 44
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,8,34,8
+    EDITTEXT        IDC_EDIT_FIND,40,6,169,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Find Next",ID_FIND,218,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,218,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_FIND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\GdiUsage.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_OUTPUT MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Find",                        ID_FIND
+        MENUITEM SEPARATOR
+        MENUITEM "Clear Buffer",                ID_DELETEALL
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to clipboard",           ID_COPY_TO_CLIPBOARD
+    END
+END
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\GdiUsage.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,15 @@
+[main_menu.c]
+Bookmarks=1898,3495
+Foldings=1689,1693,1705,1709,1931,2486,2492
+[Debugger]
+Watch symbols=document,documentPtr,xmlTreeDoc,caption,tvinsert,objects,j,i
+[IDropTarget.c]
+[manage_menu.c]
+Foldings=442,499,592,618
+[Windows]
+File1=xmleng.c,0,0,768,334,0,0
+File2=manage_menu.c,22,29,790,363,0,0
+File3=main_menu.h,-4,-30,839,450,1,1
+File4=xmleng.h,66,87,834,421,0,0
+File5=manage_menu.h,-4,-30,839,450,1,0
+File6=main_menu.c,-4,-30,839,450,1,0

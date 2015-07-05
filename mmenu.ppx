@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings version="1.0">
+	<category name="shellHelper.c">
+		<category name="Foldings">
+			<property name="Line1" type="integer">39</property>
+		</category>
+	</category>
+	<category name="graphic.c">
+		<category name="Bookmarks">
+			<property name="Line1" type="integer">891</property>
+		</category>
+		<category name="Foldings">
+			<property name="Line1" type="integer">70</property>
+			<property name="Line2" type="integer">198</property>
+			<property name="Line3" type="integer">234</property>
+			<property name="Line4" type="integer">325</property>
+			<property name="Line5" type="integer">382</property>
+			<property name="Line6" type="integer">482</property>
+			<property name="Line7" type="integer">533</property>
+			<property name="Line8" type="integer">608</property>
+			<property name="Line9" type="integer">616</property>
+			<property name="Line10" type="integer">728</property>
+			<property name="Line11" type="integer">892</property>
+			<property name="Line12" type="integer">949</property>
+			<property name="Line13" type="integer">962</property>
+			<property name="Line14" type="integer">1012</property>
+			<property name="Line15" type="integer">1087</property>
+			<property name="Line16" type="integer">1114</property>
+			<property name="Line17" type="integer">1223</property>
+			<property name="Line18" type="integer">1285</property>
+			<property name="Line19" type="integer">1330</property>
+			<property name="Line20" type="integer">1366</property>
+			<property name="Line21" type="integer">1398</property>
+			<property name="Line22" type="integer">1448</property>
+			<property name="Line23" type="integer">1495</property>
+			<property name="Line24" type="integer">1805</property>
+		</category>
+	</category>
+	<category name="xmleng.c">
+		<category name="Foldings">
+			<property name="Line1" type="integer">46</property>
+			<property name="Line2" type="integer">129</property>
+			<property name="Line3" type="integer">199</property>
+			<property name="Line4" type="integer">236</property>
+			<property name="Line5" type="integer">271</property>
+			<property name="Line6" type="integer">308</property>
+			<property name="Line7" type="integer">334</property>
+			<property name="Line8" type="integer">360</property>
+		</category>
+	</category>
+	<category name="manage_menu.c">
+		<category name="Foldings">
+			<property name="Line1" type="integer">1044</property>
+		</category>
+	</category>
+	<category name="main_menu.c">
+		<category name="Window">
+			<property name="Left" type="integer">-4</property>
+			<property name="Top" type="integer">-23</property>
+			<property name="Right" type="integer">979</property>
+			<property name="Bottom" type="integer">494</property>
+			<property name="Maximized" type="integer">1</property>
+			<property name="Active" type="integer">1</property>
+		</category>
+	</category>
+	<category name="main_menu.rc" />
+	<category name="main_menu.h" />
+	<category name="xmleng.h" />
+	<category name="graphic.h" />
+	<category name="manage_menu.h" />
+	<category name="main_menures.h" />
+	<category name="Debugger">
+		<category name="Watches">
+			<property name="Watch1" type="string">caption</property>
+			<property name="Watch2" type="string">MMU_IDS</property>
+			<property name="Watch3" type="string">menu_data</property>
+		</category>
+	</category>
+	<category name="zlib\code\zutil.c" />
+	<category name="zlib\code\zutil.h" />
+	<category name="zlib\code\zlib.h" />
+	<category name="FreeImage.h" />
+	<category name="draw.c">
+		<category name="Window">
+			<property name="Left" type="integer">66</property>
+			<property name="Top" type="integer">66</property>
+			<property name="Right" type="integer">1026</property>
+			<property name="Bottom" type="integer">433</property>
+			<property name="Maximized" type="integer">0</property>
+			<property name="Active" type="integer">0</property>
+		</category>
+	</category>
+	<category name="draw.h">
+		<category name="Window">
+			<property name="Left" type="integer">88</property>
+			<property name="Top" type="integer">88</property>
+			<property name="Right" type="integer">1048</property>
+			<property name="Bottom" type="integer">455</property>
+			<property name="Maximized" type="integer">0</property>
+			<property name="Active" type="integer">0</property>
+		</category>
+	</category>
+	<category name="IDropSource.c">
+		<category name="Window">
+			<property name="Left" type="integer">132</property>
+			<property name="Top" type="integer">132</property>
+			<property name="Right" type="integer">863</property>
+			<property name="Bottom" type="integer">499</property>
+			<property name="Maximized" type="integer">0</property>
+			<property name="Active" type="integer">0</property>
+		</category>
+	</category>
+	<category name="IDropTarget.c">
+		<category name="Window">
+			<property name="Left" type="integer">110</property>
+			<property name="Top" type="integer">110</property>
+			<property name="Right" type="integer">841</property>
+			<property name="Bottom" type="integer">477</property>
+			<property name="Maximized" type="integer">0</property>
+			<property name="Active" type="integer">0</property>
+		</category>
+	</category>
+</settings>

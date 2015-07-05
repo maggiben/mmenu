@@ -1,0 +1,16 @@
+[main_menu.c]
+Bookmarks=1132,1301,2689
+Foldings=1951,2357,2427,2433,3308
+[Debugger]
+Watch symbols=MMU_IDS,caption,menu_data,pmis,lpDs
+[Windows]
+File1=IDropSource.c,110,145,878,497,0,0
+File2=IDataObject.c,0,0,768,352,0,0
+File3=IDragDrop.h,22,29,790,381,0,0
+File4=IDropTarget.c,44,58,812,410,0,0
+File5=main_menu.rc,66,87,834,439,0,0
+File6=disphelper.c,88,116,856,468,0,0
+File7=disphelper.h,110,145,878,497,0,0
+File8=main_menu.c,-4,-30,778,474,1,0
+[IDropTarget.c]
+Breakpoints=155;1;0;

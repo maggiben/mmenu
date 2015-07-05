@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- This file is used by the mainmenu.c file -->
+<MAINMENU color="0xC3C3C3" border="0x000000">
+	<MENUITEM color="0xC3C3C3" border="0x000000" font="PF Tempesta Five">
+		<CAPTION>MENU HELPER</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_SIDEBAR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM >
+		<CAPTION>Configure</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_MENUBREAK</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Proyectos</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\Hart.png</IMAGE>
+		<POPUP>1</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>c:\</EXECUTE>
+		<MENUITEM border="0x000000" font="PF Tempesta Five">
+				<CAPTION>Compiler</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icos\applications-other.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\LCC\PROJECTS</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Key Manager</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icos\application-certificate.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>-</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icos\gra.bmp</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE>c:\</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Todo List</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icos\appointment-soon.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\PellesC\Bin\poide.exe</EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Internet</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<FONTSIZE>8</FONTSIZE>
+		<COLOR>0x000064</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\safari.png</IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>menu.xml</EXECUTE>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Tools</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR col="8421504">0x808080</BGCOLOR>
+			<IMAGE>..\icons\preferences-desktop_001.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Browsers</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\web-browser.png</IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+					<CAPTION font="PF Tempesta Five" size="9" color="0xFF0000" style="bold">Firefox</CAPTION>
+					<FONT>PF Tempesta Five</FONT>
+					<COLOR   gradient="1" ange="90" color1="#00FF00" color2="#FF0000" alpha="100">0x242424</COLOR>
+					<BGCOLOR gradient="0" ange="00" color1="#000000" color2="#000000" alpha="100">0x808080</BGCOLOR>
+					<IMAGE background="transparent" width="16" height="16"></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Program Files\Mozilla Firefox\firefox.exe</EXECUTE>
+				</MENUITEM>
+				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+					<CAPTION>IExplorer</CAPTION>
+					<FONT>PF Tempesta Five</FONT>
+					<COLOR>0x242424</COLOR>
+					<BGCOLOR>0x808080</BGCOLOR>
+					<IMAGE></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Program Files\Internet Explorer\IEXPLORE.EXE</EXECUTE>
+				</MENUITEM>
+				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+					<CAPTION>Opera USB</CAPTION>
+					<FONT>PF Tempesta Five</FONT>
+					<COLOR>0x242424</COLOR>
+					<BGCOLOR>0x808080</BGCOLOR>
+					<IMAGE></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Documents and Settings\Administrator\Desktop\virtual machine img\opera924int\operausb.exe</EXECUTE>
+									<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+					<CAPTION>IExplorer</CAPTION>
+					<FONT>PF Tempesta Five</FONT>
+					<COLOR>0x242424</COLOR>
+					<BGCOLOR>0x808080</BGCOLOR>
+					<IMAGE></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Program Files\Internet Explorer\IEXPLORE.EXE</EXECUTE>
+				</MENUITEM>
+				</MENUITEM>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>-</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>SFTP</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\winscp382.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>PuTTy</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\PuTTy\putty.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>uTrrent</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\utorrent.exe</EXECUTE>
+			</MENUITEM>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>-</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Mobile Partner</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>..\icons\network-wireless_001.png</IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Program Files\Mobile Partner\Mobile Partner.exe</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Network Connections</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>..\icons\applications-internet_003.png</IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>sep2</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Work Tools</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x640000</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\input-gaming_002.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>c:\windows</EXECUTE>
+			<MENUITEM border="0x000000" font="PF Tempesta Five">
+				<CAPTION font="PF Tempesta Five" size="9" color="0xFF0000" style="bold">Storage Manager</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\drive-harddisk-old.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\Citrix\ICA Client\pn.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Hardware Manager</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\media-memory.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\CNH</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>-</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>0</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE></EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Email Client</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\email.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\Hewlett-Packard\OpenView\service desk 4.5\client\</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Phone Book</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\telephone.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\IBM\BMS\ILC\ilc.bat</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>Scheduler</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\calendar-and-tasks.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\Avaya</EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>-</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>0</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE></EXECUTE>
+			</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+				<CAPTION>NVI Docs</CAPTION>
+				<FONT>PF Tempesta Five</FONT>
+				<COLOR>0x242424</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icons\system-file-manager.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\CNH</EXECUTE>
+			</MENUITEM>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Pidgin</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\pidgin-icon.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\notes\notes.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Media</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icons\media-flash_002.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>..\icons\media-flash_003.png</EXECUTE>
+		<MENUITEM border="0x000000" font="PF Tempesta Five">
+			<CAPTION>VLC</CAPTION>
+			<FONT size="1" color="0x000000">PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>.\icons\brick.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\Desktop\vlc\vlc.exe</EXECUTE>
+		</MENUITEM>		
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>RSS</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>.\icons\feed.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Program Files\Windows Media Player\wmplayer.exe</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>-</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>0</POPUP>
+			<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Música</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>.\icons\folder_page.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents\My Music</EXECUTE>
+		</MENUITEM>
+		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Imágenes</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>.\icons\folder_page.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents\My Pictures</EXECUTE>
+		</MENUITEM>
+			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+			<CAPTION>Documentos</CAPTION>
+			<FONT>PF Tempesta Five</FONT>
+			<COLOR>0x242424</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>.\icons\folder_page.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents</EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Putty</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\yast-ssh-server.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\Documents and Settings\Administrator\Desktop\PuTTy\putty.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Weather</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icons\weather-few-clouds_001.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\Program Files\PellesC\Projects\MyMDI\MyMDI.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Find in file</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icons\folder-saved-search_002.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\Program Files\PellesC\Bin\findfile.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>sep1</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+		<EXECUTE>C:\WINDOWS\system32\calc.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
+		<CAPTION>Exit</CAPTION>
+		<FONT>PF Tempesta Five</FONT>
+		<COLOR>0x242424</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE width="32" height="32">.\icos\exit.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+</MAINMENU>	
+		

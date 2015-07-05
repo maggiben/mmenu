@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<ControlWnd>
+  <ControlGroups>
+    <ControlGroup Name="Environment">
+      <Controls>
+        <GroupBox Name="WindowLayoutGB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="10" SizeWidth="400" SizeHeight="63"
+            Text="Window layout"></GroupBox>
+        <RadioButton Name="TabbedDocumentsRB" Visible="true" Enabled="true" 
+            LocationX="20" LocationY="25" SizeWidth="120" SizeHeight="20"
+            Text="Tabbed &documents" Checked="true"></RadioButton>
+        <RadioButton Name="MultipleDocumentsRB" Visible="true" Enabled="true" 
+            LocationX="20" LocationY="45" SizeWidth="120" SizeHeight="20"
+            Text="&Multiple documents" Checked="false" RadioManager="TabbedDocumentsRB"></RadioButton>
+        <GroupBox Name="RecentFilesGB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="85" SizeWidth="400" SizeHeight="89"
+            Text="Recent files"></GroupBox>
+        <TextBox Name="ItemsWindowMenuTB" Visible="true" Enabled="true" ReadOnly="false"
+            LocationX="20" LocationY="107" SizeWidth="36" SizeHeight="24"
+            Text="10"></TextBox>
+        <Label Name="ItemsWindowMenuL" Visible="true" Enabled="true" 
+            LocationX="60" LocationY="112" SizeWidth="200" SizeHeight="20"
+            Text="items shown in Window menu"></Label>
+        <TextBox Name="ItemsRecentlyUsedTB" Visible="true" Enabled="true" ReadOnly="false"
+            LocationX="20" LocationY="137" SizeWidth="36" SizeHeight="24"
+            Text="6"></TextBox>
+        <Label Name="ItemsRecentlyUsedL" Visible="true" Enabled="true" 
+            LocationX="60" LocationY="142" SizeWidth="200" SizeHeight="24"
+            Text="items shown in recently used lists"></Label>
+        <CheckBox Name="ShowStatusBarCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="185" SizeWidth="300" SizeHeight="18"
+            Text="Show s&tatus bar" Checked="true"></CheckBox>
+        <CheckBox Name="CloseButtonCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="203" SizeWidth="300" SizeHeight="18"
+            Text="Cl&ose button affects active tool window only" Checked="true"></CheckBox>
+        <CheckBox Name="AutoHideCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="221" SizeWidth="300" SizeHeight="18"
+            Text="Auto &Hide button affects active tool window only" Checked="false"></CheckBox>
+        <CheckBox Name="AnimateCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="239" SizeWidth="300" SizeHeight="18"
+            Text="Animate &environment tools" Checked="true"></CheckBox>
+        <Label Name="SpeedL" Visible="true" Enabled="true" 
+            LocationX="40" LocationY="260" SizeWidth="50" SizeHeight="20"
+            Text="&Speed -  "></Label>
+        <TrackBar Name="TrackBar1" Visible="true" Enabled="true" 
+            LocationX="80" LocationY="260" SizeWidth="90" SizeHeight="20"
+            Minimum="0" Maximum="100" Value="50" TickFrequency="0"></TrackBar>
+        <Label Name="PlusL" Visible="true" Enabled="true" 
+            LocationX="170" LocationY="260" SizeWidth="50" SizeHeight="20"
+            Text="+"></Label>
+        <Button Name="RestoreFileB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="295" SizeWidth="160" SizeHeight="24"
+            Text="Restore &File Associations"></Button>        
+      </Controls>      
+    </ControlGroup>
+    <ControlGroup Name="Projects and Solutions">
+      <Controls>
+        <Label Name="ProjectsLocationL" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="10" SizeWidth="300" SizeHeight="16"
+            Text="Visual Studio &projects location:"></Label>
+        <TextBox Name="ProjectsLocationTB" Visible="true" Enabled="true" ReadOnly="false"
+            LocationX="10" LocationY="26" SizeWidth="350" SizeHeight="22"
+            Text="C:\Documents and Settings\user1\My Documents\Visual Studio 2005\Projects"></TextBox>
+        <Button Name="ProjectsLocationB" Visible="true" Enabled="true" 
+            LocationX="365" LocationY="26" SizeWidth="26" SizeHeight="22"
+            Text="..."></Button>
+        <Label Name="TemplatesLocationL" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="55" SizeWidth="300" SizeHeight="16"
+            Text="Visual Studio user p&roject templates location:"></Label>
+        <TextBox Name="TemplatesLocationTB" Visible="true" Enabled="true" ReadOnly="false"
+            LocationX="10" LocationY="71" SizeWidth="350" SizeHeight="22"
+            Text="C:\Documents and Settings\user1\My Documents\Visual Studio 2005\Templates\ProjectTemplates"></TextBox>
+        <Button Name="TemplatesLocationB" Visible="true" Enabled="true" 
+            LocationX="365" LocationY="71" SizeWidth="26" SizeHeight="22"
+            Text="..."></Button>
+        <Label Name="ItemLocationL" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="100" SizeWidth="300" SizeHeight="16"
+            Text="Visual Studio user ite&m templates location:"></Label>
+        <TextBox Name="ItemLocationTB" Visible="true" Enabled="true" ReadOnly="false"
+            LocationX="10" LocationY="116" SizeWidth="350" SizeHeight="22"
+            Text="C:\Documents and Settings\user1\My Documents\Visual Studio 2005\Templates\ItemTemplates"></TextBox>
+        <Button Name="ItemLocationB" Visible="true" Enabled="true" 
+            LocationX="365" LocationY="116" SizeWidth="26" SizeHeight="22"
+            Text="..."></Button>
+        <CheckBox Name="AlwaysShowErrorCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="150" SizeWidth="300" SizeHeight="18"
+            Text="Always show Error Lis&t if build finishes with errors" Checked="false"></CheckBox>
+        <CheckBox Name="TrackActiveItemCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="168" SizeWidth="300" SizeHeight="18"
+            Text="Track A&ctive Item in Solution Explorer" Checked="false"></CheckBox>
+        <CheckBox Name="ShowAdvancedCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="186" SizeWidth="300" SizeHeight="18"
+            Text="Show advanced bu&ild configurations" Checked="true"></CheckBox>
+        <CheckBox Name="AlwaysShowSolutionCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="204" SizeWidth="300" SizeHeight="18"
+            Text="Always s&how solution" Checked="true"></CheckBox>
+        <CheckBox Name="SaveNewProjectsCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="222" SizeWidth="300" SizeHeight="18"
+            Text="Save ne&w projects when created" Checked="true"></CheckBox>
+        <CheckBox Name="WarnUserCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="240" SizeWidth="300" SizeHeight="18"
+            Text="Warn &user when the project location is not trusted" Checked="true"></CheckBox>
+        <CheckBox Name="ShowOutputWindowCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="258" SizeWidth="300" SizeHeight="18"
+            Text="Show &Output window when build starts" Checked="false"></CheckBox>
+        <CheckBox Name="PromptSymbolicCB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="276" SizeWidth="300" SizeHeight="18"
+            Text="Prompt for &symbolic renaming when renaming files" Checked="true"></CheckBox>        
+      </Controls>      
+    </ControlGroup>
+    <ControlGroup Name="HTML Designer">
+      <Controls>
+        <GroupBox Name="StartPagesGB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="10" SizeWidth="400" SizeHeight="63"
+            Text="Start pages in"></GroupBox>
+        <RadioButton Name="SourceViewRB" Visible="true" Enabled="true" 
+            LocationX="20" LocationY="25" SizeWidth="120" SizeHeight="20"
+            Text="&Source View" Checked="true"></RadioButton>
+        <RadioButton Name="DesignViewRB" Visible="true" Enabled="true" 
+            LocationX="20" LocationY="45" SizeWidth="120" SizeHeight="20"
+            Text="&DesignView" Checked="false" RadioManager="SourceViewRB"></RadioButton>
+        <GroupBox Name="SmartTagsGB" Visible="true" Enabled="true" 
+            LocationX="10" LocationY="85" SizeWidth="400" SizeHeight="50"
+            Text="Smart Tags"></GroupBox>
+        <CheckBox Name="AutoDisplaySmartTagsCB" Visible="true" Enabled="true" 
+            LocationX="20" LocationY="102" SizeWidth="300" SizeHeight="18"
+            Text="A&utomatically display Smart Tags for controls in Design view" Checked="true"></CheckBox>
+      </Controls>
+    </ControlGroup>
+  </ControlGroups>
+</ControlWnd>
+

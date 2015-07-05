@@ -1,0 +1,48 @@
+<!--ResEdit configuration file-->
+<config>
+    <language>English</language>
+    <headerName>resource.h</headerName>
+    <includes>
+        <include path="C:\Program Files\PellesC5\Include\Win\" />
+        <include path="C:\Program Files\PellesC5\Include\" />
+    </includes>
+    <unicode support="true" macro="TEXT" />
+    <autoSaveLayout value="true" />
+    <autoCheckUpdate value="false" />
+    <maximized value="true" />
+    <dialog autoResizeType="1">
+        <grid width="5" height="5" visible="false" />
+        <margin size="7" visible="false" />
+        <snap sepSize="5" smallSepSize="2" visible="true" />
+        <default type="Button" width="50" height="14" name="Button" id="IDC_BUTTON" />
+        <default type="CheckBox" width="48" height="30" name="Check" id="IDC_CHECKBOX" />
+        <default type="Edit Control" width="40" height="14" name="" id="IDC_EDIT" />
+        <default type="ComboBox" width="48" height="30" name="" id="IDC_COMBO" />
+        <default type="ListBox" width="48" height="40" name="" id="IDC_LIST" />
+        <default type="Group Box" width="48" height="40" name="Static" id="IDC_STATIC" />
+        <default type="Radio Button" width="20" height="20" name="Radio" id="IDC_RADIO" />
+        <default type="Static Text" width="20" height="20" name="Static" id="IDC_STATIC" />
+        <default type="Picture Control" width="20" height="20" name="" id="IDC_STATIC" />
+        <default type="Scroll Bar" width="11" height="40" name="" id="IDC_SCROLLBAR" />
+        <default type="Slider Control" width="100" height="15" name="" id="IDC_SLIDER" />
+        <default type="Spin Control" width="11" height="14" name="" id="IDC_SPIN" />
+        <default type="Progress Bar" width="80" height="14" name="" id="IDC_PROGRESS" />
+        <default type="Hot Key" width="80" height="14" name="" id="IDC_HOTKEY" />
+        <default type="ListView Control" width="60" height="50" name="" id="IDC_LIST" />
+        <default type="TreeView Control" width="60" height="50" name="" id="IDC_TREE" />
+        <default type="Tab Control" width="50" height="30" name="" id="IDC_TAB" />
+        <default type="Animation" width="20" height="20" name="" id="IDD_ANIMATION" />
+        <default type="Rich Edit 2" width="40" height="14" name="Rich Edit" id="IDC_RICHEDIT" />
+        <default type="Date Time Picker" width="100" height="15" name="" id="IDC_DATETIMEPICKER" />
+        <default type="Month Calendar" width="140" height="100" name="" id="IDC_MONTHCALENDAR" />
+        <default type="IP Address Control" width="100" height="15" name="" id="IDC_IPADDRESS" />
+        <default type="Rebar Control" width="20" height="20" name="" id="IDC_REBAR" />
+        <default type="Custom Control" width="20" height="20" name="" id="IDC_CUSTOM" />
+    </dialog>
+    <imageEditor>
+        <pixelGrid value="false" />
+        <textureGrid value="true" color1="0x00666666" color2="0x00333333" />
+        <background color="0x00F5DCD7" />
+        <invertBackground color="0x008040FF" />
+    </imageEditor>
+</config>

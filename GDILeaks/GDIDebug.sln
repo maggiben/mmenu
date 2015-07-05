@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GDITrace", "GDITrace\GDITrace.vcproj", "{E4888D4E-50EA-4652-B831-68FCD7F0579B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GDIndicator", "GDIndicator\GDIndicator.vcproj", "{AD30F008-4C0A-4579-8234-F039B14F07B0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GdiUsage", "GdiUsage\GdiUsage.vcproj", "{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GDInject", "GDInject\GDInject.vcproj", "{B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+		{AD30F008-4C0A-4579-8234-F039B14F07B0}.0 = {B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}
+		{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}.0 = {E4888D4E-50EA-4652-B831-68FCD7F0579B}
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E4888D4E-50EA-4652-B831-68FCD7F0579B}.Debug.ActiveCfg = Debug|Win32
+		{E4888D4E-50EA-4652-B831-68FCD7F0579B}.Debug.Build.0 = Debug|Win32
+		{E4888D4E-50EA-4652-B831-68FCD7F0579B}.Release.ActiveCfg = Release|Win32
+		{E4888D4E-50EA-4652-B831-68FCD7F0579B}.Release.Build.0 = Release|Win32
+		{AD30F008-4C0A-4579-8234-F039B14F07B0}.Debug.ActiveCfg = Debug|Win32
+		{AD30F008-4C0A-4579-8234-F039B14F07B0}.Debug.Build.0 = Debug|Win32
+		{AD30F008-4C0A-4579-8234-F039B14F07B0}.Release.ActiveCfg = Release|Win32
+		{AD30F008-4C0A-4579-8234-F039B14F07B0}.Release.Build.0 = Release|Win32
+		{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}.Debug.ActiveCfg = Debug|Win32
+		{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}.Debug.Build.0 = Debug|Win32
+		{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}.Release.ActiveCfg = Release|Win32
+		{DA5ABE08-B1A1-4C5D-8BAD-349A668AB3D7}.Release.Build.0 = Release|Win32
+		{B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}.Debug.ActiveCfg = Debug|Win32
+		{B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}.Debug.Build.0 = Debug|Win32
+		{B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}.Release.ActiveCfg = Release|Win32
+		{B2E434C4-ED49-4376-A7B9-745DCA2E5A3A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

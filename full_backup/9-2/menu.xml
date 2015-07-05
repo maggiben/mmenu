@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- This file is used by the mainmenu.c file -->
+<MAINMENU color="0xC3C3C3" border="0x000000">
+	<MENUITEM color="0xC3C3C3" border="0x000000" font="Verdana">
+		<CAPTION>MENU HELPER</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_SIDEBAR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM >
+		<CAPTION>Configure</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>..\icons\emblem-system_001.png</IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_MENUBREAK</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>-</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>1</POPUP>
+		<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Proyectos</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>..\icons\lx03141.png</IMAGE>
+		<POPUP>1</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>c:\</EXECUTE>
+		<MENUITEM border="0x000000" font="Verdana">
+				<CAPTION>Compiler</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\sc27019.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\LCC\PROJECTS</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+				<CAPTION>Destacados</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\sc_backcolor.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\LCC\Download_examples</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+				<CAPTION>-</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>.\icos\gra.bmp</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE>c:\</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+				<CAPTION>PellesC IDE</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\sc05539.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\PellesC\Bin\poide.exe</EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Internet</CAPTION>
+		<FONT>Verdana</FONT>
+		<FONTSIZE>8</FONTSIZE>
+		<COLOR>0x0093FD</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>..\icons\web-link_002.png</IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>menu.xml</EXECUTE>
+		<MENUITEM>
+			<CAPTION>Tools</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR col="8421504">0x808080</BGCOLOR>
+			<IMAGE>..\icons\preferences-desktop_001.png</IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+			<MENUITEM>
+				<CAPTION>Browsers</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\web-browser.png</IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+				<MENUITEM>
+					<CAPTION font="Verdana" size="9" color="0xFF0000" style="bold">Firefox</CAPTION>
+					<FONT>Verdana</FONT>
+					<COLOR   gradient="1" ange="90" color1="#00FF00" color2="#FF0000" alpha="100">0xAAAAAA</COLOR>
+					<BGCOLOR gradient="0" ange="00" color1="#000000" color2="#000000" alpha="100">0x808080</BGCOLOR>
+					<IMAGE background="transparent" width="16" height="16"></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Program Files\Mozilla Firefox\firefox.exe</EXECUTE>
+				</MENUITEM>
+				<MENUITEM>
+					<CAPTION>IExplorer</CAPTION>
+					<FONT>Verdana</FONT>
+					<COLOR>0xAAAAAA</COLOR>
+					<BGCOLOR>0x808080</BGCOLOR>
+					<IMAGE></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Program Files\Internet Explorer\IEXPLORE.EXE</EXECUTE>
+				</MENUITEM>
+				<MENUITEM>
+					<CAPTION>Opera USB</CAPTION>
+					<FONT>Verdana</FONT>
+					<COLOR>0xAAAAAA</COLOR>
+					<BGCOLOR>0x808080</BGCOLOR>
+					<IMAGE></IMAGE>
+					<POPUP>2</POPUP>
+					<MENUTYPE>MF_STRING</MENUTYPE>
+					<EXECUTE>C:\Documents and Settings\Administrator\Desktop\virtual machine img\opera924int\operausb.exe</EXECUTE>
+				</MENUITEM>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>-</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>SFTP</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\winscp382.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>PuTTy</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\PuTTy\putty.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>uTrrent</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>2</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\utorrent.exe</EXECUTE>
+			</MENUITEM>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>-</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>Mobile Partner</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>..\icons\network-wireless_001.png</IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Program Files\Mobile Partner\Mobile Partner.exe</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>Network Connections</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE>..\icons\applications-internet_003.png</IMAGE>
+			<POPUP>2</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>sep2</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>2</POPUP>
+		<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>IBM Tools</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xF8B374</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>..\icons\emblem-symbolic-link_002.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>c:\windows</EXECUTE>
+			<MENUITEM border="0x000000" font="Verdana">
+				<CAPTION font="Verdana" size="9" color="0xFF0000" style="bold">Citrix</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\application-x-executable_002.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\Citrix\ICA Client\pn.exe</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>hp OpenView service desk</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\x-directory-desktop_001.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\Hewlett-Packard\OpenView\service desk 4.5\client\</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>ILC</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE>..\icons\appointment-soon_001.png</IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Program Files\IBM\BMS\ILC\ilc.bat</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>-</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>0</POPUP>
+				<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+				<EXECUTE></EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>Avaya Docs</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\Avaya</EXECUTE>
+			</MENUITEM>
+			<MENUITEM>
+				<CAPTION>CNH Docs</CAPTION>
+				<FONT>Verdana</FONT>
+				<COLOR>0xAAAAAA</COLOR>
+				<BGCOLOR>0x808080</BGCOLOR>
+				<IMAGE></IMAGE>
+				<POPUP>1</POPUP>
+				<MENUTYPE>MF_STRING</MENUTYPE>
+				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\CNH</EXECUTE>
+			</MENUITEM>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Mail</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\postal.png</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\notes\notes.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Media</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE>.\icos\DVD.ico</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>.\icos\audio.bmp</EXECUTE>
+		<MENUITEM border="0x000000" font="Verdana">
+			<CAPTION>VLC</CAPTION>
+			<FONT size="1" color="0x000000">Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\Desktop\vlc\vlc.exe</EXECUTE>
+		</MENUITEM>		
+		<MENUITEM>
+			<CAPTION>Media Player</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Program Files\Windows Media Player\wmplayer.exe</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>-</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>0</POPUP>
+			<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+			<EXECUTE></EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>Música</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents\My Music</EXECUTE>
+		</MENUITEM>
+		<MENUITEM>
+			<CAPTION>Imágenes</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents\My Pictures</EXECUTE>
+		</MENUITEM>
+			<MENUITEM>
+			<CAPTION>Documentos</CAPTION>
+			<FONT>Verdana</FONT>
+			<COLOR>0xAAAAAA</COLOR>
+			<BGCOLOR>0x808080</BGCOLOR>
+			<IMAGE></IMAGE>
+			<POPUP>1</POPUP>
+			<MENUTYPE>MF_STRING</MENUTYPE>
+			<EXECUTE>C:\Documents and Settings\Administrator\My Documents</EXECUTE>
+		</MENUITEM>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Putty</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE>C:\Documents and Settings\Administrator\Desktop\PuTTy\putty.exe</EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>sep1</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE></IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_SEPARATOR</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+	<MENUITEM>
+		<CAPTION>Exit</CAPTION>
+		<FONT>Verdana</FONT>
+		<COLOR>0xAAAAAA</COLOR>
+		<BGCOLOR>0xC3C3C3</BGCOLOR>
+		<IMAGE width="32" height="32">.\icos\shut.ico</IMAGE>
+		<POPUP>0</POPUP>
+		<MENUTYPE>MF_STRING</MENUTYPE>
+		<EXECUTE></EXECUTE>
+	</MENUITEM>
+</MAINMENU>	
+		

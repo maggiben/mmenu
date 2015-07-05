@@ -1,0 +1,14 @@
+[main_menu.c]
+Foldings=279,335,438,1645,1651,1657,2019
+Bookmarks=1057,1222,1242,2379,2496
+[Debugger]
+Watch symbols=next_pointer
+[Windows]
+File1=IDropSource.c,1,1,627,286,0,0
+File2=IDataObject.c,133,133,759,494,0,0
+File3=IDragDrop.h,111,111,772,445,0,0
+File4=IDropTarget.c,111,111,737,472,0,0
+File5=main_menu.rc,1,1,627,286,0,0
+File6=disphelper.c,111,111,736,419,0,0
+File7=disphelper.h,22,22,650,360,0,0
+File8=main_menu.c,-4,-23,841,455,1,1
