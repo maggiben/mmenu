@@ -1,0 +1,98 @@
+[Software Credits]
+Software=IconPackager 1.51
+Company=Stardock Systems, Inc
+Author=Brian Harper
+Website=http://www.stardock.com
+Email=support@stardock.com
+
+[Desktop Icons]
+My Computer=%ThemeDir%BeOS_5 Icon 1.ico
+My Documents=%ThemeDir%BeOS_5 Icon 2.ico
+Network Neighborhood=%ThemeDir%BeOS_5 Icon 3.ico
+The Internet=%ThemeDir%BeOS_5 Icon 4.ico
+My Briefcase=%ThemeDir%BeOS_5 Icon 5.ico
+Recycle Bin (empty)=%ThemeDir%BeOS_5 Icon 6.ico
+Recycle Bin (full)=%ThemeDir%BeOS_5 Icon 7.ico
+
+[Start Icons]
+Programs=%ThemeDir%BeOS_5 Icon 8.ico
+Favorites=%ThemeDir%BeOS_5 Icon 9.ico
+Documents=%ThemeDir%BeOS_5 Icon 10.ico
+Settings=%ThemeDir%BeOS_5 Icon 11.ico
+Find=%ThemeDir%BeOS_5 Icon 12.ico
+Help=%ThemeDir%BeOS_5 Icon 13.ico
+Run=%ThemeDir%BeOS_5 Icon 14.ico
+Log Off=%ThemeDir%BeOS_5 Icon 15.ico
+Shut Down=%ThemeDir%BeOS_5 Icon 16.ico
+Settings - Control Panel=%ThemeDir%BeOS_5 Icon 17.ico
+Settings - Printers=%ThemeDir%BeOS_5 Icon 18.ico
+
+[Folder Icons]
+Closed Folder=%ThemeDir%BeOS_5 Icon 19.ico
+Open Folder=%ThemeDir%BeOS_5 Icon 20.ico
+Program Group=%ThemeDir%BeOS_5 Icon 21.ico
+Control Panel=%ThemeDir%BeOS_5 Icon 22.ico
+Dial-Up Networking=%ThemeDir%BeOS_5 Icon 23.ico
+Printers=%ThemeDir%BeOS_5 Icon 24.ico
+Scheduled Tasks=%ThemeDir%BeOS_5 Icon 25.ico
+ActiveX Cache=%ThemeDir%BeOS_5 Icon 26.ico
+Favorites=%ThemeDir%BeOS_5 Icon 27.ico
+Url History=%ThemeDir%BeOS_5 Icon 28.ico
+Subscriptions=%ThemeDir%BeOS_5 Icon 29.ico
+
+[Drive Icons]
+Floppy Drive (5.25)=%ThemeDir%BeOS_5 Icon 30.ico
+Floppy Drive (3.5)=%ThemeDir%BeOS_5 Icon 31.ico
+Hard Drive=%ThemeDir%BeOS_5 Icon 32.ico
+Network Drive (connected)=%ThemeDir%BeOS_5 Icon 33.ico
+Network Drive (offline)=%ThemeDir%BeOS_5 Icon 34.ico
+CD-ROM Drive=%ThemeDir%BeOS_5 Icon 35.ico
+Removable Drive=%ThemeDir%BeOS_5 Icon 36.ico
+RAM Drive=%ThemeDir%BeOS_5 Icon 37.ico
+
+[Other Icons]
+Shortcut Overlay=%ThemeDir%BeOS_5 Icon 38.ico
+Sharing Overlay=%ThemeDir%BeOS_5 Icon 39.ico
+Desktop=%ThemeDir%BeOS_5 Icon 40.ico
+Entire Network=%ThemeDir%BeOS_5 Icon 41.ico
+Workgroup=%ThemeDir%BeOS_5 Icon 42.ico
+Computer=%ThemeDir%BeOS_5 Icon 43.ico
+Audio CD=%ThemeDir%BeOS_5 Icon 44.ico
+
+[File Icons]
+Bitmap Image=%ThemeDir%BeOS_5 Icon 45.ico
+Default Icon=%ThemeDir%BeOS_5 Icon 46.ico
+Default Document=%ThemeDir%BeOS_5 Icon 47.ico
+GIF Image=%ThemeDir%BeOS_5 Icon 48.ico
+Internet Document=%ThemeDir%BeOS_5 Icon 49.ico
+JPEG Image=%ThemeDir%BeOS_5 Icon 50.ico
+Media Clip=%ThemeDir%BeOS_5 Icon 51.ico
+MIDI Sequence=%ThemeDir%BeOS_5 Icon 52.ico
+Movie Clip=%ThemeDir%BeOS_5 Icon 53.ico
+MS-DOS Application=%ThemeDir%BeOS_5 Icon 54.ico
+MS-DOS Batch File=%ThemeDir%BeOS_5 Icon 55.ico
+Rich Text Format=%ThemeDir%BeOS_5 Icon 56.ico
+Video Clip=%ThemeDir%BeOS_5 Icon 57.ico
+Wave Sound=%ThemeDir%BeOS_5 Icon 58.ico
+Write Document=%ThemeDir%BeOS_5 Icon 59.ico
+Zip File=%ThemeDir%BeOS_5 Icon 60.ico
+
+[Cursors]
+Normal Select=%ThemeDir%BeOS_5 Cursor 61.CUR
+Help Select=%ThemeDir%BeOS_5 Cursor 62.cur
+Working In Background=%ThemeDir%BeOS_5 Cursor 63.ani
+Busy=%ThemeDir%BeOS_5 Cursor 64.ani
+Precision Select=%ThemeDir%BeOS_5 Cursor 65.cur
+Text Select=%ThemeDir%BeOS_5 Cursor 66.cur
+Handwriting=%ThemeDir%BeOS_5 Cursor 67.cur
+Unavailable=%ThemeDir%BeOS_5 Cursor 68.cur
+Vertical Resize=%ThemeDir%BeOS_5 Cursor 69.cur
+Horizontal Resize=%ThemeDir%BeOS_5 Cursor 70.cur
+Diagonal Resize 1=%ThemeDir%BeOS_5 Cursor 71.cur
+Diagonal Resize 2=%ThemeDir%BeOS_5 Cursor 72.cur
+Move=%ThemeDir%BeOS_5 Cursor 73.cur
+Alternate Select=%ThemeDir%BeOS_5 Cursor 74.cur
+Hand=%ThemeDir%BeOS_5 Cursor 75.cur
+
+[Include]
+Read Me=%ThemeDir%Read Me.txt
