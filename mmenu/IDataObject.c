@@ -69,14 +69,14 @@ STDMETHODIMP_(ULONG) DataObject_AddRef(IDataObject *this)
 	DataObjectEx * pDOEx = (DataObjectEx *)this;
 
 	// increase reference count
-	return ++pDOEx->m_cRefCount;
+	return InterlockedIncrement(&pDOEx->m_cRefCount);
 }
 
 STDMETHODIMP_(ULONG) DataObject_Release(IDataObject *this)
 {
 	DataObjectEx * pDOEx = (DataObjectEx *)this;
 
-	if(--pDOEx->m_cRefCount == 0){
+	if (InterlockedDecrement(&pDOEx->m_cRefCount) == 0){
 		free(this);
 		return 0;
 	}

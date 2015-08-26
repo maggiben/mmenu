@@ -34,6 +34,7 @@
 #include "VistaIcons.h"
 
 #pragma comment( lib, "windowscodecs" )
+
 #define SafeRelease(pUnk) if (pUnk) { pUnk->lpVtbl->Release(pUnk); pUnk = NULL; }
 
 /// health flag
@@ -61,6 +62,62 @@ HBITMAP m_hOldMemBitmap;
 HBITMAP m_hMemBitmap;
 HDC m_hMemDC;
 
+HBITMAP ScaleImage(HBITMAP hBitmap, LONG width, LONG height)
+{
+	HRESULT hr;
+	IWICImagingFactory *pFactory = NULL;
+	IWICBitmapScaler *pIScaler = NULL;
+	IWICBitmap *outputBitmap = NULL;
+	HBITMAP hbmp = NULL;
+
+	hr = CoCreateInstance(&CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, &IID_IWICImagingFactory, (LPVOID*)&pFactory);
+	if (SUCCEEDED(hr))
+	{
+		if (SUCCEEDED(hr)) hr = pFactory->lpVtbl->CreateBitmapFromHBITMAP(pFactory, hBitmap, NULL, WICBitmapUsePremultipliedAlpha, &outputBitmap);
+
+		BITMAPINFO bmi = { 0 };
+		bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		bmi.bmiHeader.biWidth = width;
+		bmi.bmiHeader.biHeight = -(height);
+		bmi.bmiHeader.biPlanes = 1;
+		bmi.bmiHeader.biBitCount = 32;
+		bmi.bmiHeader.biCompression = BI_RGB;
+
+		BYTE *pBits;
+		hbmp = CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void**)&pBits, NULL, 0);
+		if (SUCCEEDED(hr)) hr = hbmp ? S_OK : E_OUTOFMEMORY;
+
+		if (SUCCEEDED(hr)) hr = pFactory->lpVtbl->CreateBitmapScaler(pFactory, &pIScaler);
+		if (SUCCEEDED(hr)) hr = pIScaler->lpVtbl->Initialize(pIScaler, outputBitmap, width, height, WICBitmapInterpolationModeFant);
+		WICRect rect = { 0, 0, width, height };
+		if (SUCCEEDED(hr)) hr = pIScaler->lpVtbl->CopyPixels(pIScaler, &rect, width * 4, width * height * 4, pBits);
+
+		if (SUCCEEDED(hr))
+			hr = S_OK;
+		else
+			DeleteObject(hbmp);
+
+		pIScaler->lpVtbl->Release(pIScaler);
+		outputBitmap->lpVtbl->Release(outputBitmap);
+		pFactory->lpVtbl->Release(pFactory);
+	}
+	return hbmp;
+}
+
+SIZE ScaleBox(SIZE * origin, LONG width, LONG height) {
+	DOUBLE ratio = (DOUBLE)origin->cx / (DOUBLE)origin->cy;
+	SIZE result;
+	if (origin->cx > origin->cy) {
+		result.cy = width / (LONG)ratio;
+		result.cx = width;
+	}
+	else {
+		result.cx = height * (LONG)ratio;
+		result.cy = height;
+	}
+	return result;
+}
+
 HBITMAP	LoadImageSmart(LPWSTR imagePath)
 {
 	HBITMAP tmpBMP = NULL;
@@ -84,12 +141,12 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 			return hBitmap;
 			break;
 		}
-		case FIF_PNG:
+		case FIF_EXR:
 		{
 			HBITMAP hBmp = NULL;
 			IWICImagingFactory *pFactory = NULL;
 			IWICBitmapDecoder *pDecoder = NULL;
-			HRESULT hr = NULL;
+			HRESULT hr;
 			hr = CoCreateInstance(&CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, &IID_IWICImagingFactory, (LPVOID*)&pFactory);
 			if (SUCCEEDED(hr))
 			{
@@ -136,9 +193,11 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 					SafeRelease(pFactory);
 				}
 			}
-			return hBmp;
+			HBITMAP hFinalBmp = ScaleImage(hBmp, GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CXSMICON));
+			DeleteObject(hBmp);
+			return hFinalBmp;
 		}
-		case FIF_EXR:
+		case FIF_PNG:
 		{
 			FIBITMAP *image = FreeImage_LoadU(format, imagePath, PNG_DEFAULT);
 			if (!image)
@@ -146,6 +205,9 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 				// Could not load image
 				return NULL;
 			}
+
+			image = FreeImage_Rescale(image, 16, 16, FILTER_CATMULLROM);
+
 			int width = FreeImage_GetWidth(image);
 			int height = FreeImage_GetHeight(image);
 			BOOL bHasBackground = FreeImage_HasBackgroundColor(image);
@@ -156,19 +218,21 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 
 			bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 			bmi.bmiHeader.biPlanes = 1;
+			bmi.bmiHeader.biBitCount = 32;
 			bmi.bmiHeader.biCompression = BI_RGB;
 
-			bmi.bmiHeader.biWidth = width;
-			bmi.bmiHeader.biHeight = height;
-			bmi.bmiHeader.biBitCount = 32;
+			bmi.bmiHeader.biWidth = GetSystemMetrics(SM_CXSMICON);
+			bmi.bmiHeader.biHeight = GetSystemMetrics(SM_CXSMICON);
 
-			//FreeImage_PreMultiplyWithAlpha(image);
-			//tmpBMP = CreateDIBitmap(hDCDesktop, FreeImage_GetInfoHeader(image), CBM_INIT, FreeImage_GetBits(image), FreeImage_GetInfo(image), DIB_RGB_COLORS);
-			tmpBMP = CreateDIBSection(hDCDesktop, FreeImage_GetInfoHeader(image), DIB_RGB_COLORS, FreeImage_GetBits(image), NULL, 0);
-			//tmpBMP = ImageToBitmapPARGB32(tmpBMP);
+			BYTE *pBits;
+			HBITMAP hBitmap = CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void**)&pBits, NULL, 0);
+
+			FreeImage_PreMultiplyWithAlpha(image);
+			
+			CopyMemory(pBits, FreeImage_GetBits(image), FreeImage_GetPitch(image) * FreeImage_GetHeight(image));
 			FreeImage_Unload(image);
 			ReleaseDC(NULL, hDCDesktop);
-			return tmpBMP;
+			return hBitmap;
 			break;
 		}
 	}
@@ -322,6 +386,7 @@ HBITMAP CreateBitmapMask(HBITMAP hbmColour, COLORREF crTransparent)
 	return hbmMask;
 
 }
+
 ///////////////////////////////////////////////////////////////////////////////////
 // Draws an HBITMAP with a bg color cTransparentColor on the target DC           //
 // Works better with paletized images and cannot use alpha channels              //
@@ -624,6 +689,7 @@ COLORREF InterpolateLinear(COLORREF first, COLORREF second, long position, long 
 		(BYTE)((GetBValue(second)*(position - start) + GetBValue(first)*(end - position)) / (end - start))
 		);
 }
+
 void wallpaper(HDC hdc, RECT *lprc, int idbitmap)
 {
 	HDC shdc = NULL;
@@ -663,11 +729,6 @@ void wallpaper(HDC hdc, RECT *lprc, int idbitmap)
 		DeleteObject(hbmp);
 		DeleteDC(shdc);
 	}
-}
-
-unsigned char* getBGRA()
-{
-	return m_bgra;
 }
 
 /////////////////////////////////////////////////////////////////////

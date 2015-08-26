@@ -47,7 +47,7 @@ BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 	int point_y = 0;
 
 
-	if (lpMenuData->menu_type == MF_SIDEBAR)// && lpDs->itemID == 1901)
+	if (lpMenuData->type == MF_SIDEBAR)
 	{
 		//return 0;
 		RECT rct;
@@ -100,7 +100,8 @@ BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 		//FillRect(lpDs->hDC, &rct, hBrush); //&lpDs->rcItem
 		DeleteObject(hBrush);
 	}
-	switch (lpMenuData->menu_type)
+	HMENU ppp = GetMenu(lpDrawItem->hwndItem);
+	switch (lpMenuData->type)
 	{
 		case MF_STRING:
 		{
@@ -134,6 +135,7 @@ BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 ///////////////////////////////////////////////////////////////////////////////////
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
+
 BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 {
 	RECT		rcSep;
@@ -182,14 +184,14 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		//	Put the Icon                                               //
 		/////////////////////////////////////////////////////////////////
 		BITMAP bm;
-		GetObject(lpMenuData->menu_imageOvr, sizeof(BITMAP), (LPSTR)&bm);
+		GetObject(lpMenuData->image, sizeof(BITMAP), (LPSTR)&bm);
 		point_y = lpDrawItem->rcItem.top + ((lpDrawItem->rcItem.bottom - lpDrawItem->rcItem.top) / 2) - (bm.bmHeight/2); // Y position
 		point_x = lpDrawItem->rcItem.left + (((lpDrawItem->rcItem.left + main_menu_theme.menu_theme_sidebar_width) / 2) - (bm.bmWidth/2));	// X position of the icon
 
 		HDC     hMemDC = CreateCompatibleDC(lpDrawItem->hDC);
-		HGDIOBJ hOld   = SelectObject(hMemDC, lpMenuData->menu_imageOvr);
+		HGDIOBJ hOld = SelectObject(hMemDC, lpMenuData->image);
 		BITMAP bmp;
-		GetObject(lpMenuData->menu_imageOut, sizeof(BITMAP), (LPSTR) &bmp);
+		GetObject(lpMenuData->image, sizeof(BITMAP), (LPSTR)&bmp);
 	
 		BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
@@ -211,12 +213,12 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDrawItem->hDC, LOGPIXELSY), DPI);
 
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
-		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name,NULL);
+		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name, NULL);
 		
 		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
 
-		SetBkMode(lpDrawItem->hDC,TRANSPARENT);
-		DrawText(lpDrawItem->hDC,lpMenuData->menu_capti, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
+		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
+		DrawText(lpDrawItem->hDC, lpMenuData->label, -1, &rcSep, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
 		SelectObject(lpDrawItem->hDC, hfntPrev);
 		SetTextColor(lpDrawItem->hDC, prevColor);
 		DeleteObject(hfnt);
@@ -263,14 +265,14 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		//	Put the icon                                     //
 		///////////////////////////////////////////////////////		
 		BITMAP bm;
-		GetObject(lpMenuData->menu_imageOut, sizeof(BITMAP), (LPSTR)&bm);
+		GetObject(lpMenuData->image, sizeof(BITMAP), (LPSTR)&bm);
 		point_y = lpDrawItem->rcItem.top + ((lpDrawItem->rcItem.bottom - lpDrawItem->rcItem.top) / 2) - (bm.bmHeight/2); // Y position
 		point_x = lpDrawItem->rcItem.left + (((lpDrawItem->rcItem.left + main_menu_theme.menu_theme_sidebar_width) / 2) - (bm.bmWidth/2));	// X position of the icon
 		
 		HDC     hMemDC = CreateCompatibleDC(lpDrawItem->hDC);
-		HGDIOBJ hOld   = SelectObject(hMemDC, lpMenuData->menu_imageOut);
+		HGDIOBJ hOld = SelectObject(hMemDC, lpMenuData->image);
 		BITMAP bmp;
-		GetObject(lpMenuData->menu_imageOut, sizeof(BITMAP), (LPSTR) &bmp);
+		GetObject(lpMenuData->image, sizeof(BITMAP), (LPSTR)&bmp);
 	
 		BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
@@ -295,14 +297,14 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		
 		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
 
-		SetBkMode(lpDrawItem->hDC,TRANSPARENT);
-		DrawText (lpDrawItem->hDC,lpMenuData->menu_capti, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
+		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
+		DrawText (lpDrawItem->hDC, lpMenuData->label, -1, &rcSep, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
 		SelectObject(lpDrawItem->hDC, hfntPrev);
 		SetTextColor(lpDrawItem->hDC, prevColor);
 		DeleteObject(hfnt);
 
 	}
-	if(lpMenuData->menu_type == MF_POPUP)
+	if (lpMenuData->type == MF_POPUP)
 	{
 		#define OBM_MNARROW 32739
 		HBITMAP hBitmap = (HBITMAP)LoadImage(NULL,MAKEINTRESOURCE(OBM_MNARROW), IMAGE_BITMAP, 0, 0,LR_DEFAULTSIZE | LR_SHARED);
@@ -460,7 +462,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		///////////////////////////////////////////////////////
 		SIZE extent;
 		TCHAR *captionText = (TCHAR*)lpDrawItem->itemData;
-		GetTextExtentPoint32(lpDrawItem->hDC,captionText, lstrlen(captionText), &extent);
+		GetTextExtentPoint32(lpDrawItem->hDC, captionText, lstrlen(captionText), &extent);
 		point_y = ((lpDrawItem->rcItem.bottom - lpDrawItem->rcItem.top) / 2) - (extent.cy/2);
 		point_y += lpDrawItem->rcItem.top;
 		
@@ -491,8 +493,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		DeleteObject(hfnt);
 
 	}
-	/*
-	if(lpMenuData->menu_type == MF_POPUP)
+	if(lpMenuData->type == MF_POPUP)
 	{
 		#define OBM_MNARROW 32739
 		HBITMAP hBitmap = (HBITMAP)LoadImage(NULL,MAKEINTRESOURCE(OBM_MNARROW), IMAGE_BITMAP, 0, 0,LR_DEFAULTSIZE | LR_SHARED);
@@ -510,8 +511,6 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		_drawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED)?TRUE:FALSE);
 		ExcludeClipRect(lpDrawItem->hDC, lpDrawItem->rcItem.left, lpDrawItem->rcItem.top, lpDrawItem->rcItem.right, lpDrawItem->rcItem.bottom);
 	}
-	return TRUE;
-	*/
 	return TRUE;
 }
 
@@ -808,23 +807,24 @@ static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled)
    DeleteDC(arrowDC);
 }
 
-void OnMeasureItem(HWND hWnd, MEASUREITEMSTRUCT *lpMeasureItem) { // MEASUREITEMSTRUCT *lpMeasureItem, MENU_DATA *lpMenuData) {
-	
-	TEXTMETRIC	tm;
-	int			icoSize;
-	// Retrieve a device context for the main window.
-	HDC hdc = GetDC(hWnd);
 
-	if ((lpMeasureItem == NULL) || (lpMeasureItem->CtlType != ODT_MENU))
-	{
-		return;
-	}
+void OnNcPaint(HWND hWnd, HRGN hRgn) {
+	HDC hDC;
+	RECT rect;
+	hDC = GetWindowDC(hWnd);
 
+	GetWindowRect(hWnd, &rect);
+	GetClipBox(hDC, &rect);
 
-	icoSize = GetSystemMetrics(SM_CXICON);
-	//int icoSize = GetSystemMetrics(SM_CXSMICON);
+	int border = GetSystemMetrics(SM_CXBORDER);
+	int edge = GetSystemMetrics(SM_CXEDGE);
 
-	GetTextMetrics(hdc, &tm);
-
-	ReleaseDC(hWnd, hdc);
+	HBRUSH hBrush = CreateSolidBrush(RGB(255,0,0)); // Menu Border color
+	FrameRect(hDC, &rect, hBrush);					// it will draw a 1px border only
+	InflateRect(&rect, -1, -1);
+	FrameRect(hDC, &rect, hBrush);
+	DeleteObject(hBrush);
+	// Paint into this DC 
+	ReleaseDC(hWnd, hDC);
+	return;
 }

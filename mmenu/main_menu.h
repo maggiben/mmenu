@@ -141,6 +141,7 @@ typedef struct _MENU_DATA
 	LPWSTR				menu_capti;			// Menu Caption
 	LPWSTR				menu_exec;			// Executable Path
 	LPWSTR				imagePath;			// Image Path 2015
+	HBITMAP				image;
 	HBITMAP				menu_image;			// Plain bitmap
 	HBITMAP				menu_imageOvr;		// Image to show when menu is selected.
 	HBITMAP				menu_imageOut;		// Image to show when menu is not selected.
@@ -158,7 +159,7 @@ typedef struct _MENU_DATA
 	int					menu_width;			// menu item width
 	int					menu_height;		// menu item height
 	int					menu_popup;
-	UINT				menu_type;			// Menu item thye MF_SEPERATOR popup etc... added 2006
+	UINT				type;			// Menu item thye MF_SEPERATOR popup etc... added 2006
 } MENU_DATA, *LPMENU_DATA;
 
 

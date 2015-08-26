@@ -60,7 +60,8 @@ STDMETHODIMP_(ULONG) DropSource_AddRef(IDropSource *this)
 	DropSourceEx * pDSEx = (DropSourceEx *)this;
 
 	// increase reference count
-	return ++pDSEx->m_cRefCount;
+	return InterlockedIncrement(&pDSEx->m_cRefCount);
+	//return ++pDSEx->m_cRefCount;
 }
 
 STDMETHODIMP_(ULONG) DropSource_Release(IDropSource *this)

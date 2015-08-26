@@ -27,9 +27,6 @@
     <ClCompile Include="xmleng.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="disphelper.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IDataObject.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,11 +42,11 @@
     <ClCompile Include="VistaIcons.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shellHelper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="disphelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>

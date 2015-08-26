@@ -23,7 +23,6 @@
 
 typedef DWORD ARGB;
 
-
 HBITMAP IconToBitmapPARGB32(HICON hIcon);
 HBITMAP ImageToBitmapPARGB32(HBITMAP hBitmap);
 HBITMAP IconToBitmap(HICON hIcon);

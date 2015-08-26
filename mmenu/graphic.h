@@ -47,6 +47,6 @@ void		blurBitmap(HDC hSrcDc, HBITMAP hSrcBmp, BYTE bDeltaMax);
 
 // Image Loading & Manipulation
 HBITMAP		LoadImageSmart(LPWSTR imagePath);
-unsigned char* getBGRA();
+HBITMAP		ScaleImage(HBITMAP hBitmap, LONG width, LONG height);
 
 #endif

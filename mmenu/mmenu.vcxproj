@@ -51,7 +51,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
@@ -80,7 +80,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="disphelper.c" />
     <ClCompile Include="draw.c" />
     <ClCompile Include="graphic.c" />
     <ClCompile Include="IDataObject.c" />
@@ -88,11 +87,11 @@
     <ClCompile Include="IDropTarget.c" />
     <ClCompile Include="IEnumFORMATETC.c" />
     <ClCompile Include="main_menu.c" />
+    <ClCompile Include="shellHelper.c" />
     <ClCompile Include="VistaIcons.c" />
     <ClCompile Include="xmleng.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="disphelper.h" />
     <ClInclude Include="draw.h" />
     <ClInclude Include="FreeImage.h" />
     <ClInclude Include="graphic.h" />

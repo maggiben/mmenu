@@ -35,6 +35,7 @@ BOOL DrawMenuRoot		(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuSeparator	(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuSidebar	(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawRootMenuItem	(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
-void OnMeasureItem		(HWND hWnd, MEASUREITEMSTRUCT *lpMeasureItem);
 
+// 
+void OnNcPaint			(HWND hWnd, HRGN hRgn);
 #endif
