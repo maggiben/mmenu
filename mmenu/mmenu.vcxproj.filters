@@ -42,9 +42,6 @@
     <ClCompile Include="VistaIcons.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shellHelper.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw.h">

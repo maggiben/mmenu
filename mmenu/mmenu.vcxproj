@@ -87,7 +87,6 @@
     <ClCompile Include="IDropTarget.c" />
     <ClCompile Include="IEnumFORMATETC.c" />
     <ClCompile Include="main_menu.c" />
-    <ClCompile Include="shellHelper.c" />
     <ClCompile Include="VistaIcons.c" />
     <ClCompile Include="xmleng.c" />
   </ItemGroup>

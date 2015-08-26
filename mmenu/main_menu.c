@@ -103,7 +103,7 @@
 //   
 ///////////////////////////////////////////////////////////////////////////////////
 
-#define VERSION 0.9.5		// 29/05/2009
+#define VERSION 0.9.6		// 29/05/2009
 #define _CRT_SECURE_NO_WARNINGS
 #define ISOWNERDRAW TRUE
 
