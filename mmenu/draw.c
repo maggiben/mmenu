@@ -284,7 +284,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		//	Draw the item caption                            //
 		///////////////////////////////////////////////////////	
 		rcSep.top 		= lpDrawItem->rcItem.top;
-		rcSep.left		= lpDrawItem->rcItem.left  + (main_menu_theme.menu_theme_sidebar_width + 4); //lpMenuData->menu_imgSize.right + 18; //+ text_off - 45 ;
+		rcSep.left		= lpDrawItem->rcItem.left + (main_menu_theme.menu_theme_sidebar_width + 4); //lpMenuData->menu_imgSize.right + 18; //+ text_off - 45 ;
 		rcSep.bottom	= lpDrawItem->rcItem.bottom;
 		rcSep.right		= lpDrawItem->rcItem.right;
 				
@@ -487,7 +487,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
 		SetBkMode(lpDrawItem->hDC,TRANSPARENT);
-		DrawText (lpDrawItem->hDC,captionText, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
+		DrawText(lpDrawItem->hDC,captionText, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
 		SelectObject(lpDrawItem->hDC, hfntPrev);
 		SetTextColor(lpDrawItem->hDC, prevColor);
 		DeleteObject(hfnt);

@@ -184,6 +184,7 @@ HBITMAP ImageToBitmapPARGB32(HBITMAP hBitmap)
 
 	return hBmp;
 }
+
 HRESULT Create32BitHBITMAP(HDC hdc, const SIZE *psize, void **ppvBits, HBITMAP* phBmp)
 {
     *phBmp = NULL;

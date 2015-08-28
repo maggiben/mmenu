@@ -105,7 +105,7 @@
 
 #define VERSION 0.9.6		// 29/05/2009
 #define _CRT_SECURE_NO_WARNINGS
-#define ISOWNERDRAW TRUE
+#define ISOWNERDRAW FALSE
 
 ///////////////////////////////////////////////////////////////////////////////////
 //	Includes                                                                     //
@@ -380,7 +380,6 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	HMENU		hMenu_ret;
 	POINT		point;
 	RECT		rc_1;
-	MENU_DATA	menu_data;
 
 	switch(id) 
 	{
@@ -430,7 +429,7 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 			break;
 		}
 		case 331:
-			PostMessage(hwnd,WM_CLOSE,0,0);;
+			PostMessage(hwnd, WM_CLOSE, 0, 0);;
 		break;
 		case 332:
 		{
@@ -458,9 +457,10 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	///////////////////////////////////////////////////////////////////////////
 	// HARDCODED ID VALUES WRONG WRONG fixme                                 //
 	///////////////////////////////////////////////////////////////////////////
-	if((id >= 1900) && (id <= 2000))
+	if((id >= 1900) && (id <= 3000))
 	{
 		//ShellExecute(0, L"open", menu_data.menu_exec, NULL, NULL, SW_SHOW);
+		//printf("execute: %S\n", "woot");
 	}
 }
 
@@ -473,7 +473,8 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	HDC 			hdc;
 	HDC     		mDC;
 	RECT 			rd;
-	BOOL   def_result = 0;
+	BOOL			def_result = 0;
+	static HMENU	menu;
 
 	switch (msg) 
 	{
@@ -581,7 +582,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	case WM_INITMENUPOPUP:
 	{
-		HMENU hmenuPopup = (HMENU)wParam;			// manipulador de submenú
+		HMENU hmenuPopup = menu = (HMENU)wParam;			// manipulador de submenú
 		UINT uPos = (UINT)LOWORD(lParam);			// posición del ítem del submenú
 		BOOL fSystemMenu = (BOOL)HIWORD(lParam);	// bandera de menú de ventana
 
@@ -589,7 +590,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		mnfo.cbSize = sizeof(mnfo);
 		mnfo.fMask = MIM_STYLE;
 		mnfo.dwStyle = MNS_DRAGDROP | MNS_AUTODISMISS;
-
 		SetMenuInfo(hmenuPopup, &mnfo);
 
 		break;
@@ -599,9 +599,23 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		//new Feb 2008
 		MENUGETOBJECTINFO *menuObject = (MENUGETOBJECTINFO*)lParam;
 		HRESULT hr = MNGO_NOINTERFACE;
+		LRESULT lres = MNGO_NOINTERFACE;
 
-		//MessageBeep(0);
+		MENUITEMINFO mii;
+		ZeroMemory(&mii, sizeof(MENUITEMINFO));
+		mii.cbSize = sizeof(MENUITEMINFO);
+		mii.fMask = MIIM_FTYPE | MIIM_ID | MIIM_DATA | MIIM_STRING;
 
+		GetMenuItemInfo(menuObject->hmenu, menuObject->uPos, TRUE, &mii);
+
+		MENU_DATA *menuData = (MENU_DATA*)mii.dwItemData;
+
+		//HRESULT hResult = GetMenuObject(hwnd, menuObject->hmenu, menuObject->uPos, *(IID*)menuObject->riid, &menuObject->pvObj);
+
+		if (!(menuObject->dwFlags & (MNGOF_BOTTOMGAP | MNGOF_TOPGAP)) && SUCCEEDED(FALSE)) {
+			lres = MNGO_NOERROR;
+		}
+		return lres;
 		break;
 	}
 	case WM_MENUDRAG:
@@ -700,7 +714,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			else
 			{
 				pmis->itemHeight  = (sz.cy > bmp.bmHeight) ? (sz.cy + 8):bmp.bmHeight + 8;// 8 = icon padding
-				pmis->itemWidth   = sz.cx + bmp.bmWidth + 32; // sidebar + icon + arrow = padding			
+				pmis->itemWidth = sz.cx + bmp.bmWidth * 2 + main_menu_theme.menu_theme_sidebar_width; // sidebar + icon + arrow = padding			
 			}
 
 			switch (menuData->type)
@@ -1607,14 +1621,22 @@ HRESULT GetMenuObject(HWND hwnd, HMENU hmenu, UINT uPos, REFIID riid, void **ppv
 	HRESULT hr = E_NOTIMPL;
 	MENUITEMINFO mii;
 	*ppvOut = NULL;
+	UINT menuItemId;
+	return hr;
+	ZeroMemory(&mii, sizeof(MENUITEMINFO));
+	mii.cbSize = sizeof(MENUITEMINFO);
+	mii.fMask = MIIM_FTYPE | MIIM_ID | MIIM_DATA | MIIM_STRING | MIIM_BITMAP | MIIM_STATE | MIIM_SUBMENU;
+	GetMenuItemInfo(hmenu, uPos, TRUE, &mii);
+	menuItemId = GetMenuItemID(hmenu, uPos);
+
+	return hr;
 	if (hmenu == GetSubMenu(GetMenu(hwnd), 0)) {
 		GetMenuItemInfo(hmenu, uPos, TRUE, &mii);
 
 		/*
 		switch (GetMenuItemID(hmenu, uPos)) {
 		case IDC_CLOCK:
-			hr = GetUIObjectOfFile(hwnd, L"F:\\clock.avi",
-				riid, ppvOut);
+			hr = GetUIObjectOfFile(hwnd, L"F:\\clock.avi", riid, ppvOut);
 			break;
 		}*/
 	}
@@ -1702,7 +1724,11 @@ HMENU xmlInitnstance(LPWSTR fname, BOOL bOptimizeMemory)
 	BSTR				bstr		= NULL;
 	VARIANT_BOOL		status		= VARIANT_FALSE;
 	VARIANT				vSrc;
-	HMENU				menu		= NULL;
+	static HMENU		menu		= NULL;
+
+	if (menu) {
+		return menu;
+	}
 
 	HRESULT hr;
 	hr = CoInitialize(NULL);
@@ -1742,7 +1768,6 @@ HMENU xmlInitnstance(LPWSTR fname, BOOL bOptimizeMemory)
         goto clean;
     }
 
-	BSTR nodeName;
 	hr = document->lpVtbl->get_documentElement(document,&element);
 	if (FAILED(hr) || element == NULL)
 	{
@@ -1809,7 +1834,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		resultNode->lpVtbl->get_text(resultNode, &menuType);
 		resultNode->lpVtbl->Release(resultNode);
 
-		menuData->menu_color = RGB(255, 0, 0);
+		menuData->menu_color = RGB(0, 0, 0);
 		menuData->menu_fontColor = RGB(128, 128, 128);
 		menuData->menu_font_name = L"Arial";
 		menuData->menu_font_size = 9;
@@ -1830,7 +1855,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		MENUITEMINFO menuiteminfo;
 		ZeroMemory(&menuiteminfo, sizeof(menuiteminfo));
 		menuiteminfo.cbSize = sizeof(menuiteminfo);
-		menuiteminfo.fMask = MIIM_FTYPE | MIIM_ID | MIIM_DATA | MIIM_STRING | MIIM_BITMAP;
+		menuiteminfo.fMask = MIIM_FTYPE | MIIM_ID | MIIM_DATA | MIIM_STRING;
 		menuiteminfo.fType = MFT_STRING;
 		menuiteminfo.fState = MFS_UNHILITE;
 		menuiteminfo.wID = MMU_IDS;
@@ -1838,7 +1863,18 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		menuiteminfo.cch = (UINT)min(wcslen(menuiteminfo.dwTypeData), UINT_MAX);
 		menuiteminfo.dwItemData = (ULONG_PTR)menuData;
 		menuiteminfo.hbmpItem = LoadImageSmart(menuData->imagePath);
+		if (!ISOWNERDRAW) {
+			menuiteminfo.fMask |= MIIM_BITMAP;
+		}
 		
+		/*AllocConsole();
+		freopen("CONIN$", "r", stdin);
+		freopen("CONOUT$", "w", stdout);
+		freopen("CONOUT$", "w", stderr);
+		
+		printf("%S\t\t%u\n", menuData->label, MMU_IDS);*/
+		
+		//OutputDebugStringW(L"My output string.");
 		/////////////////////////////////////////////////////////////////////////////
 		// For Items with nested nodes build a popup menu                          //
 		/////////////////////////////////////////////////////////////////////////////
@@ -1857,7 +1893,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		{
 			if (!wcscmp(menuType, L"MF_STRING"))
 			{
-				menuiteminfo.fType = MFT_STRING;
+				menuiteminfo.fType = MF_STRING;
 				if (ISOWNERDRAW)
 					menuiteminfo.fType = menuiteminfo.fType | MF_OWNERDRAW;
 				menuData->type = MFT_STRING;

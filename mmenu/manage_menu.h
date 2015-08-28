@@ -39,8 +39,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //const char manager_menu_ClassName[] = "manager_menu_windowClass";
 
-IXMLDOMDocument xmlTreeDoc;
-
 BOOL manage_menu(HINSTANCE hInstance,HWND parent);
 LRESULT CALLBACK main_menu_wndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

@@ -123,7 +123,7 @@ void HandleDragDrop(HWND hwndList)
 
 	//add one for the double-NULL terminator
 	dwChars += 1;
-	char * pszFiles = (int *)malloc(sizeof(char) * dwChars);
+	char * pszFiles = (char *)malloc(sizeof(char) * dwChars);
 	char * pszThis;
 
 	//get the text for each selected item

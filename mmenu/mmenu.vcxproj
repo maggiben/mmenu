@@ -94,7 +94,6 @@
     <ClInclude Include="draw.h" />
     <ClInclude Include="FreeImage.h" />
     <ClInclude Include="graphic.h" />
-    <ClInclude Include="IDragDrop.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="main_menures.h" />
     <ClInclude Include="manage_menu.h" />
