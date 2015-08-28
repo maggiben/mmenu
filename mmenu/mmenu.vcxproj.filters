@@ -24,22 +24,7 @@
     <ClCompile Include="graphic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xmleng.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VistaIcons.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDataObject.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDropSource.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDropTarget.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IEnumFORMATETC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shellhelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xmleng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VistaIcons.h">

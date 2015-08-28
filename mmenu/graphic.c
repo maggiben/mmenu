@@ -35,7 +35,8 @@
 
 #pragma comment( lib, "windowscodecs" )
 
-#define SafeRelease(pUnk) if (pUnk) { pUnk->lpVtbl->Release(pUnk); pUnk = NULL; }
+//#define SafeRelease(pUnk) if (pUnk) { pUnk->lpVtbl->Release(pUnk); pUnk = NULL; }
+#define SafeRelease(pUnk) if (pUnk) { pUnk->Release(); pUnk = NULL; }
 
 /// health flag
 BOOL m_good;
@@ -70,10 +71,10 @@ HBITMAP ScaleImage(HBITMAP hBitmap, LONG width, LONG height)
 	IWICBitmap *outputBitmap = NULL;
 	HBITMAP hbmp = NULL;
 
-	hr = CoCreateInstance(&CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, &IID_IWICImagingFactory, (LPVOID*)&pFactory);
+	hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IWICImagingFactory, (LPVOID*)&pFactory);
 	if (SUCCEEDED(hr))
 	{
-		if (SUCCEEDED(hr)) hr = pFactory->lpVtbl->CreateBitmapFromHBITMAP(pFactory, hBitmap, NULL, WICBitmapUsePremultipliedAlpha, &outputBitmap);
+		if (SUCCEEDED(hr)) hr = pFactory->CreateBitmapFromHBITMAP(hBitmap, NULL, WICBitmapUsePremultipliedAlpha, &outputBitmap);
 
 		BITMAPINFO bmi = { 0 };
 		bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -87,19 +88,19 @@ HBITMAP ScaleImage(HBITMAP hBitmap, LONG width, LONG height)
 		hbmp = CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void**)&pBits, NULL, 0);
 		if (SUCCEEDED(hr)) hr = hbmp ? S_OK : E_OUTOFMEMORY;
 
-		if (SUCCEEDED(hr)) hr = pFactory->lpVtbl->CreateBitmapScaler(pFactory, &pIScaler);
-		if (SUCCEEDED(hr)) hr = pIScaler->lpVtbl->Initialize(pIScaler, outputBitmap, width, height, WICBitmapInterpolationModeFant);
+		if (SUCCEEDED(hr)) hr = pFactory->CreateBitmapScaler( &pIScaler);
+		if (SUCCEEDED(hr)) hr = pIScaler->Initialize(outputBitmap, width, height, WICBitmapInterpolationModeFant);
 		WICRect rect = { 0, 0, width, height };
-		if (SUCCEEDED(hr)) hr = pIScaler->lpVtbl->CopyPixels(pIScaler, &rect, width * 4, width * height * 4, pBits);
+		if (SUCCEEDED(hr)) hr = pIScaler->CopyPixels(&rect, width * 4, width * height * 4, pBits);
 
 		if (SUCCEEDED(hr))
 			hr = S_OK;
 		else
 			DeleteObject(hbmp);
 
-		pIScaler->lpVtbl->Release(pIScaler);
-		outputBitmap->lpVtbl->Release(outputBitmap);
-		pFactory->lpVtbl->Release(pFactory);
+		pIScaler->Release();
+		outputBitmap->Release();
+		pFactory->Release();
 	}
 	return hbmp;
 }
@@ -129,13 +130,14 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 	{
 		case FIF_BMP:
 		{
-			HBITMAP hBitmap = LoadImage(NULL, imagePath, IMAGE_BITMAP, 0, 0, LR_LOADTRANSPARENT | LR_LOADFROMFILE);
-			return ImageToBitmapPARGB32(hBitmap);
+			
+			HBITMAP hBitmap = static_cast<HBITMAP>(LoadImage(NULL, imagePath, IMAGE_BITMAP, 0, 0, LR_LOADTRANSPARENT | LR_LOADFROMFILE));
+			return hBitmap;
 			break;
 		}
 		case FIF_ICO:
 		{
-			HICON hIcon = LoadImage(NULL, imagePath, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
+			HICON hIcon = (HICON)LoadImage(NULL, imagePath, IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
 			HBITMAP hBitmap = IconToBitmapPARGB32(hIcon);
 			DeleteObject(hIcon);
 			return hBitmap;
@@ -147,32 +149,32 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 			IWICImagingFactory *pFactory = NULL;
 			IWICBitmapDecoder *pDecoder = NULL;
 			HRESULT hr;
-			hr = CoCreateInstance(&CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, &IID_IWICImagingFactory, (LPVOID*)&pFactory);
+			hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IWICImagingFactory, (LPVOID*)&pFactory);
 			if (SUCCEEDED(hr))
 			{
-				hr = pFactory->lpVtbl->CreateDecoderFromFilename(pFactory, imagePath, NULL, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &pDecoder);
+				hr = pFactory->CreateDecoderFromFilename(imagePath, NULL, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &pDecoder);
 				if (SUCCEEDED(hr)) {
 					GUID guidFormat;
-					hr = pDecoder->lpVtbl->GetContainerFormat(pDecoder, &guidFormat);
+					hr = pDecoder->GetContainerFormat(&guidFormat);
 					/*if (SUCCEEDED(hr)) {
 						if (IsEqualGUID(&guidFormat, &GUID_ContainerFormatPng)) {
 							MessageBox(NULL, L"Is PNG", L"Error !", MB_ICONWARNING);
 						}
 					}*/
 					IWICBitmapFrameDecode *pFrame = NULL;
-					if (SUCCEEDED(hr)) hr = pDecoder->lpVtbl->GetFrame(pDecoder, 0, &pFrame);
-					LONG width;
-					LONG height;
-					if (SUCCEEDED(hr)) hr = pFrame->lpVtbl->GetSize(pFrame, &width, &height);
+					if (SUCCEEDED(hr)) hr = pDecoder->GetFrame(0, &pFrame);
+					UINT width;
+					UINT height;
+					if (SUCCEEDED(hr)) hr = pFrame->GetSize(&width, &height);
 
 					IWICFormatConverter *pConverter = NULL;
-					if (SUCCEEDED(hr)) hr = pFactory->lpVtbl->CreateFormatConverter(pFactory, &pConverter);
-					if (SUCCEEDED(hr)) hr = pConverter->lpVtbl->Initialize(pConverter, (IWICBitmapSource *)pFrame, &GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.0, WICBitmapPaletteTypeCustom);
+					if (SUCCEEDED(hr)) hr = pFactory->CreateFormatConverter(&pConverter);
+					if (SUCCEEDED(hr)) hr = pConverter->Initialize((IWICBitmapSource *)pFrame, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.0, WICBitmapPaletteTypeCustom);
 
 					BITMAPINFO bmi = { 0 };
 					bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 					bmi.bmiHeader.biWidth = width;
-					bmi.bmiHeader.biHeight = -(height);
+					bmi.bmiHeader.biHeight = -static_cast<int>(height);
 					bmi.bmiHeader.biPlanes = 1;
 					bmi.bmiHeader.biBitCount = 32;
 					bmi.bmiHeader.biCompression = BI_RGB;
@@ -185,7 +187,7 @@ HBITMAP	LoadImageSmart(LPWSTR imagePath)
 					UINT nStride = width * 4;
 					UINT nSize = nStride * height;
 
-					if (SUCCEEDED(hr)) hr = pConverter->lpVtbl->CopyPixels(pConverter, NULL, nStride, nSize, (LPBYTE)pvPixels);
+					if (SUCCEEDED(hr)) hr = pConverter->CopyPixels(NULL, nStride, nSize, (LPBYTE)pvPixels);
 
 					SafeRelease(pConverter);
 					SafeRelease(pFrame);
@@ -268,7 +270,7 @@ void drawIconToBitmap(HBITMAP bmSrc, LPWSTR FileName, int size, COLORREF composi
 	hMemDC = CreateCompatibleDC(NULL);				// Create screen DC
 
 	bufferh = CreateCompatibleBitmap(hMemDC, size, size);
-	hbmOld = SelectObject(hMemDC, hBitmap);			// Select memory bitmap
+	hbmOld = (HBITMAP)SelectObject(hMemDC, hBitmap);			// Select memory bitmap
 
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -387,158 +389,6 @@ HBITMAP CreateBitmapMask(HBITMAP hbmColour, COLORREF crTransparent)
 
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-// Draws an HBITMAP with a bg color cTransparentColor on the target DC           //
-// Works better with paletized images and cannot use alpha channels              //
-///////////////////////////////////////////////////////////////////////////////////
-void DrawTransparentBitmap(HDC hdc, HBITMAP hBitmap, short xStart, short yStart, COLORREF cTransparentColor)
-{
-
-	BITMAP     bm;
-	COLORREF   cColor;
-	HBITMAP    bmAndBack, bmAndObject, bmAndMem, bmSave;
-	HBITMAP    bmBackOld, bmObjectOld, bmMemOld, bmSaveOld;
-	HDC        hdcMem, hdcBack, hdcObject, hdcTemp, hdcSave;
-	POINT      ptSize;
-
-	hdcTemp = CreateCompatibleDC(hdc);
-	SelectObject(hdcTemp, hBitmap);   // Select the bitmap
-
-	GetObject(hBitmap, sizeof(BITMAP), (LPSTR)&bm);
-	ptSize.x = bm.bmWidth;            // Get width of bitmap
-	ptSize.y = bm.bmHeight;           // Get height of bitmap
-	DPtoLP(hdcTemp, &ptSize, 1);      // Convert from device
-
-	// to logical points
-
-	// Create some DCs to hold temporary data.
-	hdcBack = CreateCompatibleDC(hdc);
-	hdcObject = CreateCompatibleDC(hdc);
-	hdcMem = CreateCompatibleDC(hdc);
-	hdcSave = CreateCompatibleDC(hdc);
-
-	// Create a bitmap for each DC. DCs are required for a number of
-	// GDI functions.
-
-	// Monochrome DC
-	bmAndBack = CreateBitmap(ptSize.x, ptSize.y, 1, 1, NULL);
-
-	// Monochrome DC
-	bmAndObject = CreateBitmap(ptSize.x, ptSize.y, 1, 1, NULL);
-
-	bmAndMem = CreateCompatibleBitmap(hdc, ptSize.x, ptSize.y);
-	bmSave = CreateCompatibleBitmap(hdc, ptSize.x, ptSize.y);
-
-	// Each DC must select a bitmap object to store pixel data.
-	bmBackOld = SelectObject(hdcBack, bmAndBack);
-	bmObjectOld = SelectObject(hdcObject, bmAndObject);
-	bmMemOld = SelectObject(hdcMem, bmAndMem);
-	bmSaveOld = SelectObject(hdcSave, bmSave);
-
-	// Set proper mapping mode.
-	SetMapMode(hdcTemp, GetMapMode(hdc));
-
-	// Save the bitmap sent here, because it will be overwritten.
-	BitBlt(hdcSave, 0, 0, ptSize.x, ptSize.y, hdcTemp, 0, 0, SRCCOPY);
-
-	// Set the background color of the source DC to the color.
-	// contained in the parts of the bitmap that should be transparent
-	cColor = SetBkColor(hdcTemp, cTransparentColor);
-
-	// Create the object mask for the bitmap by performing a BitBlt
-	// from the source bitmap to a monochrome bitmap.
-	BitBlt(hdcObject, 0, 0, ptSize.x, ptSize.y, hdcTemp, 0, 0, SRCCOPY);
-
-	// Set the background color of the source DC back to the original
-	// color.
-	SetBkColor(hdcTemp, cColor);
-
-	// Create the inverse of the object mask.
-	BitBlt(hdcBack, 0, 0, ptSize.x, ptSize.y, hdcObject, 0, 0, NOTSRCCOPY);
-
-	// Copy the background of the main DC to the destination.
-	BitBlt(hdcMem, 0, 0, ptSize.x, ptSize.y, hdc, xStart, yStart, SRCCOPY);
-
-	// Mask out the places where the bitmap will be placed.
-	BitBlt(hdcMem, 0, 0, ptSize.x, ptSize.y, hdcObject, 0, 0, SRCAND);
-
-	// Mask out the transparent colored pixels on the bitmap.
-	BitBlt(hdcTemp, 0, 0, ptSize.x, ptSize.y, hdcBack, 0, 0, SRCAND);
-
-	// XOR the bitmap with the background on the destination DC.
-	BitBlt(hdcMem, 0, 0, ptSize.x, ptSize.y, hdcTemp, 0, 0, SRCPAINT);
-
-	// Copy the destination to the screen.
-	BitBlt(hdc, xStart, yStart, ptSize.x, ptSize.y, hdcMem, 0, 0, SRCCOPY);
-
-	// Place the original bitmap back into the bitmap sent here.
-	BitBlt(hdcTemp, 0, 0, ptSize.x, ptSize.y, hdcSave, 0, 0, SRCCOPY);
-
-	// Delete the memory bitmaps.
-	DeleteObject(SelectObject(hdcBack, bmBackOld));
-	DeleteObject(SelectObject(hdcObject, bmObjectOld));
-	DeleteObject(SelectObject(hdcMem, bmMemOld));
-	DeleteObject(SelectObject(hdcSave, bmSaveOld));
-
-	// Delete the memory DCs.
-	DeleteDC(hdcMem);
-	DeleteDC(hdcBack);
-	DeleteDC(hdcObject);
-	DeleteDC(hdcSave);
-	DeleteDC(hdcTemp);
-}
-
-///////////////////////////////////////////////////////////////////////////////////
-// Composite 2 HBITMAPS                                                          //
-///////////////////////////////////////////////////////////////////////////////////
-HBITMAP compositeImage(HBITMAP fgImage, HBITMAP bgImage)
-{
-	// ...
-	// the following code assumes that you have a valid HBITMAP loaded into the memory
-	FIBITMAP *bgDib = NULL;
-	FIBITMAP *fgDib = NULL;
-	if (bgImage)
-	{
-
-		BITMAP bm;
-		GetObject(bgImage, sizeof(BITMAP), (LPSTR)&bm);
-		bgDib = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel, 0, 0, 0);
-		// The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why) 
-		// So we save these infos below. This is needed for palettized images only. 
-		int nColors = FreeImage_GetColorsUsed(bgDib);
-		HDC dc = GetDC(NULL);
-		int Success = GetDIBits(dc, bgImage, 0, FreeImage_GetHeight(bgDib),
-			FreeImage_GetBits(bgDib), FreeImage_GetInfo(bgDib), DIB_RGB_COLORS);
-		ReleaseDC(NULL, dc);
-		// restore BITMAPINFO members
-		FreeImage_GetInfoHeader(bgDib)->biClrUsed = nColors;
-		FreeImage_GetInfoHeader(bgDib)->biClrImportant = nColors;
-	}
-	if (fgImage)
-	{
-		BITMAP bm;
-		GetObject(fgImage, sizeof(BITMAP), (LPSTR)&bm);
-		fgDib = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel, 0, 0, 0);
-		// The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
-		// So we save these infos below. This is needed for palettized images only.
-		int nColors = FreeImage_GetColorsUsed(fgDib);
-		HDC dc = GetDC(NULL);
-		int Success = GetDIBits(dc, fgImage, 0, FreeImage_GetHeight(fgDib),
-			FreeImage_GetBits(fgDib), FreeImage_GetInfo(fgDib), DIB_RGB_COLORS);
-		ReleaseDC(NULL, dc);
-		// restore BITMAPINFO members
-		FreeImage_GetInfoHeader(fgDib)->biClrUsed = nColors;
-		FreeImage_GetInfoHeader(fgDib)->biClrImportant = nColors;
-	}
-	HDC hDC = GetDC(NULL);
-	FIBITMAP *display_dib_a = FreeImage_Composite(bgDib, TRUE, NULL, NULL);
-	HBITMAP bitmap = CreateDIBitmap(hDC, FreeImage_GetInfoHeader(fgDib), CBM_INIT, FreeImage_GetBits(fgDib), FreeImage_GetInfo(fgDib), DIB_RGB_COLORS);
-	// don't forget to call FreeImage_Unload when you no longer need the dib
-	FreeImage_Unload(bgDib);
-	FreeImage_Unload(fgDib);
-	return bitmap;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Gradients the api way and non api                                                     //
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -557,8 +407,9 @@ BOOL gradientFill(HDC hdc, RECT objBox, COLORREF fromClr, COLORREF toClr)
 		goto NoApi;
 	}
 
-	BOOL(__stdcall *pfnGradientFill)(HDC, PTRIVERTEX, ULONG, PVOID, ULONG, ULONG);
-	pfnGradientFill = GetProcAddress(hLibrary, "dGradientFill");
+	typedef BOOL(CALLBACK *GRADIENT)(HDC, PTRIVERTEX, ULONG, PVOID, ULONG, ULONG);
+	GRADIENT pfnGradientFill;
+	pfnGradientFill = (GRADIENT)GetProcAddress(hLibrary, "dGradientFill");
 
 	if (NULL == pfnGradientFill)
 	{
@@ -607,7 +458,7 @@ NoApi:
 	{
 		gradient = InterpolateLinear(fromClr, toClr, i, objBox.top, objBox.bottom);
 		grdPen = CreatePen(PS_SOLID, 1, gradient);
-		oldPen = SelectObject(hdc, grdPen);
+		oldPen = (HPEN)SelectObject(hdc, grdPen);
 
 		MoveToEx(hdc, objBox.left, i, NULL);
 		LineTo(hdc, objBox.right, i);
@@ -634,13 +485,13 @@ HBITMAP skinedBox(HBITMAP leftHbm, HBITMAP middleHbm, HBITMAP rightHbm, int bWid
 	GetObject(leftHbm, sizeof(BITMAP), &bmpLeft);
 	GetObject(middleHbm, sizeof(BITMAP), &bmpMiddle);
 	GetObject(rightHbm, sizeof(BITMAP), &bmpRight);
-	oldBmp = SelectObject(hdcMem, leftHbm);
+	oldBmp = (HBITMAP)SelectObject(hdcMem, leftHbm);
 	BitBlt(drawSrfc, 0, 0, bmpLeft.bmWidth, bmpLeft.bmHeight, hdcMem, 0, 0, SRCCOPY);
 	SelectObject(hdcMem, oldBmp);
 	offset += bmpLeft.bmWidth;
 
 
-	oldBmp = SelectObject(hdcMem, middleHbm);
+	oldBmp = (HBITMAP)SelectObject(hdcMem, middleHbm);
 	for (int x = offset; x < (bWidth - bmpLeft.bmWidth); x++)
 	{
 		BitBlt(drawSrfc, x, 0, bmpMiddle.bmWidth, bmpMiddle.bmHeight, hdcMem, 0, 0, SRCCOPY);
@@ -648,12 +499,12 @@ HBITMAP skinedBox(HBITMAP leftHbm, HBITMAP middleHbm, HBITMAP rightHbm, int bWid
 	}
 	SelectObject(hdcMem, oldBmp);
 
-	oldBmp = SelectObject(hdcMem, rightHbm);
+	oldBmp = (HBITMAP)SelectObject(hdcMem, rightHbm);
 	BitBlt(drawSrfc, offset, 0, bmpRight.bmWidth, bmpRight.bmHeight, hdcMem, 0, 0, SRCCOPY);
 
 	SelectObject(hdcMem, oldBmp);
 
-	oldBmp = SelectObject(hdcMem, hbmp);
+	oldBmp = (HBITMAP)SelectObject(hdcMem, hbmp);
 	BitBlt(drawSrfc, offset, 0, bWidth, bHeight, hdcMem, 0, 0, SRCCOPY);
 	SelectObject(hdcMem, oldBmp);
 
@@ -701,7 +552,7 @@ void wallpaper(HDC hdc, RECT *lprc, int idbitmap)
 	if (idbitmap >0)
 	{
 		HINSTANCE hinst = GetModuleHandle(NULL);
-		hbmp = LoadImage(GetModuleHandle(NULL), L"rayado.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE); //LoadBitmap(hinst, MAKEINTRESOURCE(idbitmap));
+		hbmp = (HBITMAP)LoadImage(GetModuleHandle(NULL), L"rayado.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE); //LoadBitmap(hinst, MAKEINTRESOURCE(idbitmap));
 		if (hbmp == NULL)
 		{
 			MessageBoxW(NULL, L"LoadBitmap()", L"Error", MB_ICONINFORMATION);
@@ -770,7 +621,7 @@ void blurBitmap(HDC hSrcDc, HBITMAP hSrcBmp, BYTE bDeltaMax)
 	sBmpInfo.bmiHeader.biSizeImage =
 		SrcBmp.bmBitsPixel*SrcBmp.bmWidth*SrcBmp.bmHeight / 8;
 
-	pBmpBytes = malloc(sBmpInfo.bmiHeader.biSizeImage);//new BYTE[sBmpInfo.bmiHeader.biSizeImage];
+	pBmpBytes = (BYTE *)malloc(sBmpInfo.bmiHeader.biSizeImage);//new BYTE[sBmpInfo.bmiHeader.biSizeImage];
 
 	// Fill the buffer with a copy of the bitmap's bits
 

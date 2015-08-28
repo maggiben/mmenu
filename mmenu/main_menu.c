@@ -123,18 +123,20 @@
 #include <wchar.h>			// Unicode support
 #include <ole2.h>           // Drag & Drop operations and more
 #include <msxml.h>			// MS XML Parser.
-
-#include "IDragDrop.h"
+#include <unordered_map>
+//#include "IDragDrop.h"
 
 #include "main_menures.h"   // Resources
 #include "manage_menu.h"	// Menu Manager
 #include "graphic.h"		// Graphic Functions draw masks, bitmaps etc..
 #include "shellHelper.h"	// Shell & Connmon Dlgs helpers
-#include "xmleng.h"			// XML Helper Functions
+//#include "xmleng.h"			// XML Helper Functions
 #include "main_menu.h"      // Proto
 #include "graphic.h"
 #include "draw.h"
 #include "FreeImage.h"      // FreeImage protos & delares
+
+using namespace std;
 
 #pragma comment( lib, "Msimg32" )
 #pragma comment( lib, "Urlmon" )
@@ -143,6 +145,7 @@
 #pragma comment( lib, "ole32" )
 #pragma comment( lib, "oleaut32" )
 #pragma comment( lib, "gdiplus.lib" )
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 // For HEX to DEC func                                                           //
@@ -261,9 +264,9 @@ int					MagnetWindow					(LPARAM *lParam);
 ///////////////////////////////////////////////////////////////////////////////////
 HHOOK	_hHook;
 WNDPROC old_menu_proc;
-HANDLE  mnu_hwnd;
-const TCHAR _WndPropName_OldProc[]	= _T("XPWndProp_OldProc");
-const TCHAR _WndPropName_MenuXP[]	= _T("XPWndProp_MenuXP");
+HWND  mnu_hwnd;
+const TCHAR _WndPropName_OldProc[] = _TEXT("XPWndProp_OldProc");
+const TCHAR _WndPropName_MenuXP[]	= _TEXT("XPWndProp_MenuXP");
 
 ///////////////////////////////////////////////////////////////////////////////////
 //	Registro de la clase para la ventana                                         //
@@ -280,9 +283,9 @@ static BOOL InitApplication(void)
 	wc.hbrBackground	= (HBRUSH)(COLOR_WINDOW);
 	wc.lpszClassName	= MAINCLASS;
 	wc.lpszMenuName		= NULL; //MAKEINTRESOURCE (IDMAINMENU);
-	wc.hCursor			= LoadCursor(NULL,IDC_ARROW);
-	wc.hIcon			= LoadIcon(NULL,MAKEINTRESOURCE(8001));
-    wc.hIcon			= LoadImage(hInst, MAKEINTRESOURCE(8001), IMAGE_ICON, 32, 32, LR_CREATEDIBSECTION);
+	wc.hCursor			= (HCURSOR)LoadCursor(NULL,IDC_ARROW);
+	wc.hIcon			= (HICON)LoadIcon(NULL,MAKEINTRESOURCE(8001));
+	wc.hIcon			= (HICON)LoadImage(hInst, MAKEINTRESOURCE(8001), IMAGE_ICON, 32, 32, LR_CREATEDIBSECTION);
     //wc.hIconSm  = LoadImage(hInst, MAKEINTRESOURCE(8001), IMAGE_ICON, 16, 16, LR_CREATEDIBSECTION);
 
 	if (!RegisterClass(&wc))
@@ -300,15 +303,15 @@ static BOOL InitApplication(void)
 	main_menu_theme.menu_theme_3dLight       = RGB(075,075,057);
 	main_menu_theme.menu_theme_3dDark		 = RGB(035,035,035);
 	main_menu_theme.menu_theme_alpha		 = 250;
-	main_menu_theme.menu_theme_btnUp		 = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	main_menu_theme.menu_theme_btnDw		 = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	main_menu_theme.menu_theme_btnHt		 = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	main_menu_theme.menu_theme_background    = LoadImage(hInst, MAKEINTRESOURCE(12346), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
+	main_menu_theme.menu_theme_btnUp		 = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
+	main_menu_theme.menu_theme_btnDw		= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	main_menu_theme.menu_theme_btnHt		= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	main_menu_theme.menu_theme_background	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(12346), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
 	main_menu_theme.menu_theme_font_color    = RGB(128,128,128);
 	main_menu_theme.menu_theme_font_hilite_color    = RGB(248,128,10);
 	main_menu_theme.menu_theme_font_height   = 9;
-	main_menu_theme.menu_theme_font			 = _T("PF Tempesta Five");
+	main_menu_theme.menu_theme_font			 = _TEXT("PF Tempesta Five");
 	main_menu_theme.menu_theme_sidebar_width = 30;
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -316,20 +319,20 @@ static BOOL InitApplication(void)
 	//	can be edited externaly using a resource hacker like tool                    //
 	///////////////////////////////////////////////////////////////////////////////////
 
-	g_hBmpUp	= LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	g_hBmpDown	= LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	g_hBmpHot	= LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	MainBitmap	= LoadImage(hInst, MAKEINTRESOURCE(ID_BMPFONDO), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpUp = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpDown = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpHot = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	MainBitmap = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPFONDO), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//	Boton de Plus                                                                //
 	///////////////////////////////////////////////////////////////////////////////////
-	plus_up		= LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS1), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	plus_ht		= LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS2), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	plus_dw		= LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS3), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	opti_up		= LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI1), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	opti_ht		= LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI2), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	opti_dw		= LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI3), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
+	plus_up = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS1), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	plus_ht = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS2), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	plus_dw = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_PLUS3), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	opti_up = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI1), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	opti_ht = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI2), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	opti_dw = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI3), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
 	BITMAP bm;
 
@@ -359,7 +362,7 @@ HWND Createmain_menu_WndClassWnd(void)
 	(
 		WS_EX_LEFT | WS_EX_TOOLWINDOW | WS_EX_TOPMOST,	// WS_EX_TOOLWINDOW prevent our icon to be in ALT+TAB
 		MAINCLASS,				// Class
-		L"Título",				// Title
+		_TEXT("Title"),			// Title
 		WS_POPUP,				// style
 		100,					// pos x of win
 		100,					// pos y of win,
@@ -389,7 +392,7 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 
 		case 330:
 		{
-			hMenu_ret = xmlInitnstance(L"menu.xml", TRUE);
+			hMenu_ret = xmlInitnstance(_TEXT("menu.xml"), TRUE);
 			RECT rcDesktop;
 			if(FALSE == SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0))
 			break;
@@ -511,15 +514,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
  		lpBits		= (LPTSTR) lpBitmap;
 	   	lpBits		+= lpBitmap->bmiHeader.biSize + (256 * sizeof(RGBQUAD));
 
-		///////////////////////////////////////////////////////////////////////////////////
-		// Register drag and drop operations                                             //
-		///////////////////////////////////////////////////////////////////////////////////
-		IDropTarget * pDropTarget = DropTarget_CDropTarget();
-		DropTargetEx * pDTEx = (DropTargetEx *)pDropTarget;
-		pDTEx->m_hwnd = hwnd;
-
-		if(pDropTarget)
-			//RegisterDragDrop(hwnd, pDropTarget);
 		///////////////////////////////////////////////////////////////////////////
 		//	Creo los botones de control                                          //
 		///////////////////////////////////////////////////////////////////////////
@@ -626,16 +620,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		///////////////////////////////////////////////////////////////////////////
 		// Register drag and drop operations                                     //
 		///////////////////////////////////////////////////////////////////////////
-		IDropTarget * pDropTarget = DropTarget_CDropTarget();
-		DropTargetEx * pDTEx = (DropTargetEx *)pDropTarget;
-		pDTEx->m_hwnd = menuH;
-
-		if(pDropTarget)
-			//RegisterDragDrop(menuH, pDropTarget);
-
-		startDragDrop(menuH);
-
-		// Menu should remain active. If the mouse is released, it should be ignored.
+		
 		return MND_CONTINUE;
 	}
 	case WM_MOVING:
@@ -684,7 +669,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 			HFONT hfnt = CreateAngledFont(lfHeight, 0, menuData->menu_font_name, NULL);
 		
-			HFONT hfntPrev = SelectObject(hdc, hfnt);
+			HFONT hfntPrev = (HFONT)SelectObject(hdc, hfnt);
 			szText = wcslen(menuData->label);
 			hResult = GetTextExtentPoint32(hdc, menuData->label, szText, &sz);
 			SelectObject(hdc, hfntPrev);
@@ -803,7 +788,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, INT nCmdShow)
 {
 	MSG msg;
-	HANDLE hAccelTable;
+	HACCEL hAccelTable;
 
 	hInst = hInstance;
 	
@@ -1298,7 +1283,7 @@ LRESULT CALLBACK menuproc_sclass(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			rcTwo.right = bdr_w;
 	
 			HPEN hPen = CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor);
-			HPEN hPenOld = SelectObject(hDC,hPen);
+			HPEN hPenOld = (HPEN)SelectObject(hDC, hPen);
 
 			MoveToEx(hDC, rcTwo.left, rcTwo.top, NULL);
 			LineTo  (hDC, rcTwo.right, rcTwo.top);
@@ -1563,56 +1548,6 @@ HANDLE StringToHandle(WCHAR * szText)
 ///////////////////////////////////////////////////////////////////////////////
 void startDragDrop(HWND hwndList)
 {
-	DWORD       dwEffect;
-	HRESULT 	hr;
-	//////////////////////////////////////////////////////////////
-	//get the ID for the File Group Descriptor clipboard format
-	unsigned short cfFileGroupDescriptor = 0;
-
-	//get the ID for the File Contents clipboard format
-	unsigned short cfFileContents = 0;
-
-	IDataObject * pDataObject = DataObject_CDataObject();
-	IDropSource * pDropSource = DropSource_CDropSource();
-	if(!pDataObject || !pDropSource)
-		return;
-
-	//get the ID for the File Group Descriptor clipboard format
-	cfFileGroupDescriptor = (unsigned short)RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR);
-
-	//get the ID for the File Contents clipboard format
-	cfFileContents = (unsigned short)RegisterClipboardFormat(CFSTR_FILECONTENTS);
-
-	FORMATETC fe;
-	
-	//initialize the data object
-	fe.cfFormat		= CF_UNICODETEXT;// cfFileGroupDescriptor;
-	fe.ptd 			= NULL;
-	fe.dwAspect 	= DVASPECT_CONTENT;
-	fe.lindex 		= -1;
-	fe.tymed 		= TYMED_HGLOBAL;
-
-	STGMEDIUM sm;
-	sm.tymed 			= TYMED_HGLOBAL;
-	sm.pUnkForRelease	= NULL;
-	sm.hGlobal			= StringToHandle(L"Hello como estas amiguito ??"); //MessageBeep(0); //CreateFileGroupDescriptor(pszFiles);
-
-	pDataObject->lpVtbl->SetData(pDataObject, &fe, &sm, TRUE);
-
-	fe.cfFormat = cfFileContents;
-	fe.ptd 		= NULL;
-	fe.dwAspect = DVASPECT_CONTENT;
-	fe.tymed 	= TYMED_HGLOBAL;
-
-	sm.tymed = TYMED_HGLOBAL;
-	sm.pUnkForRelease = NULL;
-
-	// do the drag and drop
-	hr = DoDragDrop(pDataObject, pDropSource, DROPEFFECT_MOVE, &dwEffect);
-
-	pDataObject->lpVtbl->Release(pDataObject);
-	pDropSource->lpVtbl->Release(pDropSource);
-
 	return;
 }
 
@@ -1725,6 +1660,7 @@ HMENU xmlInitnstance(LPWSTR fname, BOOL bOptimizeMemory)
 	VARIANT_BOOL		status		= VARIANT_FALSE;
 	VARIANT				vSrc;
 	static HMENU		menu		= NULL;
+	MENUINFO			mi			= { sizeof(mi), MIM_STYLE, MNS_DRAGDROP };
 
 	if (menu) {
 		return menu;
@@ -1738,18 +1674,18 @@ HMENU xmlInitnstance(LPWSTR fname, BOOL bOptimizeMemory)
 		return FALSE;
 	}
 
-	hr = CoCreateInstance(&CLSID_DOMDocument, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, &IID_IXMLDOMDocument, (LPVOID*)&document);
+	hr = CoCreateInstance(CLSID_DOMDocument, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IXMLDOMDocument, (LPVOID*)&document);
 	if (FAILED(hr)) 
 	{
 		MessageBox(NULL, L"Failed to CoCreate an instance of an XML DOM", L"Error !",MB_ICONWARNING);
 	}
 
-	document->lpVtbl->put_async(document, VARIANT_FALSE);
+	document->put_async(VARIANT_FALSE);
 	VariantInit(&vSrc);
 	V_BSTR(&vSrc) = SysAllocString(fname);
 	V_VT(&vSrc) = VT_BSTR;
 
-	hr = document->lpVtbl->load(document, vSrc, &status);
+	hr = document->load(vSrc, &status);
 
 	if (status != VARIANT_TRUE)
 	{
@@ -1757,40 +1693,39 @@ HMENU xmlInitnstance(LPWSTR fname, BOOL bOptimizeMemory)
 		BSTR reason = NULL;
 		WCHAR errMsg[1024];
 
-		hr = document->lpVtbl->get_parseError(document, &parseError);
-		hr = parseError->lpVtbl->get_reason(parseError, &bstr);
-		hr = parseError->lpVtbl->get_errorCode(parseError, &hr);
-		hr = parseError->lpVtbl->get_line(parseError, &line);
-		hr = parseError->lpVtbl->get_linepos(parseError, &linePos);
+		hr = document->get_parseError(&parseError);
+		hr = parseError->get_reason(&bstr);
+		hr = parseError->get_errorCode(&hr);
+		hr = parseError->get_line(&line);
+		hr = parseError->get_linepos(&linePos);
 
 		wsprintf(errMsg, L"Error 0x%.8X on line %d, position %d\r\nReason: %s", hr, line, linePos, reason);
 		MessageBox(NULL, errMsg, L"Load Error !", MB_ICONWARNING);
         goto clean;
     }
 
-	hr = document->lpVtbl->get_documentElement(document,&element);
+	hr = document->get_documentElement(&element);
 	if (FAILED(hr) || element == NULL)
 	{
 		MessageBox(NULL, L"Empty document!", L"Error Loading XML", MB_ICONWARNING);
         goto clean;
 	}
 	IXMLDOMNodeList* childList;
-	hr = element->lpVtbl->get_childNodes(element,&childList);
+	hr = element->get_childNodes(&childList);
 	if (FAILED(hr) || element == NULL)
 	{
 		MessageBox(NULL, L"Empty document!", L"Error Loading XML", MB_ICONWARNING);
 		goto clean;
 	}
 	menu = CreatePopupMenu();
-	MENUINFO mi = { sizeof(mi), MIM_STYLE, MNS_DRAGDROP };
 	SetMenuInfo(menu, &mi);
 	buildMenu(childList, menu);
 	
 clean:
     if (bstr) SysFreeString(bstr);
     if (&vSrc) VariantClear(&vSrc);
-    if (parseError) parseError->lpVtbl->Release(parseError);
-    if (document) document->lpVtbl->Release(document);
+    if (parseError) parseError->Release();
+    if (document) document->Release();
 	return menu;
 }
 
@@ -1811,7 +1746,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 			int		cnt			= 0;
 			long	depth		= 0;	
 
-	hr = node->lpVtbl->get_length(node,&listLength);
+	hr = node->get_length(&listLength);
 	if (FAILED(hr))
 	{
 		goto cleanup;
@@ -1822,17 +1757,17 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 
 		menuData->menu_font_size = 101;
 
-		hr = node->lpVtbl->get_item(node, i, &nodeList);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"CAPTION", &resultNode);
-		resultNode->lpVtbl->get_text(resultNode, &menuData->label);
-		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"IMAGE" , &resultNode);
-		resultNode->lpVtbl->get_text(resultNode, &menuData->imagePath);
-		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"MENUTYPE", &resultNode);
+		hr = node->get_item(i, &nodeList);
+		hr = nodeList->selectSingleNode(L"CAPTION", &resultNode);
+		resultNode->get_text(&menuData->label);
+		resultNode->Release();
+		hr = nodeList->selectSingleNode(L"IMAGE" , &resultNode);
+		resultNode->get_text(&menuData->imagePath);
+		resultNode->Release();
+		hr = nodeList->selectSingleNode(L"MENUTYPE", &resultNode);
 		BSTR menuType;
-		resultNode->lpVtbl->get_text(resultNode, &menuType);
-		resultNode->lpVtbl->Release(resultNode);
+		resultNode->get_text(&menuType);
+		resultNode->Release();
 
 		menuData->menu_color = RGB(0, 0, 0);
 		menuData->menu_fontColor = RGB(128, 128, 128);
@@ -1843,8 +1778,8 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		// search for nested objects                                                     //
 		///////////////////////////////////////////////////////////////////////////////////
 		IXMLDOMNodeList *menuChild;
-		hr = nodeList->lpVtbl->selectNodes(nodeList, L"MENUITEM", &menuChild);
-		hr = menuChild->lpVtbl->get_length(menuChild, &depth);
+		hr = nodeList->selectNodes(L"MENUITEM", &menuChild);
+		hr = menuChild->get_length(&depth);
 		
 		if (FAILED(hr))
 		{
@@ -1887,7 +1822,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 				menuiteminfo.fType = MF_OWNERDRAW;
 			InsertMenuItem(rootMenu, i, TRUE, &menuiteminfo);
 			buildMenu(menuChild, menuiteminfo.hSubMenu);
-			menuChild->lpVtbl->Release(menuChild);
+			menuChild->Release();
 		}
 		else
 		{
@@ -1937,7 +1872,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 
 cleanup:
 	//SAFE_RELEASE(resultNode);
-	if (nodeList)	nodeList->lpVtbl->Release(nodeList);
+	if (nodeList)	nodeList->Release();
 	return 0;
 }
 
@@ -1996,30 +1931,25 @@ void UpdateAppearance(HWND hWnd, HDC dibitmapDC)
 //
 //  SetWindowTransparentMode()
 //
-void SetWindowTransparentMode(HWND hwnd,BOOL bTransparentMode)
+void SetWindowTransparentMode(HWND hWnd,BOOL bTransparentMode)
 {
-  FARPROC fp;
-  int  iAlphaPercent;
-  BYTE bAlpha;
+	int  iAlphaPercent;
+	BYTE bAlpha;
 
-  if (bTransparentMode) {
-    if (fp = GetProcAddress(GetModuleHandle(L"User32"), "SetLayeredWindowAttributes")) {
-      SetWindowLong(hwnd, GWL_EXSTYLE,
-        GetWindowLong(hwnd, GWL_EXSTYLE) | /*WS_EX_LAYERED*/0x00080000);
+	if (bTransparentMode) {
+		SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
 
-      // get opacity level from registry
-      iAlphaPercent = 128;
-      if (iAlphaPercent < 0 || iAlphaPercent > 100)
-        iAlphaPercent = 75;
-      bAlpha = iAlphaPercent * 255 / 100;
+		// get opacity level from registry
+		iAlphaPercent = 128;
+		if (iAlphaPercent < 0 || iAlphaPercent > 100)
+		iAlphaPercent = 75;
+		bAlpha = iAlphaPercent * 255 / 100;
 
-      fp(hwnd,0,bAlpha,/*LWA_ALPHA*/0x00000002);
-    }
-  }
-
-  else
-    SetWindowLong(hwnd,GWL_EXSTYLE,
-      GetWindowLong(hwnd,GWL_EXSTYLE) & ~/*WS_EX_LAYERED*/0x00080000);
+		SetLayeredWindowAttributes(hWnd, 0, bAlpha, LWA_ALPHA);
+	}
+	else
+		SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) & ~WS_EX_LAYERED);
+	return;
 }
 
 

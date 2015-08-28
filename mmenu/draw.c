@@ -32,7 +32,7 @@
 #include "draw.h"
 
 extern MENU_THEME main_menu_theme;
-extern HWND main_menu;
+HWND main_menu;
 
 
 static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled);
@@ -73,14 +73,14 @@ BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 		TCHAR *lpszLable = _T("MENU HELPER v.1.0.0");
 		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, main_menu_theme.menu_theme_3dDark); //font shadow
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		TextOut(lpDrawItem->hDC, rct.left + ((SIDEBAR_WIDTH - 15) / 2), rct.bottom - 10, lpszLable, lstrlen(lpszLable));		//Restore defaults
 		SelectObject(lpDrawItem->hDC, hfntPrev);
 		SetTextColor(lpDrawItem->hDC, prevColor);
 
 		prevColor = SetTextColor(lpDrawItem->hDC, main_menu_theme.menu_theme_font_color); //font color
-		hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		TextOut(lpDrawItem->hDC, rct.left + ((SIDEBAR_WIDTH - 14) / 2), rct.bottom - 9, lpszLable, lstrlen(lpszLable));		//Restore defaults
 		SelectObject(lpDrawItem->hDC, hfntPrev);
@@ -174,7 +174,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		rcSep.right		= lpDrawItem->rcItem.right;
 
 		hBrush = CreateSolidBrush(lpMenuData->menu_color); // Border Color
-		HBRUSH hOldBrush = SelectObject(lpDrawItem->hDC, hBrush);
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(lpDrawItem->hDC, hBrush);
 		RoundRect(lpDrawItem->hDC, rcSep.left, rcSep.top, rcSep.right, rcSep.bottom, 4, 4);
 		SelectObject(lpDrawItem->hDC, hOldBrush);
 		DeleteObject(hBrush);
@@ -215,7 +215,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name, NULL);
 		
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
 		DrawText(lpDrawItem->hDC, lpMenuData->label, -1, &rcSep, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
@@ -255,7 +255,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		///////////////////////////////////////////////////////
 		int y_t = lpDrawItem->rcItem.top;
 		int x_t = main_menu_theme.menu_theme_sidebar_width;
-		HPEN saveObject = SelectObject(lpDrawItem->hDC,CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor));
+		HPEN saveObject = (HPEN)SelectObject(lpDrawItem->hDC, CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor));
 		MoveToEx(lpDrawItem->hDC, x_t, y_t, NULL);
 		LineTo  (lpDrawItem->hDC, x_t, y_t);
 		LineTo  (lpDrawItem->hDC, x_t ,lpDrawItem->rcItem.bottom);
@@ -295,7 +295,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name,NULL);
 		
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
 		DrawText (lpDrawItem->hDC, lpMenuData->label, -1, &rcSep, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
@@ -355,7 +355,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 
 		// Create a green pen.
 		hBrush = CreateSolidBrush(lpMenuData->menu_color); // Border Color
-		HBRUSH hOldBrush = SelectObject(lpDrawItem->hDC, hBrush);
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(lpDrawItem->hDC, hBrush);
 		RoundRect(lpDrawItem->hDC, rcSep.left, rcSep.top, rcSep.right, rcSep.bottom, 4, 4);
 		SelectObject(lpDrawItem->hDC, hOldBrush);
 		DeleteObject(hBrush);
@@ -394,7 +394,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name,NULL);
 
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		if(lpMenuData->menu_imageOvr)
 		{
@@ -483,7 +483,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		int DPI = 72;
 		int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDrawItem->hDC, LOGPIXELSY), DPI);
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name, NULL);
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
 		SetBkMode(lpDrawItem->hDC,TRANSPARENT);
@@ -590,7 +590,7 @@ BOOL DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name, NULL);
 
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		rcSep.top = lpDrawItem->rcItem.top;
 		rcSep.left = lpDrawItem->rcItem.left + lpMenuData->menu_imgSize.right + 12; // Icon + border
@@ -659,7 +659,7 @@ BOOL DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 		int DPI = 72;
 		int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDrawItem->hDC, LOGPIXELSY), DPI);
 		HFONT hfnt = CreateAngledFont(lfHeight, 0, lpMenuData->menu_font_name, NULL);
-		HFONT hfntPrev = SelectObject(lpDrawItem->hDC, hfnt);
+		HFONT hfntPrev = (HFONT)SelectObject(lpDrawItem->hDC, hfnt);
 
 		COLORREF prevColor = SetTextColor(lpDrawItem->hDC, lpMenuData->menu_fontColor); //font color
 		SetBkMode(lpDrawItem->hDC, TRANSPARENT);
@@ -739,7 +739,7 @@ BOOL DrawMenuSeparator(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 
 		CopyRect(&rcChild, &lpDrawItem->rcItem);
 		rcChild.right = rcChild.left + main_menu_theme.menu_theme_sidebar_width;
-		HPEN saveObject = SelectObject(lpDrawItem->hDC,CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor));   //menu_color_border
+		HPEN saveObject = (HPEN)SelectObject(lpDrawItem->hDC, CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor));   //menu_color_border
 		MoveToEx(lpDrawItem->hDC,rcChild.right, rcChild.top, NULL);
 		LineTo(lpDrawItem->hDC, rcChild.right, rcChild.bottom);
 		DeleteObject(SelectObject(lpDrawItem->hDC, saveObject));

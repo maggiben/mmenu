@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -82,13 +82,8 @@
   <ItemGroup>
     <ClCompile Include="draw.c" />
     <ClCompile Include="graphic.c" />
-    <ClCompile Include="IDataObject.c" />
-    <ClCompile Include="IDropSource.c" />
-    <ClCompile Include="IDropTarget.c" />
-    <ClCompile Include="IEnumFORMATETC.c" />
     <ClCompile Include="main_menu.c" />
     <ClCompile Include="VistaIcons.c" />
-    <ClCompile Include="xmleng.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw.h" />
@@ -99,7 +94,6 @@
     <ClInclude Include="manage_menu.h" />
     <ClInclude Include="shellhelper.h" />
     <ClInclude Include="VistaIcons.h" />
-    <ClInclude Include="xmleng.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="mmenu.rc" />
