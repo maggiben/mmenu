@@ -23,11 +23,36 @@
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #ifndef __DRAW_H__
 #define __DRAW_H__
 
+#include <windows.h>
+#include "MenuBuilder.h"
+
 #define MF_SIDEBAR		0x0FFFF1F1L
 #define SIDEBAR_WIDTH	30
+
+class DrawMenuX
+{
+private:
+
+	HWND MainWindowHandle;
+	//DrawMenuX() { } // private default constructor
+	BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+	BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+	BOOL DrawMenuSeparator(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+	BOOL DrawMenuSidebar(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+	BOOL DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+	BOOL DrawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled);
+
+public:
+	DrawMenuX(HWND hWnd) {
+		this->MainWindowHandle = hWnd;
+	}
+	BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
+};
 
 BOOL DrawMenu			(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuChild		(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);

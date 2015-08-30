@@ -97,6 +97,7 @@
 
 #define CUR_MENU 2
 #define NEW_MENU 1
+#define MF_SIDEBAR		0x0FFFF1F1L
 
 typedef struct _MENU_THEME
 {
@@ -163,7 +164,7 @@ typedef struct _MENU_DATA
 } MENU_DATA, *LPMENU_DATA;
 
 
-BOOL create_Controls(HINSTANCE main_inst, HWND hwnd_parent, int skin_tpy);
+BOOL CreateControls(HINSTANCE main_inst, HWND hwnd_parent, int skin_tpy);
 
 LRESULT CALLBACK	ButtonProc					(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 RECT				MapDialogControlRect		(HWND, int, BOOL);

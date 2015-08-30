@@ -2,7 +2,7 @@
 <!-- This file is used by the mainmenu.c file -->
 <MAINMENU color="0xC3C3C3" border="0x000000">
 	<MENUITEM color="0xC3C3C3" border="0x000000" font="PF Tempesta Five">
-		<CAPTION>MENU HELPER</CAPTION>
+		<CAPTION font-family="Arial" font-size="9">MENU HELPER</CAPTION>
 		<FONT>PF Tempesta Five</FONT>
 		<COLOR>0x242424</COLOR>
 		<BGCOLOR>0xC3C3C3</BGCOLOR>
@@ -12,7 +12,7 @@
 		<EXECUTE></EXECUTE>
 	</MENUITEM>
 	<MENUITEM >
-		<CAPTION>Configure</CAPTION>
+		<CAPTION font-family="Arial" font-size="9">Configure</CAPTION>
 		<FONT>PF Tempesta Five</FONT>
 		<COLOR>0x242424</COLOR>
 		<BGCOLOR>0xC3C3C3</BGCOLOR>
@@ -22,7 +22,7 @@
 		<EXECUTE></EXECUTE>
 	</MENUITEM>
 	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-		<CAPTION>Proyectos</CAPTION>
+		<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Proyectos</CAPTION>
 		<FONT>PF Tempesta Five</FONT>
 		<COLOR>0x242424</COLOR>
 		<BGCOLOR>0xC3C3C3</BGCOLOR>
@@ -31,7 +31,7 @@
 		<MENUTYPE>MF_STRING</MENUTYPE>
 		<EXECUTE>c:\</EXECUTE>
 		<MENUITEM border="0x000000" font="PF Tempesta Five">
-			<CAPTION>Compiler</CAPTION>
+			<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Compiler</CAPTION>
 			<FONT>PF Tempesta Five</FONT>
 			<COLOR>0x242424</COLOR>
 			<BGCOLOR>0x808080</BGCOLOR>
@@ -41,7 +41,7 @@
 			<EXECUTE>C:\LCC\PROJECTS</EXECUTE>
 		</MENUITEM>
 		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-			<CAPTION>Key Manager</CAPTION>
+			<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Key Manager</CAPTION>
 			<FONT>PF Tempesta Five</FONT>
 			<COLOR>0x242424</COLOR>
 			<BGCOLOR>0x808080</BGCOLOR>
@@ -61,7 +61,7 @@
 			<EXECUTE>c:\</EXECUTE>
 		</MENUITEM>
 		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-			<CAPTION>Todo List</CAPTION>
+			<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Todo List</CAPTION>
 			<FONT>PF Tempesta Five</FONT>
 			<COLOR>0x242424</COLOR>
 			<BGCOLOR>0x808080</BGCOLOR>
@@ -72,7 +72,7 @@
 		</MENUITEM>
 	</MENUITEM>
 	<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-		<CAPTION>Internet</CAPTION>
+		<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Internet</CAPTION>
 		<FONT>PF Tempesta Five</FONT>
 		<FONTSIZE>8</FONTSIZE>
 		<COLOR>0x000064</COLOR>
@@ -82,7 +82,7 @@
 		<MENUTYPE>MF_STRING</MENUTYPE>
 		<EXECUTE>menu.xml</EXECUTE>
 		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-			<CAPTION>Tools</CAPTION>
+			<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Tools</CAPTION>
 			<FONT>PF Tempesta Five</FONT>
 			<COLOR>0x242424</COLOR>
 			<BGCOLOR col="8421504">0x808080</BGCOLOR>
@@ -91,7 +91,7 @@
 			<MENUTYPE>MF_STRING</MENUTYPE>
 			<EXECUTE>c:\windows\notepad.exe</EXECUTE>
 			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-				<CAPTION>Browsers</CAPTION>
+				<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Browsers</CAPTION>
 				<FONT>PF Tempesta Five</FONT>
 				<COLOR>0x242424</COLOR>
 				<BGCOLOR>0x808080</BGCOLOR>
@@ -100,7 +100,7 @@
 				<MENUTYPE>MF_STRING</MENUTYPE>
 				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
 				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-					<CAPTION>Explorer</CAPTION>
+					<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Explorer</CAPTION>
 					<FONT>PF Tempesta Five</FONT>
 					<COLOR>0x242424</COLOR>
 					<BGCOLOR>0x808080</BGCOLOR>
@@ -110,7 +110,7 @@
 					<EXECUTE>C:\Program Files\Internet Explorer\IEXPLORE.EXE</EXECUTE>
 				</MENUITEM>
 				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-					<CAPTION>Chrome</CAPTION>
+					<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Chrome</CAPTION>
 					<FONT>PF Tempesta Five</FONT>
 					<COLOR>0x242424</COLOR>
 					<BGCOLOR>0x808080</BGCOLOR>
@@ -120,7 +120,7 @@
 					<EXECUTE>C:\Documents and Settings\Administrator\Desktop\virtual machine img\opera924int\operausb.exe</EXECUTE>
 				</MENUITEM>
 				<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-					<CAPTION>Firefox</CAPTION>
+					<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Firefox</CAPTION>
 					<FONT>PF Tempesta Five</FONT>
 					<COLOR>0x242424</COLOR>
 					<BGCOLOR>0x808080</BGCOLOR>
@@ -141,7 +141,7 @@
 				<EXECUTE>c:\windows\notepad.exe</EXECUTE>
 			</MENUITEM>
 			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-				<CAPTION>Gmail</CAPTION>
+				<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Gmail</CAPTION>
 				<FONT>PF Tempesta Five</FONT>
 				<COLOR>0x242424</COLOR>
 				<BGCOLOR>0x808080</BGCOLOR>
@@ -151,7 +151,7 @@
 				<EXECUTE>C:\Documents and Settings\Administrator\Desktop\winscp382.exe</EXECUTE>
 			</MENUITEM>
 			<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-				<CAPTION>Skype</CAPTION>
+				<CAPTION font-family="Arial" font-size="9" color="0xFF0000">Skype</CAPTION>
 				<FONT>PF Tempesta Five</FONT>
 				<COLOR>0x242424</COLOR>
 				<BGCOLOR>0x808080</BGCOLOR>
@@ -172,7 +172,7 @@
 			<EXECUTE></EXECUTE>
 		</MENUITEM>
 		<MENUITEM font="PF Tempesta Five" size="9" color="0xFF0000" style="bold" background="0xFF000" img="">
-			<CAPTION>YouTube</CAPTION>
+			<CAPTION font-family="Arial" font-size="9" color="0xFF0000">YouTube</CAPTION>
 			<FONT>PF Tempesta Five</FONT>
 			<COLOR>0x242424</COLOR>
 			<BGCOLOR>0x808080</BGCOLOR>

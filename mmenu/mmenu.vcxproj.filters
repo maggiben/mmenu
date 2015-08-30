@@ -27,6 +27,9 @@
     <ClCompile Include="VistaIcons.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VistaIcons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

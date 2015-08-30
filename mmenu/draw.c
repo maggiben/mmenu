@@ -27,6 +27,7 @@
 #include <windowsx.h>       // Extra features 
 #include <tchar.h>          
 #include <wchar.h>			// Unicode support
+#include "MenuBuilder.h"
 #include "main_menu.h"
 #include "graphic.h"
 #include "draw.h"
@@ -34,10 +35,7 @@
 extern MENU_THEME main_menu_theme;
 HWND main_menu;
 
-
-static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled);
-
-BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
+BOOL DrawMenuX::DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 	
 	static MENU_DATA *hMenu = NULL;
 
@@ -136,7 +134,7 @@ BOOL DrawMenu(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
 
-BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
+BOOL DrawMenuX::DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 {
 	RECT		rcSep;
 	HBRUSH		hBrush;
@@ -319,7 +317,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		arrowDest.right = arrowDest.left + bmp.bmWidth;
 
 		//Draw the arrow
-		_drawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED)?TRUE:FALSE);
+		this->DrawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED) ? TRUE : FALSE);
 		ExcludeClipRect(lpDrawItem->hDC, lpDrawItem->rcItem.left, lpDrawItem->rcItem.top, lpDrawItem->rcItem.right, lpDrawItem->rcItem.bottom);
 	}
 	return TRUE;
@@ -328,7 +326,7 @@ BOOL DrawMenuChild(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 ///////////////////////////////////////////////////////////////////////////////////
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
-BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
+BOOL DrawMenuX::DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 {
 	RECT				rcSep;
 	HBRUSH				hBrush		= NULL;
@@ -508,7 +506,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		arrowDest.right = arrowDest.left + bmp.bmWidth;
 
 		//Draw the arrow
-		_drawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED)?TRUE:FALSE);
+		this->DrawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED)?TRUE:FALSE);
 		ExcludeClipRect(lpDrawItem->hDC, lpDrawItem->rcItem.left, lpDrawItem->rcItem.top, lpDrawItem->rcItem.right, lpDrawItem->rcItem.bottom);
 	}
 	return TRUE;
@@ -518,7 +516,7 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 // Hanldes the drawing operation of th Root Menu either state                    //
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
-BOOL DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
+BOOL DrawMenuX::DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 	
 	RECT				rcSep;
 	HBRUSH				hBrush = NULL;
@@ -675,7 +673,7 @@ BOOL DrawRootMenuItem(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData) {
 // Hanldes the drawing the menu separator                                        //
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
-BOOL DrawMenuSeparator(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
+BOOL DrawMenuX::DrawMenuSeparator(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 {
 	RECT				rcSep;
 	HBRUSH				hBrush		= NULL;
@@ -765,7 +763,7 @@ BOOL DrawMenuSeparator(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 	return TRUE;
 }
 
-static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled)
+BOOL DrawMenuX::DrawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled)
 {
    //Create the DCs and Bitmaps we will need
    HDC arrowDC = CreateCompatibleDC(inHDC);
@@ -805,6 +803,8 @@ static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled)
    DeleteObject(arrowBitmap);
    DeleteDC(fillDC);
    DeleteDC(arrowDC);
+
+   return TRUE;
 }
 
 

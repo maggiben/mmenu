@@ -23,14 +23,12 @@
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #ifndef __GRAPHIC_H__
 #define __GRAPHIC_H__
 
-#ifndef PNGIMAGE_H_INCLUDE_NR1
-#define PNGIMAGE_H_INCLUDE_NR1
-#endif
-
-HFONT		CreateAngledFont(int fontHeight, int fontAngle, LPCTSTR lpfontFace, LOGFONT * ftAttr);
+HFONT		CreateAngledFont(int fontHeight, int fontAngle, LPCWSTR lpfontFace, LOGFONT * ftAttr);
 
 void		drawIconToBitmap(HBITMAP bmSrc, LPWSTR FileName, int size, COLORREF compositeColor);
 HBITMAP		CreateBitmapMask(HBITMAP, COLORREF);
@@ -48,5 +46,14 @@ void		blurBitmap(HDC hSrcDc, HBITMAP hSrcBmp, BYTE bDeltaMax);
 // Image Loading & Manipulation
 HBITMAP		LoadImageSmart(LPWSTR imagePath);
 HBITMAP		ScaleImage(HBITMAP hBitmap, LONG width, LONG height);
+
+class Graphics
+{
+private:
+public:
+	HFONT CreateAngledFont(LONG fontSize, LONG fontAngle, LPWSTR pFontFamily);
+	Graphics() {};
+	~Graphics() {};
+};
 
 #endif

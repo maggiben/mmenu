@@ -105,7 +105,7 @@
 
 #define VERSION 0.9.6		// 29/05/2009
 #define _CRT_SECURE_NO_WARNINGS
-#define ISOWNERDRAW FALSE
+#define ISOWNERDRAW TRUE
 
 ///////////////////////////////////////////////////////////////////////////////////
 //	Includes                                                                     //
@@ -135,6 +135,8 @@
 #include "graphic.h"
 #include "draw.h"
 #include "FreeImage.h"      // FreeImage protos & delares
+
+#include "MenuBuilder.h"
 
 using namespace std;
 
@@ -204,7 +206,6 @@ HBITMAP			MainBitmap;
 
 #define RT_BITMAP		MAKEINTRESOURCE(2)
 
-#define MF_SIDEBAR		0x0FFFF1F1L
 #define SIDEBAR_WIDTH	30
 
 #ifndef CS_DROPSHADOW
@@ -268,6 +269,142 @@ HWND  mnu_hwnd;
 const TCHAR _WndPropName_OldProc[] = _TEXT("XPWndProp_OldProc");
 const TCHAR _WndPropName_MenuXP[]	= _TEXT("XPWndProp_MenuXP");
 
+class CDropSource : public IDropSource
+{
+public:
+	//
+    // IUnknown members
+	//
+    HRESULT __stdcall QueryInterface	(REFIID iid, void ** ppvObject);
+    ULONG   __stdcall AddRef			(void);
+    ULONG   __stdcall Release			(void);
+		
+    //
+	// IDropSource members
+	//
+    HRESULT __stdcall QueryContinueDrag	(BOOL fEscapePressed, DWORD grfKeyState);
+	HRESULT __stdcall GiveFeedback		(DWORD dwEffect);
+	
+	//
+    // Constructor / Destructor
+	//
+    CDropSource();
+    ~CDropSource();
+	
+private:
+
+    //
+	// private members and functions
+	//
+    LONG	   m_lRefCount;
+};
+
+//
+//	Constructor
+//
+CDropSource::CDropSource() 
+{
+	m_lRefCount = 1;
+}
+
+//
+//	Destructor
+//
+CDropSource::~CDropSource()
+{
+}
+
+//
+//	IUnknown::AddRef
+//
+ULONG __stdcall CDropSource::AddRef(void)
+{
+    // increment object reference count
+    return InterlockedIncrement(&m_lRefCount);
+}
+
+//
+//	IUnknown::Release
+//
+ULONG __stdcall CDropSource::Release(void)
+{
+    // decrement object reference count
+	LONG count = InterlockedDecrement(&m_lRefCount);
+		
+	if(count == 0)
+	{
+		delete this;
+		return 0;
+	}
+	else
+	{
+		return count;
+	}
+}
+
+//
+//	IUnknown::QueryInterface
+//
+HRESULT __stdcall CDropSource::QueryInterface(REFIID iid, void **ppvObject)
+{
+    // check to see what interface has been requested
+    if(iid == IID_IDropSource || iid == IID_IUnknown)
+    {
+        AddRef();
+        *ppvObject = this;
+        return S_OK;
+    }
+    else
+    {
+        *ppvObject = 0;
+        return E_NOINTERFACE;
+    }
+}
+
+//
+//	CDropSource::QueryContinueDrag
+//
+//	Called by OLE whenever Escape/Control/Shift/Mouse buttons have changed
+//
+HRESULT __stdcall CDropSource::QueryContinueDrag(BOOL fEscapePressed, DWORD grfKeyState)
+{
+	// if the <Escape> key has been pressed since the last call, cancel the drop
+	if(fEscapePressed == TRUE)
+		return DRAGDROP_S_CANCEL;	
+
+	// if the <LeftMouse> button has been released, then do the drop!
+	if((grfKeyState & MK_LBUTTON) == 0)
+		return DRAGDROP_S_DROP;
+
+	// continue with the drag-drop
+	return S_OK;
+}
+
+//
+//	CDropSource::GiveFeedback
+//
+//	Return either S_OK, or DRAGDROP_S_USEDEFAULTCURSORS to instruct OLE to use the
+//  default mouse cursor images
+//
+HRESULT __stdcall CDropSource::GiveFeedback(DWORD dwEffect)
+{
+	return DRAGDROP_S_USEDEFAULTCURSORS;
+}
+
+//
+//	Helper routine to create an IDropSource object
+//	
+HRESULT CreateDropSource(IDropSource **ppDropSource)
+{
+	if(ppDropSource == 0)
+		return E_INVALIDARG;
+
+	*ppDropSource = new CDropSource();
+
+	return (*ppDropSource) ? S_OK : E_OUTOFMEMORY;
+
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 //	Registro de la clase para la ventana                                         //
 ///////////////////////////////////////////////////////////////////////////////////
@@ -289,40 +426,39 @@ static BOOL InitApplication(void)
     //wc.hIconSm  = LoadImage(hInst, MAKEINTRESOURCE(8001), IMAGE_ICON, 16, 16, LR_CREATEDIBSECTION);
 
 	if (!RegisterClass(&wc))
-		return 0;
+		return FALSE;
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//	Load resurces                                                                //
 	//	Setup Themes                                                                 //
 	///////////////////////////////////////////////////////////////////////////////////
 
-	main_menu_theme.menu_theme_bgColor       = RGB(055,055,055);
-	main_menu_theme.menu_theme_fgColor       = RGB(000,000,000);
-	main_menu_theme.menu_theme_sidebarColor  = RGB(025,025,025);
-	main_menu_theme.menu_theme_borderColor   = RGB(000,000,000);
-	main_menu_theme.menu_theme_3dLight       = RGB(075,075,057);
-	main_menu_theme.menu_theme_3dDark		 = RGB(035,035,035);
-	main_menu_theme.menu_theme_alpha		 = 250;
-	main_menu_theme.menu_theme_btnUp		 = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
+	main_menu_theme.menu_theme_bgColor		= RGB(055,055,055);
+	main_menu_theme.menu_theme_fgColor		= RGB(000,000,000);
+	main_menu_theme.menu_theme_sidebarColor	= RGB(025,025,025);
+	main_menu_theme.menu_theme_borderColor	= RGB(000,000,000);
+	main_menu_theme.menu_theme_3dLight		= RGB(075,075,057);
+	main_menu_theme.menu_theme_3dDark		= RGB(035,035,035);
+	main_menu_theme.menu_theme_alpha		= 250;
+	main_menu_theme.menu_theme_btnUp		= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
 	main_menu_theme.menu_theme_btnDw		= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 	main_menu_theme.menu_theme_btnHt		= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 	main_menu_theme.menu_theme_background	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(12346), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
-	main_menu_theme.menu_theme_font_color    = RGB(128,128,128);
-	main_menu_theme.menu_theme_font_hilite_color    = RGB(248,128,10);
-	main_menu_theme.menu_theme_font_height   = 9;
-	main_menu_theme.menu_theme_font			 = _TEXT("PF Tempesta Five");
-	main_menu_theme.menu_theme_sidebar_width = 30;
+	main_menu_theme.menu_theme_font_color			= RGB(128,128,128);
+	main_menu_theme.menu_theme_font_hilite_color	= RGB(248,128,10);
+	main_menu_theme.menu_theme_font_height			= 9;
+	main_menu_theme.menu_theme_font					= _TEXT("PF Tempesta Five");
+	main_menu_theme.menu_theme_sidebar_width		= 30;
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//	Load resurces                                                                //
 	//	can be edited externaly using a resource hacker like tool                    //
 	///////////////////////////////////////////////////////////////////////////////////
-
-	g_hBmpUp = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
-	g_hBmpDown = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
-	g_hBmpHot = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
-	MainBitmap = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPFONDO), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpUp	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpDown	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	g_hBmpHot	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	MainBitmap	= (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_BMPFONDO), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//	Boton de Plus                                                                //
@@ -334,19 +470,19 @@ static BOOL InitApplication(void)
 	opti_ht = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI2), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 	opti_dw = (HBITMAP)LoadImage(hInst, MAKEINTRESOURCE(ID_OPTI3), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
 
-	BITMAP bm;
-
 	///////////////////////////////////////////////////////////////////////////////////
 	// Get width & height                                                            //
 	///////////////////////////////////////////////////////////////////////////////////
+	BITMAP bm;
 	GetObject(g_hBmpUp, sizeof(BITMAP), &bm);
 
 	g_BmpWidth  = bm.bmWidth;
 	g_BmpHeight = bm.bmHeight;
 
+	// Initialise FreeImage library
 	FreeImage_Initialise(FALSE);
-
-	return 1;
+	
+	return TRUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -362,7 +498,7 @@ HWND Createmain_menu_WndClassWnd(void)
 	(
 		WS_EX_LEFT | WS_EX_TOOLWINDOW | WS_EX_TOPMOST,	// WS_EX_TOOLWINDOW prevent our icon to be in ALT+TAB
 		MAINCLASS,				// Class
-		_TEXT("Title"),			// Title
+		TEXT("Title"),			// Title
 		WS_POPUP,				// style
 		100,					// pos x of win
 		100,					// pos y of win,
@@ -380,8 +516,8 @@ HWND Createmain_menu_WndClassWnd(void)
 ///////////////////////////////////////////////////////////////////////////////////
 void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 {
-	HMENU		hMenu_ret;
-	POINT		point;
+	HMENU		hMenu_ret = NULL;
+	POINT		point = { 0, 0 };
 	RECT		rc_1;
 
 	switch(id) 
@@ -392,7 +528,9 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 
 		case 330:
 		{
-			hMenu_ret = xmlInitnstance(_TEXT("menu.xml"), TRUE);
+			MenuBuilder menuBuilder;
+			//hMenu_ret = xmlInitnstance(TEXT("menu.xml"), TRUE);
+			hMenu_ret = menuBuilder.Load(TEXT("menu.xml"), TRUE);
 			RECT rcDesktop;
 			if(FALSE == SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0))
 			break;
@@ -478,6 +616,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	RECT 			rd;
 	BOOL			def_result = 0;
 	static HMENU	menu;
+	DrawMenuX		DrawMyMenu(hwnd);
 
 	switch (msg) 
 	{
@@ -510,14 +649,14 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		// Load resources                                                                //
 		///////////////////////////////////////////////////////////////////////////////////
 		hRes = LoadResource(hInst, FindResource(hInst, MAKEINTRESOURCE(ID_BMPFONDO), RT_BITMAP));
-		lpBitmap	= (LPBITMAPINFO) LockResource(hRes);
- 		lpBits		= (LPTSTR) lpBitmap;
+		lpBitmap	= (LPBITMAPINFO)LockResource(hRes);
+ 		lpBits		= (LPTSTR)lpBitmap;
 	   	lpBits		+= lpBitmap->bmiHeader.biSize + (256 * sizeof(RGBQUAD));
 
 		///////////////////////////////////////////////////////////////////////////
 		//	Creo los botones de control                                          //
 		///////////////////////////////////////////////////////////////////////////
-		def_result = create_Controls(hInst, hwnd, 1);
+		def_result = CreateControls(hInst, hwnd, 1);
 
 		///////////////////////////////////////////////////////////////////////////
 		// Screen size                                                           //
@@ -585,7 +724,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		mnfo.fMask = MIM_STYLE;
 		mnfo.dwStyle = MNS_DRAGDROP | MNS_AUTODISMISS;
 		SetMenuInfo(hmenuPopup, &mnfo);
-
 		break;
 	}
 	case WM_MENUGETOBJECT:
@@ -638,7 +776,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		// We need to calculate OWNERDRAW items size                             //
 		//                                                                       //
 		///////////////////////////////////////////////////////////////////////////
-		TEXTMETRIC          tm;
 		HDC                 hdc = NULL;
 		SIZE				sz;
 		BOOL				hResult;
@@ -653,27 +790,17 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		///////////////////////////////////////////////////////////////////////////
 		if (pmis->CtlType == ODT_MENU)
 		{
-			MENU_DATA *menuData = (MENU_DATA*)pmis->itemData;
+			MenuItem *pMenuItem = (MenuItem*)pmis->itemData;
 			hdc = GetDC(hwnd);
-			GetTextMetrics(hdc, &tm);
 			
 			///////////////////////////////////////////////////////////////////////////
 			// nota: usar select object para seleccionar el tipo de fuente en el DC  //
 			// 2009 Correct fix for calculating the correct size:                    //
 			// First select font into DC and then call GetTextExtentPoint32 :)       //
 			///////////////////////////////////////////////////////////////////////////
-			int szText;
-			int PointSize = menuData->menu_font_size;
-			int DPI = 72;
-			int lfHeight = -MulDiv(PointSize, GetDeviceCaps(hdc, LOGPIXELSY), DPI);
-
-			HFONT hfnt = CreateAngledFont(lfHeight, 0, menuData->menu_font_name, NULL);
-		
-			HFONT hfntPrev = (HFONT)SelectObject(hdc, hfnt);
-			szText = wcslen(menuData->label);
-			hResult = GetTextExtentPoint32(hdc, menuData->label, szText, &sz);
+			HFONT hfntPrev = (HFONT)SelectObject(hdc, pMenuItem->font);
+			hResult = GetTextExtentPoint32(hdc, pMenuItem->label, lstrlen(pMenuItem->label), &sz);
 			SelectObject(hdc, hfntPrev);
-			DeleteObject(hfnt);
 			if(!hResult)
 			{	
 				MessageBox(hwnd, L"Error GetTextExtentPoint32() in gdi32.dll", L"Error!", IDOK);
@@ -686,9 +813,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			///////////////////////////////////////////////////////////////////////////
 			BITMAP bmp;
 			ZeroMemory(&bmp, sizeof(BITMAP));
-			if (menuData->image)
+			if (pMenuItem->image)
 			{
-				GetObject(menuData->image, sizeof(BITMAP), (LPSTR)&bmp);
+				GetObject(pMenuItem->image, sizeof(BITMAP), (LPSTR)&bmp);
 			}
 			UINT is_root = IsRootMenu(pmis->itemID);
 			if(is_root == 1)
@@ -702,7 +829,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				pmis->itemWidth = sz.cx + bmp.bmWidth * 2 + main_menu_theme.menu_theme_sidebar_width; // sidebar + icon + arrow = padding			
 			}
 
-			switch (menuData->type)
+			switch (pMenuItem->type)
 			{
 				///////////////////////////////////////////////////////////////////////////
 				// Set MF_SEPARATOR Measures                                             //
@@ -764,7 +891,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			break;
 			case ODT_MENU:
 				menuData = (MENU_DATA *)lpDs->itemData;
-				DrawMenu(lpDs, menuData);
+				MenuItem * menuItem = (MenuItem *)lpDs->itemData;
+				return menuItem->draw(lpDs);
+				//return DrawMyMenu.DrawMenu(lpDs, menuData);
 			break;
 		}
 		//end switch
@@ -840,7 +969,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 ///////////////////////////////////////////////////////////////////////////
 //	Create the buttons :)                                                //
 ///////////////////////////////////////////////////////////////////////////
-BOOL create_Controls(HINSTANCE main_inst, HWND hwnd_parent, int skin_tpy)
+BOOL CreateControls(HINSTANCE main_inst, HWND hwnd_parent, int skin_tpy)
 {
 	 int 		i = 0;
 
@@ -1077,7 +1206,6 @@ LRESULT CALLBACK install_Hook(int code, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 
-		//4402762 chorrus
 		HWND pFrame = GetForegroundWindow();
 
 		//si es que activamos el skin para esta ventana con handle
@@ -1099,40 +1227,39 @@ LRESULT CALLBACK install_Hook(int code, WPARAM wParam, LPARAM lParam)
 			HWND hMenuWnd = pStruct->hwnd;
       		DWORD dwStyle =0;
       		dwStyle = GetWindowLong(hMenuWnd, GWL_EXSTYLE);
-      		SetWindowLong(hMenuWnd, GWL_EXSTYLE, dwStyle|WS_EX_LAYERED);
+      		SetWindowLong(hMenuWnd, GWL_EXSTYLE, dwStyle | WS_EX_LAYERED);
 
 			SetLayeredWindowAttributes(hMenuWnd, 0, main_menu_theme.menu_theme_alpha, LWA_ALPHA);
 		}
 		//hasta aca estamos seguros Safe point
-		HANDLE resu = GetProp (pStruct->hwnd, _WndPropName_OldProc);
-		if ( GetProp (pStruct->hwnd, _WndPropName_OldProc) != NULL )
+		HANDLE resu = GetProp(pStruct->hwnd, _WndPropName_OldProc);
+		if ( GetProp(pStruct->hwnd, _WndPropName_OldProc) != NULL )
 		{
 			// Already subclassed
 			break;
 		}
 		// Subclass the window
-        //get the code pointer
+        // get the code pointer
 
-		WNDPROC oldWndProc = (WNDPROC)(LONG_PTR)GetWindowLong (pStruct->hwnd, GWL_WNDPROC);
+		WNDPROC oldWndProc = (WNDPROC)(LONG_PTR)GetWindowLong(pStruct->hwnd, GWL_WNDPROC);
 		old_menu_proc = oldWndProc;
-		if(oldWndProc == NULL)
+		if (oldWndProc == NULL)
  		{
   			//oops GPF we'r on the edge !!!
 			break;
 		}
 
 		mnu_hwnd = pStruct->hwnd;
-		if ( !SetProp (pStruct->hwnd, _WndPropName_OldProc, oldWndProc) )
+		if (!SetProp(pStruct->hwnd, _WndPropName_OldProc, oldWndProc))
         {
             break;
         }
-		long set_wl = SetWindowLong (pStruct->hwnd, GWL_WNDPROC,(DWORD)(DWORD_PTR)menuproc_sclass);
-		if(!set_wl)
+		long set_wl = SetWindowLong(pStruct->hwnd, GWL_WNDPROC,(DWORD)(DWORD_PTR)menuproc_sclass);
+		if (!set_wl)
 		{
 			RemoveProp (pStruct->hwnd, _WndPropName_OldProc);
 			break;
 		}
-
 
 		// Success !
 		break;
@@ -1335,10 +1462,10 @@ LRESULT CALLBACK menuproc_sclass(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     		break;
 		}
 		default:
-		return CallWindowProc (oldWndProc, hWnd, uMsg, wParam, lParam);
+		return CallWindowProc(oldWndProc, hWnd, uMsg, wParam, lParam);
 	}
 	//End case
-	return CallWindowProc (oldWndProc, hWnd, uMsg, wParam, lParam);
+	return CallWindowProc(oldWndProc, hWnd, uMsg, wParam, lParam);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -1346,21 +1473,19 @@ LRESULT CALLBACK menuproc_sclass(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 ///////////////////////////////////////////////////////////////////////////////////
 void initHook(void)
 {
-	_hHook = (HHOOK) SetWindowsHookEx(WH_CALLWNDPROC, &install_Hook, hInst, GetCurrentThreadId());
+	_hHook = (HHOOK)SetWindowsHookEx(WH_CALLWNDPROC, &install_Hook, hInst, GetCurrentThreadId());
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 void unitHook(void)
 {
-	WNDPROC NewWndProc = (WNDPROC)(LONG_PTR)GetWindowLong (mnu_hwnd, GWL_WNDPROC);
-	SetWindowLong (mnu_hwnd, GWL_WNDPROC,(DWORD)(DWORD_PTR)old_menu_proc);
+	WNDPROC NewWndProc = (WNDPROC)(LONG_PTR)GetWindowLong(mnu_hwnd, GWL_WNDPROC);
+	SetWindowLong(mnu_hwnd, GWL_WNDPROC,(DWORD)(DWORD_PTR)old_menu_proc);
 	NewWndProc = (WNDPROC)(LONG_PTR)GetWindowLong (mnu_hwnd, GWL_WNDPROC);
-	RemoveProp (mnu_hwnd, _WndPropName_OldProc);
+	RemoveProp(mnu_hwnd, _WndPropName_OldProc);
 	UnhookWindowsHookEx(_hHook);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////
 int draw_buttons(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 
@@ -1410,95 +1535,9 @@ int draw_buttons(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		SelectObject(hDC, saveObj);
 
-		if(lpDs->CtlID == 330)
-		{
-
-		}
-
 		DeleteDC(hDC);
 	}
 	return 0;
-}
-///////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////////
-
-static HMENU FindMenuFromID(HMENU hMenu, UINT id)
-{
-	HMENU 			hSubMenu = NULL;
-	MENUITEMINFO	mii;
-	int				isDone = 0;
-	int				iCount = GetMenuItemCount(hMenu);
-
-
-	for ( int i = 0; i < iCount; i++) 
-	{
-		if ( id == GetMenuItemID(hMenu, i) ) 
-		{
-			//wID found we'r on a normal menuitem
-			GetMenuItemInfo(hMenu, i, TRUE, &mii);
-			return hMenu;
-		}
-		else 
-		{
-			hSubMenu = GetSubMenu(hMenu, i);
-			if(hSubMenu == (HMENU)id)
-			{
-				GetMenuItemInfo(hSubMenu, 0, TRUE, &mii);
-				isDone = id;
-				return hSubMenu;
-			}
-			if ( NULL != hSubMenu ) 
-			{
-				// recurse
-				hSubMenu = FindMenuFromID(hSubMenu, id);
-				if ( NULL != hSubMenu ) 
-					{
-						return hSubMenu;
-					}
-			}
-		}
-	}
-	// no match
-	return NULL;
-}
-
-////////////////////////////////////////////////////////////////////////////////////
-// This function will return the menu type of a given ID searches the entire tree //
-////////////////////////////////////////////////////////////////////////////////////
-int MenuType(HMENU hMenu, UINT id)
-{
-	HMENU hSubMenu	= NULL;
-	HMENU hSubChild	= NULL;
-	int isDone = 0;
-	int iCount = GetMenuItemCount(hMenu);
-	for ( int i = 0; i < iCount; i++) 
-	{
-		if ( id == GetMenuItemID(hMenu, i) ) 
-		{
-			// wID found we'r on a normal menuitem
-			// Normal menu item
-			return MF_STRING;
-		}
-		else
-		{
-			hSubMenu = GetSubMenu(hMenu, i);
-			if(hSubMenu == (HMENU)id)
-			{
-				return MF_POPUP;
-			}
-			if ( NULL != hSubMenu ) 
-			{
-				hSubMenu = FindMenuFromID(hSubMenu, id);
-				if ( hSubMenu != NULL) 
-				{
-					return MF_STRING;
-				}
-			}
-		}
-	}
-
-	return -1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -1802,12 +1841,13 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 			menuiteminfo.fMask |= MIIM_BITMAP;
 		}
 		
-		/*AllocConsole();
+		/*
+		AllocConsole();
 		freopen("CONIN$", "r", stdin);
 		freopen("CONOUT$", "w", stdout);
 		freopen("CONOUT$", "w", stderr);
 		
-		printf("%S\t\t%u\n", menuData->label, MMU_IDS);*/
+		printf("%d\n", EmpSalaries['woot']);*/
 		
 		//OutputDebugStringW(L"My output string.");
 		/////////////////////////////////////////////////////////////////////////////
