@@ -401,27 +401,6 @@ BOOL DrawMenuRoot(DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData)
 		DeleteObject(hfnt);
 
 	}
-	/*
-	if(lpMenuData->menu_type == MF_POPUP)
-	{
-		#define OBM_MNARROW 32739
-		HBITMAP hBitmap = (HBITMAP)LoadImage(NULL,MAKEINTRESOURCE(OBM_MNARROW), IMAGE_BITMAP, 0, 0,LR_DEFAULTSIZE | LR_SHARED);
-		BITMAP bmp;
-		GetObject(hBitmap, sizeof(BITMAP), (LPSTR) &bmp);
-
-		RECT arrowDest;
-
-		arrowDest.top = lpDrawItem->rcItem.top + ((lpDrawItem->rcItem.bottom - lpDrawItem->rcItem.top) / 2) - (bmp.bmHeight / 2);
-		arrowDest.bottom = arrowDest.top + bmp.bmHeight;
-		arrowDest.left = lpDrawItem->rcItem.right - (bmp.bmWidth + 0); // 1 = right margin
-		arrowDest.right = arrowDest.left + bmp.bmWidth;
-
-		//Draw the arrow
-		_drawMenuArrow(lpDrawItem->hDC, &arrowDest, (lpDrawItem->itemState & ODS_SELECTED)?TRUE:FALSE);
-		ExcludeClipRect(lpDrawItem->hDC, lpDrawItem->rcItem.left, lpDrawItem->rcItem.top, lpDrawItem->rcItem.right, lpDrawItem->rcItem.bottom);
-	}
-	return TRUE;
-	*/
 	return TRUE;
 }
 
@@ -557,16 +536,4 @@ static void _drawMenuArrow(HDC inHDC, RECT *inDestR, BOOL inIsEnabled)
    DeleteObject(arrowBitmap);
    DeleteDC(fillDC);
    DeleteDC(arrowDC);
-}
-
-
-void dummy(MENU_DATA *lpMenuData)
-{
-	
-	if(lpMenuData->menu_font_size > 10)
-	{
-		int a = 0;
-		a++;
-	}
-	return;
 }

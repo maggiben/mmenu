@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
-// Título:      		xmleng.c                                                 //
-// Author:		        Benjamin Maggi                                           //
-// Descripcion: 		XML Handling functions                                   //
+// Título:              xmleng.c                                                 //
+// Author:              Benjamin Maggi                                           //
+// Descripcion:         XML Handling functions                                   //
 // Org. Date:           13/03/2008                                               //
 // Last Modification:   29/03/2008                                               //
 // Ver:                 0.0.1                                                    //
@@ -13,13 +13,13 @@
 // This program is free software; you can redistribute it                        //
 // and/or modify it under the terms of the GNU General Public                    //
 // License as published by the Free Software Foundation;                         //
-// either version 2 of the License, or (at your option) any          	         //
-// later version.                                                    	         //
-//                                                                    	         //
-// This program is distributed in the hope that it will be useful,   	         //
-// but WITHOUT ANY WARRANTY; without even the implied warranty of    	         //
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     	         //
-// GNU General Public License for more details.                      	         //
+// either version 2 of the License, or (at your option) any                      //
+// later version.                                                                //
+//                                                                               //
+// This program is distributed in the hope that it will be useful,               //
+// but WITHOUT ANY WARRANTY; without even the implied warranty of                //
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 //
+// GNU General Public License for more details.                                  //
 //                                                                               //
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -46,14 +46,13 @@ IXMLDOMDocument* loadXML(char * fname)
 {
 	static	IXMLDOMDocument*	document 	= NULL;
 			IXMLDOMParseError*	parseError	= NULL;
-			IXMLDOMElement*		element		= NULL;	
+			IXMLDOMElement*		element		= NULL;
 			BSTR				bstr		= NULL;
 			VARIANT_BOOL		status;
 			VARIANT				vSrc;
 			BSTR			fileName;
 
-	HRESULT hr;
-	hr = CoInitialize(NULL);
+	HRESULT hr = CoInitialize(NULL);
 	if (FAILED(hr))
 	{
 		MessageBox(NULL,"Could not CoInitialize()","Error !",MB_ICONWARNING);
@@ -73,7 +72,7 @@ IXMLDOMDocument* loadXML(char * fname)
 	V_BSTR(&vSrc) = SysAllocString(fileName);
 	V_VT(&vSrc) = VT_BSTR;
 
-	hr = document->lpVtbl->load(document,vSrc, &status);
+	hr = document->lpVtbl->load(document, vSrc, &status);
 
 	if (status != VARIANT_TRUE)
 	{
@@ -192,7 +191,7 @@ BOOL populateNode(IXMLDOMElement *node)
 // Output:        IXMLDOMElement* node        .                                  //
 // Errors:        If the function succeeds, return = TRUE.                       //
 //                If the function fails, return = FALSE.                         //
-// Notes:		  .                                                              //
+// Notes:         .                                                              //
 // Author:        Benjamin Maggi 2008                                            //
 ///////////////////////////////////////////////////////////////////////////////////
 BOOL populateAttributes(IXMLDOMElement *node)
@@ -224,12 +223,12 @@ BOOL populateAttributes(IXMLDOMElement *node)
 // Purpose:       Populate through the XML                                       //
 //                                                                               //
 // Input:         IXMLDOMElement* node source to ilterate                        //
-//				  BSTR attribute Attribute name                                  //
+//                BSTR attribute Attribute name                                  //
 //                VARIANT* nodeValue, return value will be placed here           //
 // Output:        IXMLDOMElement* node        .                                  //
 // Errors:        If the function succeeds, return = NOERROR.                    //
 //                If the function fails, return = HRESULT from last call.        //
-// Notes:		  .                                                              //
+// Notes:                                                                        //
 // Author:        Benjamin Maggi 2008                                            //
 ///////////////////////////////////////////////////////////////////////////////////
 HRESULT getAttributeValue(IXMLDOMElement *node, BSTR attribute,VARIANT* nodeValue)
@@ -261,7 +260,7 @@ HRESULT getAttributeValue(IXMLDOMElement *node, BSTR attribute,VARIANT* nodeValu
 
 ///////////////////////////////////////////////////////////////////////////////////
 // How To Convert from ANSI to Unicode & Unicode to ANSI for OLE                 //
-// At MSDN Article ID:	138813                                                   //
+// At MSDN Article ID:  138813                                                   //
 //                                                                               //
 // AnsiToUnicode converts the ANSI string pszA to a Unicode string               //
 // and returns the Unicode string through ppszW. Space for the                   //

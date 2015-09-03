@@ -2,7 +2,7 @@
 <!-- This file is used by the mainmenu.c file -->
 <MAINMENU color="0xC3C3C3" border="0x000000">
 	<MENUITEM color="0xC3C3C3" border="0x000000" font="PF Tempesta Five">
-		<CAPTION>MENU HELPER</CAPTION>
+		<CAPTION>MENU HELPERXX</CAPTION>
 		<FONT>PF Tempesta Five</FONT>
 		<COLOR>0x242424</COLOR>
 		<BGCOLOR>0xC3C3C3</BGCOLOR>

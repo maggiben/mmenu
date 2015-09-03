@@ -131,91 +131,6 @@
 
 #include "FreeImage.h"      // FreeImage protos & delares
 
-#include "libtcc.h"
-
-/* this function is called by the generated code */
-int add(int a, int b);
-int mainX(int argc, char **argv);
-int msga(char *msg);
-int add(int a, int b)
-{
-    return a + b;
-}
-
-int msga(char *msg)
-{
-	MessageBox(NULL,msg, "Message from TCC", MB_OK);
-}
-char my_program[] =
-"int fib(int n)\n"
-"{\n"
-"    if (n <= 2)\n"
-"        return 1;\n"
-"    else\n"
-"        return fib(n-1) + fib(n-2);\n"
-"}\n"
-"\n"
-"int foo(int n)\n"
-"{\n"
-"    msga(\"Hello World!\\n\");\n"
-"    return 0;\n"
-"}\n";
-
-int mainX(int argc, char **argv)
-{
-	/*
-    TCCState *s;
-    int (*func)(int);
-    void *mem;
-    int size;
-
-    s = tcc_new();
-    if (!s) {
-        fprintf(stderr, "Could not create tcc state\n");
-        exit(1);
-    }
-
-    // if tcclib.h and libtcc1.a are not installed, where can we find them //
-    //if (argc == 2 && !memcmp(argv[1], "lib_path=",9))
-    //    tcc_set_lib_path(s, argv[1]+9);
-
-	tcc_add_library_path( s, ".\\lib" );
-    // MUST BE CALLED before any compilation
-    tcc_set_output_type(s, TCC_OUTPUT_MEMORY);
-
-    if (tcc_compile_string(s, my_program) == -1)
-        return 1;
-
-    // as a test, we add a symbol that the compiled program can use.
-    //   You may also open a dll with tcc_add_dll() and use symbols from that
-    tcc_add_symbol(s, "add", add);
-	tcc_add_symbol(s, "msga", msga);
-
-    // get needed size of the code //
-    size = tcc_relocate(s, NULL);
-    if (size == -1)
-        return 1;
-
-    // allocate memory and copy the code into it //
-    mem = malloc(size);
-    tcc_relocate(s, mem);
-
-    // get entry symbol //
-    func = tcc_get_symbol(s, "foo");
-    if (!func)
-        return 1;
-
-    // delete the state //
-    tcc_delete(s);
-
-    // run the code //
-    func(32);
-
-    free(mem);
-	*/
-    return 0;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////
 // For HEX to DEC func                                                           //
 ///////////////////////////////////////////////////////////////////////////////////
@@ -312,7 +227,6 @@ static  LPMENU_DATA delete_item                     (LPMENU_DATA);
 HMENU 				LoadXmlMenu					    (HWND);
 int 				draw_buttons					(HWND,UINT,WPARAM,LPARAM);
 int 				draw_menu						(HWND,UINT,WPARAM,LPARAM);
-BOOL				drawChildMenuItem				(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL				drawRootMenuItem				(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL				drawMenuSeparator				(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 ///////////////////////////////////////////////////////////////////////////////////
@@ -334,7 +248,6 @@ HCURSOR				CreateAlphaCursor				(void);
 
 
 void SetWindowTransparentMode(HWND hwnd,BOOL bTransparentMode);
-void UpdateAppearance(HWND hWnd, HDC dibitmapDC);
 void cacaKK();
 ///////////////////////////////////////////////////////////////////////////////////
 //	XML Loader & Parser Uses COM MSXML                                           //
@@ -378,26 +291,6 @@ const TCHAR _WndPropName_MenuXP[]	= _T("XPWndProp_MenuXP");
 // VARIABLES FOR DEBUGGING ONLY !!!                                              //
 ///////////////////////////////////////////////////////////////////////////////////
 
-#pragma pack(push, 1)
-typedef struct
-{
-    BYTE    IDLength;        // 0 
-    BYTE    ColorMapType;    // 0
-    BYTE    ImageType;       // 2: Truecolor image data
-    WORD    CMapStart;       // 0
-    WORD    CMapLength;      // 0
-    BYTE    CMapDepth;       // 0
-    WORD    XOffset;         // 0
-    WORD    YOffset;         // 0
-    WORD    Width;           // width
-    WORD    Height;          // height
-    BYTE    PixelDepth;      // 32 for 32-bpp image
-    BYTE    ImageDescriptor; // 8 for 8-bit alpha
-}   TGA_Header;
-#pragma pack(pop)
-HBITMAP Load32bppTga(const TCHAR * pFileName, BOOL bPreMultiply);
-void AlphaDraw(HDC hDC, int x, int y, int width, int height, HBITMAP hBmp);
-void updateWindowAlpha(HWND hWnd, HDC hDC, int x, int y, int winWidth, int winHeight, HBITMAP hBmp);
 
 ///////////////////////////////////////////////////////////////////////////////////
 //	Program code                                                                 //
@@ -458,7 +351,7 @@ static BOOL InitApplication(void)
 	g_hBmpUp    = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPUP), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
 	g_hBmpDown  = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPDOWN), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
 	g_hBmpHot   = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPHOT), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
-	MainBitmap  = LoadImage(hInst, MAKEINTRESOURCE(12346), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
+	MainBitmap  = LoadImage(hInst, MAKEINTRESOURCE(ID_BMPFONDO), IMAGE_BITMAP,0, 0, LR_LOADMAP3DCOLORS);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//	Boton de Plus                                                                //
@@ -521,8 +414,6 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	POINT		point;
 	RECT		rc_1;
 	MENU_DATA	menu_data;
-
-	char * texto = malloc(256);
 
 	switch(id) 
 	{
@@ -601,13 +492,6 @@ void MainWndProc_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 			ClientToScreen(menu_button, &point);
 			GetWindowRect(hwnd,&rc_1);
 			//BOOL result = TrackPopupMenu(test_menu,TPM_LEFTALIGN, rc_1.left, (rc_1.top + 42 ), 0, main_window, 0);
-
-			if(!test_menu)
-			{
-				//xmlInitnstance("menu.xml",FALSE);
-				//manage_menu(hInst,hwnd);
-				mainX(0,NULL);
-			}
 			break;
 		}
 		default:
@@ -669,7 +553,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
 		///////////////////////////////////////////////////////////////////////////////////
 		// Load resources                                                                //
 		///////////////////////////////////////////////////////////////////////////////////
-		hRes		= LoadResource(hInst,FindResource(hInst, "#12346", RT_BITMAP));
+		hRes		= LoadResource(hInst,FindResource(hInst, MAKEINTRESOURCE(ID_BMPFONDO), RT_BITMAP));
 		lpBitmap	= (LPBITMAPINFO) LockResource(hRes);
  		lpBits		= (LPTSTR) lpBitmap;
 	   	lpBits		+= lpBitmap->bmiHeader.biSize + (256 * sizeof(RGBQUAD));
@@ -696,8 +580,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
 
 		// Set top-most window
 		SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
-		//SetWindowTransparentMode(hwnd,TRUE);
-		//UpdateAppearance(hwnd, GetDC(hwnd));
 		break;
 	}
 	case WM_LBUTTONDOWN:
@@ -733,13 +615,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
 		//static HBITMAP hBmp = NULL;
 
     	//if ( hBmp==NULL )
-        //hBmp = Load32bppTga("small.tga", TRUE);
 		//hBmp = LoadImage(hInst,"emblem.bmp",IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
 		//BITMAP bmp;
 		//GetObject(hBmp, sizeof(BITMAP), & bmp);
-
-		//AlphaDraw(hdc, 0, 0, bmp.bmWidth, bmp.bmHeight, hBmp);
-		//updateWindowAlpha(hwnd, hdc, 0, 0, bmp.bmWidth, bmp.bmHeight, hBmp);
 
 		DeleteDC(mDC);
 		SetBkMode(hdc, TRANSPARENT);
@@ -2114,7 +1992,6 @@ int draw_menu(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			{
 				if (lpDs->hwndItem != (HWND)main_menu)
 				{
-					//drawChildMenuItem(hWnd, uMsg, wParam, lParam);
 					DrawMenuChild(lpDs, &rawi_data);
 					return 0;
 				}
@@ -2134,7 +2011,6 @@ int draw_menu(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					}
 					
 					DrawMenuRoot(lpDs, next_pointer);
-					//DrawAlphaBlend(hWnd, lpDs->hDC);
 					return 0;
 				}
 				break;
@@ -2149,7 +2025,6 @@ int draw_menu(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				}
 				else
 				{
-					//drawChildMenuItem(hWnd, uMsg, wParam, lParam);
 					DrawMenuChild(lpDs, &rawi_data);
 					return 0;
 				}
@@ -2160,515 +2035,6 @@ int draw_menu(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 	return 0;
-		if(lpDs->itemState & ODS_SELECTED)
-		{
-			return 0;
-			///////////////////////////////////////////////////////
-			//	barra al costado                                 //
-			///////////////////////////////////////////////////////
-			rcSep.top 		= lpDs->rcItem.top    ;
-			rcSep.left		= lpDs->rcItem.left + 3;
-			rcSep.bottom	= lpDs->rcItem.bottom ;
-			rcSep.right		= lpDs->rcItem.right  ;
-
-			hBrush = CreateSolidBrush(menu_data->menu_color);
-			FillRect(lpDs->hDC, &rcSep, hBrush);
-			DeleteObject(hBrush);
-
-			
-			/////////////////////////////////////////////////////////////////
-			//	Fill the Selected Menu Item with gradient color            //
-			/////////////////////////////////////////////////////////////////
-
-			gradientFill(lpDs->hDC,rcSep,RGB(255,255,0),RGB(0,255,0));
-			/////////////////////////////////////////////////////////////////
-			//	perimetro mas obscuro compartido por todos los menusitems  //
-			/////////////////////////////////////////////////////////////////
-			rcSep.top 		= lpDs->rcItem.top;
-			rcSep.left		= lpDs->rcItem.left + 2; // Small separation from the sidebar
-			rcSep.bottom	= lpDs->rcItem.bottom;
-			rcSep.right		= lpDs->rcItem.right;
-
-			hBrush = CreateSolidBrush(RGB(96, 96, 96));
-			FrameRect(lpDs->hDC, &rcSep, hBrush);
-			DeleteObject(hBrush);
-
-			///////////////////////////////////////////////////////
-			//	barra al costado box extra                       //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem != (HWND)main_menu)
-			{
-				rcSep.top 		= lpDs->rcItem.top;
-				rcSep.left		= lpDs->rcItem.left;
-				rcSep.bottom	= lpDs->rcItem.bottom;
-				rcSep.right		= SIDEBAR_WIDTH;
-
-				hBrush = CreateSolidBrush(RGB(128, 255, 128));
-				FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-			}
-
-			/////////////////////////////////////////////////////////////////////////////////////
-			//	draws a line betwen the sidebar & the menuitem  all menuitems share this color //
-			/////////////////////////////////////////////////////////////////////////////////////
-			if(lpDs->hwndItem == (HWND)main_menu)
-			{
-			int y_t = lpDs->rcItem.top;
-			int x_t = border_w;
-			HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(0, 0, 0)));
-			MoveToEx(lpDs->hDC, x_t, y_t, NULL);
-			LineTo  (lpDs->hDC, x_t, y_t);
-			LineTo  (lpDs->hDC, x_t ,lpDs->rcItem.bottom);
-			DeleteObject(SelectObject(lpDs->hDC, saveObject));
-			}
-			///////////////////////////////////////////////////////
-			//	Icon Holder & mini sidedar                       //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem == (HWND)main_menu)
-			{
-				rcSep.top 		= lpDs->rcItem.top    +2;
-				rcSep.left		= lpDs->rcItem.left   + border_w + 8;
-				rcSep.bottom	= lpDs->rcItem.bottom -2;
-				rcSep.right		= rcSep.left + 36 ;
-
-			
-				//DrawEdge(lpDs->hDC, &rcSep, BDR_SUNKENOUTER, BF_RECT);
-				//InflateRect(&rcSep, -1,-1);
-				hBrush = CreateSolidBrush(RGB(0, 0, 0));
-				//FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-
-		
-				BITMAP bm;
-				GetObject(menu_data->menu_image, sizeof(BITMAP), (LPSTR)&bm);
- 				point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2);
-				point_y += lpDs->rcItem.top;
-				//point_x = (lpDs->rcItem.left + border_w + 10) + (((lpDs->rcItem.left + bm.bmWidth) / 2 ) - (bm.bmWidth / 2));
-				point_x = (lpDs->rcItem.left) + 4;
-		
-				DrawTransparentBitmap(lpDs->hDC,menu_data->menu_imageOvr,point_x,point_y,RGB(255,170,170));
-				
-				/*
-				///////////////////////////////////////////////////////
-				//	Separador obscuro                                //
-				///////////////////////////////////////////////////////
-				HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(100, 100, 100)));
-				point_x = rcSep.right + 4;
-				point_y = rcSep.top;
-				MoveToEx(lpDs->hDC, point_x, point_y, NULL);
-				LineTo  (lpDs->hDC, point_x, point_y);
-				LineTo  (lpDs->hDC, point_x, rcSep.bottom);
-				DeleteObject(SelectObject(lpDs->hDC, saveObject));
-				///////////////////////////////////////////////////////
-				// Separador claro                                   //
-				///////////////////////////////////////////////////////
-				saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(230, 230, 230)));
-				point_x += 1;
-				point_y = rcSep.top;
-				MoveToEx(lpDs->hDC, point_x, point_y, NULL);
-				LineTo  (lpDs->hDC, point_x, point_y);
-				LineTo  (lpDs->hDC, point_x, rcSep.bottom);
-				DeleteObject(SelectObject(lpDs->hDC, saveObject));
-				*/
-			}
-
-			///////////////////////////////////////////////////////
-			//	child drawind here                               //
-			///////////////////////////////////////////////////////
-			else
-			{
-					rcSep.top 		= lpDs->rcItem.top     +1;
-					rcSep.left		= lpDs->rcItem.left    +1;
-					rcSep.bottom	= lpDs->rcItem.bottom  -1;
-					rcSep.right		= lpDs->rcItem.left   +24;
-
-					// Rect around the icon
-					hBrush = CreateSolidBrush(RGB(90, 90, 90));
-					//FrameRect(lpDs->hDC, &rcSep, hBrush);
-					DeleteObject(hBrush);
-
-					InflateRect(&rcSep, -1,-1);
-					hBrush = CreateSolidBrush(menu_data->menu_color);
-					FillRect(lpDs->hDC, &rcSep, hBrush);
-					DeleteObject(hBrush);
-
-					BITMAP bm;
-					GetObject(menu_data->menu_imageOvr, sizeof(BITMAP), (LPSTR)&bm);
- 					point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2);
-					point_y += lpDs->rcItem.top;
-					point_x = lpDs->rcItem.left + 5;
-
-					DrawTransparentBitmap(lpDs->hDC,menu_data->menu_imageOvr,point_x,point_y,RGB(170,170,170));
-			}
-			///////////////////////////////////////////////////////
-			//	texto caption                                    //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem == (HWND)main_menu)
-			{
-					SIZE extent;
-					char* captionText = (char*)lpDs->itemData;
-					GetTextExtentPoint32(lpDs->hDC,captionText, lstrlen(captionText), &extent);
-					point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (extent.cy/2);
-					point_y += lpDs->rcItem.top;
-		
-					rcSep.top 		= lpDs->rcItem.top;
-					rcSep.left		= lpDs->rcItem.left + menu_data->menu_imgSize.right + 12; // Icon + border
-					rcSep.bottom	= lpDs->rcItem.bottom;
-					rcSep.right		= lpDs->rcItem.right;
-					SetBkMode(lpDs->hDC,TRANSPARENT);
-					DrawText (lpDs->hDC,captionText, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-			}
-			///////////////////////////////////////////////////////
-			// Draw Text For child items 
-			///////////////////////////////////////////////////////
-			else
-			{
-					char* captionText = (char*)lpDs->itemData;	
-					// 
-					rcSep.top 		= lpDs->rcItem.top;
-					rcSep.left		= lpDs->rcItem.left  + menu_data->menu_imgSize.right + 18; //+ text_off - 45 ;
-					rcSep.bottom	= lpDs->rcItem.bottom;
-					rcSep.right		= lpDs->rcItem.right;
-				
-					int PointSize = 8;
-					int DPI = 72;
-					int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDs->hDC, LOGPIXELSY), DPI);
-
-					HFONT hfnt = CreateAngledFont(lfHeight, 0, menu_data->menu_font_name,NULL);
-		
-					HFONT hfntPrev = SelectObject(lpDs->hDC, hfnt);
-	
-					SetBkMode(lpDs->hDC,TRANSPARENT);
-					DrawText (lpDs->hDC,captionText, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-					SelectObject(lpDs->hDC, hfntPrev);
-					DeleteObject(hfnt);
-
-			}
-		}
-		///////////////////////////////////////////////////////
-		//	************************************************ //
-		//	State not selected no seleccionado               //
-		//	menuitems disabed, separators, and bears go here //
-		//	************************************************ //
-		///////////////////////////////////////////////////////
-		else
-		{
-			/*
-			switch(menu_data->menu_type)
-			{
-				case MF_STRING:
-				{
-					if (lpDs->hwndItem != (HWND)main_menu)
-					{
-						drawChildMenuItem(hWnd, uMsg, wParam, lParam);
-						return 0;
-					}
-				}
-			}
-			*/
-			return 0;
-			///////////////////////////////////////////////////////
-			//	Fill in the menu window                          //
-			///////////////////////////////////////////////////////
-			rcSep.top 	= lpDs->rcItem.top    ;
-			rcSep.left	= lpDs->rcItem.left;
-			rcSep.bottom	= lpDs->rcItem.bottom ;
-			rcSep.right	= lpDs->rcItem.right  + 3;
-
-
-			HBRUSH hBrush = CreateSolidBrush(RGB(195, 195, 195));
-			FillRect(lpDs->hDC, &rcSep, hBrush);
-			DeleteObject(hBrush);
-
-			///////////////////////////////////////////////////////
-			//	barra al costado solo en los childs              //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem != (HWND)main_menu)
-			{
-			rcSep.top 		= lpDs->rcItem.top    ;
-			rcSep.left		= lpDs->rcItem.left   ;
-			rcSep.bottom	= lpDs->rcItem.bottom ;
-			rcSep.right		= rcSep.left + border_w  ;
-
-			hBrush = CreateSolidBrush(RGB(128, 128, 128));
-			FillRect(lpDs->hDC, &rcSep, hBrush);
-			DeleteObject(hBrush);
-			}
-			///////////////////////////////////////////////////////
-			//	draws a line betwen the sidebar & the menuitem   //
-			///////////////////////////////////////////////////////
-		
-			if(lpDs->hwndItem != (HWND)main_menu)
-			{
-			//border_w = 30;
-			}
-				int y_t = lpDs->rcItem.top;
-				int x_t = border_w;
-				HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(0, 0, 0)));
-				MoveToEx(lpDs->hDC, x_t, y_t, NULL);
-				LineTo  (lpDs->hDC, x_t, y_t);
-				LineTo  (lpDs->hDC, x_t ,lpDs->rcItem.bottom);
-				DeleteObject(SelectObject(lpDs->hDC, saveObject));
-			
-			///////////////////////////////////////////////////////
-			//	Text & Captions goes here                        //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem == (HWND)main_menu)
-			{
-					SIZE extent;
-					char* captionText = (char*)lpDs->itemData;
-					GetTextExtentPoint32(lpDs->hDC,captionText, lstrlen(captionText), &extent);
-					point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (extent.cy/2);
-					point_y += lpDs->rcItem.top;
-		
-					rcSep.top 		= lpDs->rcItem.top;
-					rcSep.left		= lpDs->rcItem.left + menu_data->menu_imgSize.right + 12; // Icon + border
-					rcSep.bottom	= lpDs->rcItem.bottom;
-					rcSep.right		= lpDs->rcItem.right;
-					SetBkMode(lpDs->hDC,TRANSPARENT);
-					DrawText (lpDs->hDC,captionText, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-			}
-
-			////////////////////////////////////////////////////////////////////
-			//	Draws the icon holder & the separator For Main Menu           //
-			////////////////////////////////////////////////////////////////////
-			if(lpDs->hwndItem == (HWND)main_menu && lpDs->itemData > 0)
-			{
-				rcSep.top 	= lpDs->rcItem.top    +2;
-				rcSep.left	= lpDs->rcItem.left   + border_w + 8;
-				rcSep.bottom	= lpDs->rcItem.bottom -2;
-				rcSep.right	= rcSep.left + 36 ;
-
-			
-				//DrawEdge(lpDs->hDC, &rcSep, BDR_SUNKENOUTER, BF_RECT);
-				//InflateRect(&rcSep, -1,-1);
-				hBrush = CreateSolidBrush(RGB(0, 0, 0));
-				//FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-		
-		
-				BITMAP bm;
-				GetObject(menu_data->menu_imageOut, sizeof(BITMAP), (LPSTR)&bm);
- 				point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2);
-				point_y += lpDs->rcItem.top;
-				point_x = (lpDs->rcItem.left + border_w + 10) + (((lpDs->rcItem.left + bm.bmWidth) / 2 ) - (bm.bmWidth / 2));
-				point_x = (lpDs->rcItem.left) + 4;// + (((lpDs->rcItem.left + bm.bmWidth) / 2 ) - (bm.bmWidth / 2));
-		
-				DrawTransparentBitmap(lpDs->hDC,menu_data->menu_imageOut,point_x,point_y,RGB(170,170,170));
-
-				/*
-				///////////////////////////////////////////////////////	
-				//	Separador obscuro                                //
-				///////////////////////////////////////////////////////
-				HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(128, 128, 128)));
-				point_x = rcSep.right + 4;
-				point_y = rcSep.top;
-				MoveToEx(lpDs->hDC, point_x, point_y, NULL);
-				LineTo  (lpDs->hDC, point_x, point_y);
-				LineTo  (lpDs->hDC, point_x, rcSep.bottom);
-				DeleteObject(SelectObject(lpDs->hDC, saveObject));
-				///////////////////////////////////////////////////////
-				// Separador claro                                   //
-				///////////////////////////////////////////////////////
-				saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(230, 230, 230)));
-				point_x += 1;
-				MoveToEx(lpDs->hDC, point_x, point_y, NULL);
-				LineTo  (lpDs->hDC, point_x, point_y);
-				LineTo  (lpDs->hDC, point_x, rcSep.bottom);
-				DeleteObject(SelectObject(lpDs->hDC, saveObject));
-				*/
-			}
-		
-			///////////////////////////////////////////////////////
-			//	Child menus draw here                            //
-			///////////////////////////////////////////////////////
-			if(lpDs->hwndItem != (HWND)main_menu && lpDs->itemData > 0)
-			{
-
-					BITMAP bm;
-
-					rcSep.top 		= lpDs->rcItem.top     +1;
-					rcSep.left		= lpDs->rcItem.left    +1;
-					rcSep.bottom	= lpDs->rcItem.bottom  -1;
-					rcSep.right		= lpDs->rcItem.left   +24;
-
-
-					GetObject(menu_data->menu_imageOut, sizeof(BITMAP), (LPSTR)&bm);
- 					//ptSize.x = bm.bmWidth;            // Get width of bitmap
-   					//ptSize.y = bm.bmHeight;           // Get height of bitmap
-					point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2);
-					point_y += lpDs->rcItem.top;
-
-					//point_x = 15 - (bm.bmWidth/2);
-					point_x = lpDs->rcItem.left + 5;
-		
-					DrawTransparentBitmap(lpDs->hDC,menu_data->menu_imageOut,point_x,point_y,RGB(170,170,170));
-					
-					///////////////////////////////////////////////////////
-					//	MF_SEPARATOR                                     //
-					//  Este codigo no es llamado nunca                  //
-					///////////////////////////////////////////////////////
-
-					if(lpDs->itemData == 0)
-					{
-						int y_t = (lpDs->rcItem.top + lpDs->rcItem.bottom - 1) / 2;
-						int x_t = lpDs->rcItem.left + 32;
-						HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(0, 0, 0))); //130
-						MoveToEx(lpDs->hDC, x_t, y_t, NULL);
-						LineTo  (lpDs->hDC, x_t, y_t);
-						LineTo  (lpDs->hDC, x_t + lpDs->rcItem.right - 5, y_t);
-						DeleteObject(SelectObject(lpDs->hDC, saveObject));
-						saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, RGB(255, 0, 0))); //220
-
-						MoveToEx(lpDs->hDC, x_t, y_t+1, NULL);
-						LineTo  (lpDs->hDC, x_t, y_t+1);
-						LineTo  (lpDs->hDC, x_t + lpDs->rcItem.right - 5, y_t+1);
-						DeleteObject(SelectObject(lpDs->hDC, saveObject));
-					}
-					
-					///////////////////////////////////////////////////////
-					// finalemente si todo esta ok dibujo el texto si:   //
-					// no es un separador y al futuro chequear           //
-					// que no este tachado MF_CHEKED                     //
-					///////////////////////////////////////////////////////
-					else
-					{
-
-						if(lpDs->hwndItem == (HWND)main_menu)
-						{
-							rcSep.top 		= lpDs->rcItem.top    ;
-							rcSep.left		= lpDs->rcItem.left + menu_data->menu_imgSize.right + 12; //+ text_off;
-							rcSep.bottom	= lpDs->rcItem.bottom ;
-							rcSep.right		= lpDs->rcItem.right   ;
-							//////////////////////////////////////////////////////////////////////////////////
-							// Backgound is transparent                                                     //
-							//////////////////////////////////////////////////////////////////////////////////
-							SetBkMode(lpDs->hDC,TRANSPARENT);
-							char* statusText = (char*)lpDs->itemData;
-							DrawText (lpDs->hDC, statusText, -1, &rcSep, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-						}
-						//////////////////////////////////////////////////////////////////////////////////
-						// Child submenus caption draw                                                  //
-						//////////////////////////////////////////////////////////////////////////////////
-						else
-						{
-							char* captionText = (char*)lpDs->itemData;
-							rcSep.top 		= lpDs->rcItem.top;
-							rcSep.left		= lpDs->rcItem.left + menu_data->menu_imgSize.right + 18; //+ text_off - 45 ;
-							rcSep.bottom	= lpDs->rcItem.bottom;
-							rcSep.right		= lpDs->rcItem.right;
-	
-							int PointSize = 8;
-							int DPI = 72;
-							int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDs->hDC, LOGPIXELSY), DPI);
-
-							HFONT hfnt = CreateAngledFont(lfHeight, 0, menu_data->menu_font_name,NULL);
-							HFONT hfntPrev = SelectObject(lpDs->hDC, hfnt);
-
-							SetBkMode(lpDs->hDC,TRANSPARENT);
-	
-							DrawText (lpDs->hDC,captionText, -1, &rcSep,
-							DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-							SelectObject(lpDs->hDC, hfntPrev);
-							DeleteObject(hfnt);
-						}
-
-
-					}
-			}
-			
-		if (lpDs->itemState & ODS_GRAYED )
-		{
-
-		}
-	
-		}
-		/*
-		if(menu_data->menu_type == MF_MENUBARBREAK) //|| lpDs->itemData == 0
-		{
-			//MessageBox(main_window,"MF_MENUBARBREAK","Error",MB_OK);
-			int middle 	= (lpDs->rcItem.right - lpDs->rcItem.left) / 2 ;
-			rcSep.top 		= lpDs->rcItem.top ;
-			rcSep.left		= lpDs->rcItem.left;
-			rcSep.bottom	= lpDs->rcItem.bottom;
-			rcSep.right		= lpDs->rcItem.right;
-
-			hBrush = CreateSolidBrush(RGB(180, 80, 80));
-			FillRect(lpDs->hDC, &rcSep, hBrush);
-			DeleteObject(hBrush);
-
-		}
-		*/
-		if(menu_data->menu_type == MF_SEPARATOR) //|| lpDs->itemData == 0
-		{
-			if(lpDs->hwndItem == (HWND)main_menu)
-			{
-				//////////////////////////////////////////////////////////////
-				// a thin line of 2 pixels the height is                    //
-				// bigger than 2 pixels so we need to calculate the middle  //
-				//////////////////////////////////////////////////////////////
-				int middle 		= (lpDs->rcItem.bottom - lpDs->rcItem.top) / 2 ;
-				rcSep.top 		= lpDs->rcItem.top + middle ;
-				rcSep.left		= lpDs->rcItem.left + 8;
-				rcSep.bottom	= lpDs->rcItem.bottom - middle +1;
-				rcSep.right		= lpDs->rcItem.right;
-
-				hBrush = CreateSolidBrush(RGB(210, 210, 210));
-				FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-				
-				rcSep.top -=1;
-				rcSep.bottom -= 1;
-				
-				hBrush = CreateSolidBrush(RGB(160, 160, 160));
-				FillRect(lpDs->hDC, &rcSep, hBrush);
-				//DrawEdge(lpDs->hDC, &rcSep, BDR_SUNKENOUTER, BF_RECT);
-				DeleteObject(hBrush);
-			}
-			
-			///////////////////////////////////////////////////////
-			// MF_SEPARATOR for Child menus                      //
-			///////////////////////////////////////////////////////
-			else
-			{
-				//////////////////////////////////////////////////////////////
-				// a thin line of 2 pixels the height is                    //
-				// bigger than 2 pixels so we need to calculate the middle  //
-				//////////////////////////////////////////////////////////////
-				int middle 		= (lpDs->rcItem.bottom - lpDs->rcItem.top) / 2 ;
-				rcSep.top 		= lpDs->rcItem.top + middle ;
-				rcSep.left		= lpDs->rcItem.left + border_w + 8;
-				rcSep.bottom	= lpDs->rcItem.bottom - middle +1;
-				rcSep.right		= lpDs->rcItem.right;
-
-				hBrush = CreateSolidBrush(RGB(210, 210, 210));
-				FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-				
-				rcSep.top -=1;
-				rcSep.bottom -= 1;
-				
-				hBrush = CreateSolidBrush(RGB(160, 160, 160));
-				FillRect(lpDs->hDC, &rcSep, hBrush);
-				DeleteObject(hBrush);
-			}
-		}
-		
-		if(lpDs->CtlType & MFT_SEPARATOR )
-		{
-			int b;
-			b++;
-		}
-		// is this menu item disabled ?
-		if(lpDs->itemState & ODS_GRAYED)
-		{
-
-
-		}
-		return 0;
-freeObjectsX:
-//free(menu_data);
-return 0;
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -3223,7 +2589,7 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 	static	int 	reclusines	= 0;		// Reclusion Starts at 0
 			int 	ilter		= 0;		// Ilterations Start at 0
 			int		cnt			= 0;
-			long	depth		= 0;	
+			long	depth		= 0;
 
 	hr = node->lpVtbl->get_length(node,&listLength);
 	if (FAILED(hr))
@@ -3237,23 +2603,23 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		
 		//hr = nodeList->lpVtbl->get_nodeName(nodeList,&nodeName);
 
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"CAPTION",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"CAPTION", &resultNode);
 		BSTR caption;
 		resultNode->lpVtbl->get_text(resultNode,&caption);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"IMAGE",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"IMAGE", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"COLOR",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"COLOR", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"BGCOLOR",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"BGCOLOR", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"EXECUTE",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"EXECUTE", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"FONT",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"FONT", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"MENUTYPE",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList ,L"MENUTYPE", &resultNode);
 		resultNode->lpVtbl->Release(resultNode);
-		hr = nodeList->lpVtbl->selectSingleNode(nodeList,L"MENUTYPE",&resultNode);
+		hr = nodeList->lpVtbl->selectSingleNode(nodeList, L"MENUTYPE", &resultNode);
 		BSTR menuType;
 		resultNode->lpVtbl->get_text(resultNode,&menuType);
 		resultNode->lpVtbl->Release(resultNode);
@@ -3261,13 +2627,13 @@ static int buildMenu(IXMLDOMNodeList *node, HMENU rootMenu)
 		// search for nested objects                                                     //
 		///////////////////////////////////////////////////////////////////////////////////
 		IXMLDOMNodeList*	menuChild;
-		hr = nodeList->lpVtbl->selectNodes(nodeList,L"MENUITEM",&menuChild);
+		hr = nodeList->lpVtbl->selectNodes(nodeList, L"MENUITEM", &menuChild);
 		hr = menuChild->lpVtbl->get_length(menuChild,&depth);
 		
 		//resultNode->lpVtbl->get_text(resultNode,&nodeName);
 		if (FAILED(hr))
 		{
-			MessageBoxW(NULL,L"selectSingleNode()",L"Error",MB_ICONINFORMATION);
+			MessageBoxW(NULL, L"selectSingleNode()", L"Error", MB_ICONINFORMATION);
 			return hr;
 		}
 		//nodeList->lpVtbl->hasChildNodes(nodeList,&hasChild);
@@ -3342,41 +2708,7 @@ cleanup:
 	if (nodeList)	nodeList->lpVtbl->Release(nodeList);
 	return 0;
 }
-///////////////////////////////////////////////////////////////////////////////////
-// How To Convert from BSTR to ANSI string                                       //
-//                                                                               //
-///////////////////////////////////////////////////////////////////////////////////
-HRESULT oleStrToAnsi(BSTR bstrIn, LPSTR * lpszOut)
-{
-	DWORD dwSize;
 
-	if(lpszOut == NULL)
-	{
-		return E_INVALIDARG;
-	}
-	if(bstrIn == NULL)
-	{
-		*lpszOut = NULL;
-		return NOERROR;
-	}
-	dwSize = WideCharToMultiByte(CP_ACP, 0, bstrIn, -1, NULL, 0, NULL, NULL);
-	if(dwSize == 0)
-	{
-		return HRESULT_FROM_WIN32(GetLastError());
-	}
-	*lpszOut = (LPSTR) SysAllocStringByteLen(NULL, dwSize - 1);
-	if (*lpszOut == NULL)
-	{
-		return E_OUTOFMEMORY;
-	}
-	if ( !WideCharToMultiByte(CP_ACP, 0, bstrIn, -1, *lpszOut, dwSize, NULL, NULL) )
-	{
-		SysFreeString((BSTR) *lpszOut);
-		return HRESULT_FROM_WIN32(GetLastError());
-	}
-
-	return NOERROR;
-}
 ///////////////////////////////////////////////////////////////////////////////////
 // Hanldes the drawing operation of th Root Menu either state                    //
 //                                                                               //
@@ -3518,7 +2850,6 @@ BOOL drawRootMenuItem(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//	Fill the Selected Menu Item with gradient color            //
 		/////////////////////////////////////////////////////////////////
 		InflateRect(&rcSep,-1,-1);
-		//gradientFill(lpDs->hDC,rcSep,main_menu_theme.menu_theme_bgColor, menu_data.menu_color);
 
 		/////////////////////////////////////////////////////////////////
 		//	Create HBITMAP image from this menuitem                    //
@@ -3643,7 +2974,6 @@ BOOL drawRootMenuItem(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			int a = 0;
 			a++;
 		}
-		dummy(&menu_data);
 					
 		int PointSize = menu_data_x.menu_font_size;
 		int DPI = 72;
@@ -3667,322 +2997,7 @@ BOOL drawRootMenuItem(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	*/
 	return TRUE;
 }
-///////////////////////////////////////////////////////////////////////////////////
-// Hanldes the drawing operation of SubMenus either state                        //
-//                                                                               //
-///////////////////////////////////////////////////////////////////////////////////
-BOOL drawChildMenuItem(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	return FALSE;
 
-	LPDRAWITEMSTRUCT lpDs = (LPDRAWITEMSTRUCT)lParam;
-	RECT		rcSep;
-	HBRUSH		hBrush;
-	COLORREF	gradient;	// Used to store the gradient value
-	HPEN		colorPen;	
-	int			point_x		= 0;
-	int			point_y 	= 0;
-
-	MENUITEMINFO mii;
-	MENU_DATA  menu_data;
-
-	#define OBM_MNARROW 32739
-	menu_data = get_menu_formWID((HMENU)lpDs->hwndItem,lpDs->itemID);
-	HBITMAP hBitmap = (HBITMAP)LoadImage(NULL,MAKEINTRESOURCE(OBM_MNARROW), IMAGE_BITMAP, 0, 0,LR_DEFAULTSIZE | LR_SHARED);
-	BITMAP bm;
-	GetObject(hBitmap, sizeof(BITMAP), (LPSTR) &bm);
-	/*RECT arrowR  = textR;
-	textR.right -= bm2.bmWidth;
-	arrowR.left  = textR.right;
-	int arrowW   = (arrowR.right - arrowR.left);
-	int arrowH   = (arrowR.bottom - arrowR.top);
-	*/
-	DeleteObject(hBitmap);
-
-	if(lpDs->itemState & ODS_SELECTED)
-	{
-		/////////////////////////////////////////////////////////////////
-		//	Sidebar Fillup use solid color                             //
-		/////////////////////////////////////////////////////////////////
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left;
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= SIDEBAR_WIDTH;		// Sidebar width
-
-		hBrush = CreateSolidBrush(main_menu_theme.menu_theme_sidebarColor);
-
-		FillRect(lpDs->hDC, &rcSep, hBrush);
-		DeleteObject(hBrush);
-		/////////////////////////////////////////////////////////////////
-		//	Fill the Selected Menu Item with solid color               //
-		/////////////////////////////////////////////////////////////////
-		rcSep.top 		= lpDs->rcItem.top    ;
-		rcSep.left		= lpDs->rcItem.left + 2;
-		rcSep.bottom	= lpDs->rcItem.bottom ;
-		rcSep.right		= lpDs->rcItem.right  ;
-
-		/*
-		hBrush = CreateSolidBrush(menu_data.menu_color); // Use sidebar Color
-		FillRect(lpDs->hDC, &rcSep, hBrush);
-		DeleteObject(hBrush);
-		*/
-		/////////////////////////////////////////////////////////////////
-		//	Fill the Selected Menu Item with gradient color            //
-		/////////////////////////////////////////////////////////////////
-		//gradientFill(lpDs->hDC,rcSep,RGB(215,215,215),RGB(180,180,180));
-
-		/*
-		/////////////////////////////////////////////////////////////////
-		//	Button From Bitmap                                         //
-		/////////////////////////////////////////////////////////////////
-		int offset =  0;
-		HBITMAP hbmpLf = LoadImage(GetModuleHandle(NULL),"btnLf.bmp",IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
-		HBITMAP hbmpMd = LoadImage(GetModuleHandle(NULL),"btnMd.bmp",IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
-		HBITMAP hbmpRg = LoadImage(GetModuleHandle(NULL),"btnRg.bmp",IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
-		
-		HBITMAP btn = skinedBox(hbmpLf, hbmpMd, hbmpRg, lpDs->rcItem.right - lpDs->rcItem.left, 21);
-
-		HDC hTempDC = CreateCompatibleDC(lpDs->hDC);
-		HBITMAP oldBmp = SelectObject(hTempDC,hbmpLf);
-		BitBlt(lpDs->hDC,lpDs->rcItem.left,lpDs->rcItem.top,(rcSep.right - rcSep.left),(rcSep.bottom - rcSep.top),hTempDC,0,0,SRCCOPY);		
-		
-		oldBmp = SelectObject(hTempDC,hbmpMd);
-		for(int x = 0; x < ((lpDs->rcItem.right - lpDs->rcItem.left) - 8); x++)
-		{
-			BitBlt(lpDs->hDC,lpDs->rcItem.left + x,lpDs->rcItem.top,1,21,hTempDC,0,0,SRCCOPY);		
-			offset++;
-		}
-		SelectObject(hTempDC,oldBmp);
-		
-		oldBmp = SelectObject(hTempDC,hbmpRg);
-		BitBlt(lpDs->hDC,((lpDs->rcItem.right - lpDs->rcItem.left) - 8),lpDs->rcItem.top,8,21,hTempDC,0,0,SRCCOPY);		
-		
-		SelectObject(hTempDC,oldBmp);
-		DeleteDC(hTempDC);
-		DeleteObject(btn);
-		DeleteObject(hbmpRg);
-		DeleteObject(hbmpMd);
-		DeleteObject(hbmpLf);
-
-		*/
-		/////////////////////////////////////////////////////////////////
-		//	Menu Item Border                                           //
-		/////////////////////////////////////////////////////////////////
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left + 1; // Small separation from the sidebar
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= lpDs->rcItem.right;
-
-		// Create a green pen.
-		hBrush = CreateSolidBrush(RGB(36,36,36)); // Border Color
-		SelectObject(lpDs->hDC, hBrush);
-		//FrameRect(lpDs->hDC, &rcSep, hBrush);
-		RoundRect(lpDs->hDC, rcSep.left, rcSep.top, rcSep.right, rcSep.bottom, 4, 4);
-		DeleteObject(hBrush);
-
-		/*
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left + 1; // Small separation from the sidebar
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= lpDs->rcItem.right;
-
-		hBrush = CreateSolidBrush(RGB(95, 95, 95)); // Menu Border Color
-		FrameRect(lpDs->hDC, &rcSep, hBrush);
-		DeleteObject(hBrush);
-		*/
-
-		/////////////////////////////////////////////////////////////////
-		//	Put the Icon                                               //
-		/////////////////////////////////////////////////////////////////
-		BITMAP bm;
-		GetObject(menu_data.menu_imageOvr, sizeof(BITMAP), (LPSTR)&bm);
-		//point_y = ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2);
-		//point_y += lpDs->rcItem.top;
-		//point_x = lpDs->rcItem.left + 5;
-		point_y = lpDs->rcItem.top + ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2); // Y position
-		point_x = lpDs->rcItem.left + (((lpDs->rcItem.left + SIDEBAR_WIDTH) / 2) - (bm.bmWidth/2));	// X position of the icon
-
-		//DrawTransparentBitmap(lpDs->hDC,menu_data.menu_imageOvr,point_x,point_y,RGB(170,170,170));
-		HDC     hMemDC = CreateCompatibleDC(lpDs->hDC);
-		HGDIOBJ hOld   = SelectObject(hMemDC, menu_data.menu_imageOvr);
-		BITMAP bmp;
-		GetObject(menu_data.menu_imageOut, sizeof(BITMAP), (LPSTR) &bmp);
-	
-		BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-    	AlphaBlend(lpDs->hDC, point_x, point_y, bmp.bmWidth, bmp.bmHeight, hMemDC, 0, 0, bmp.bmWidth, bmp.bmHeight, pixelblend); // blend with per-pixel alpha
-	
-		SelectObject(hMemDC, hOld);
-		DeleteObject(hMemDC);
-
-		/////////////////////////////////////////////////////////////////
-		//	Finally Draw the caption                                   //
-		/////////////////////////////////////////////////////////////////
-
-		//populateAttributes(menu_data.xmlMenuItem);//menu_data->xmlMenuItem);
-		IXMLDOMNode* firstChild;
-		menu_data.xmlMenuItem->lpVtbl->get_firstChild(menu_data.xmlMenuItem,&firstChild);
-
-
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left  + (SIDEBAR_WIDTH + 4);
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= lpDs->rcItem.right;
-				
-		int PointSize = menu_data.menu_font_size;
-		int DPI = 72;
-		int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDs->hDC, LOGPIXELSY), DPI);
-
-		COLORREF prevColor = SetTextColor(lpDs->hDC, menu_data.menu_fontColor); //font color
-		HFONT hfnt = CreateAngledFont(lfHeight, 0, menu_data.menu_font_name,NULL);
-		
-		HFONT hfntPrev = SelectObject(lpDs->hDC, hfnt);
-
-		SetBkMode(lpDs->hDC,TRANSPARENT);
-		DrawText(lpDs->hDC,menu_data.menu_capti, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-		SelectObject(lpDs->hDC, hfntPrev);
-		SetTextColor(lpDs->hDC, prevColor);
-		DeleteObject(hfnt);
-	}
-	else
-	{
-		//MessageBox(NULL,"caca","caca",MB_OK);
-		//MessageBeep(MB_OK);
-		///////////////////////////////////////////////////////
-		//	Fill in the menu window                          //
-		///////////////////////////////////////////////////////
-		rcSep.top 	= lpDs->rcItem.top;
-		rcSep.left	= lpDs->rcItem.left;
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right	= lpDs->rcItem.right;
-
-
-		HBRUSH hBrush = CreateSolidBrush(main_menu_theme.menu_theme_bgColor);		// Menuitem Bg color
-		FillRect(lpDs->hDC, &rcSep, hBrush);
-		DeleteObject(hBrush);
-
-		///////////////////////////////////////////////////////
-		//	barra al costado solo en los childs              //
-		///////////////////////////////////////////////////////
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left;
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= rcSep.left + SIDEBAR_WIDTH;
-
-		hBrush = CreateSolidBrush(main_menu_theme.menu_theme_sidebarColor);				// Sidebar color
-		FillRect(lpDs->hDC, &rcSep, hBrush);
-		DeleteObject(hBrush);
-
-		///////////////////////////////////////////////////////
-		//	draws a line betwen the sidebar & the menuitem   //
-		///////////////////////////////////////////////////////
-		int y_t = lpDs->rcItem.top;
-		int x_t = SIDEBAR_WIDTH;
-		HPEN saveObject = SelectObject(lpDs->hDC,CreatePen(PS_SOLID, 1, main_menu_theme.menu_theme_borderColor));
-		MoveToEx(lpDs->hDC, x_t, y_t, NULL);
-		LineTo  (lpDs->hDC, x_t, y_t);
-		LineTo  (lpDs->hDC, x_t ,lpDs->rcItem.bottom);
-		DeleteObject(SelectObject(lpDs->hDC, saveObject));
-
-		///////////////////////////////////////////////////////
-		//	Put the icon                                     //
-		///////////////////////////////////////////////////////		
-		BITMAP bm;
-		GetObject(menu_data.menu_imageOut, sizeof(BITMAP), (LPSTR)&bm);
-		point_y = lpDs->rcItem.top + ((lpDs->rcItem.bottom - lpDs->rcItem.top) / 2) - (bm.bmHeight/2); // Y position
-		point_x = lpDs->rcItem.left + (((lpDs->rcItem.left + SIDEBAR_WIDTH) / 2) - (bm.bmWidth/2));	// X position of the icon
-		
-		//DrawTransparentBitmap(lpDs->hDC,menu_data.menu_imageOut,point_x,point_y,RGB(170,170,170));
-		HDC     hMemDC = CreateCompatibleDC(lpDs->hDC);
-		HGDIOBJ hOld   = SelectObject(hMemDC, menu_data.menu_imageOut);
-		BITMAP bmp;
-		GetObject(menu_data.menu_imageOut, sizeof(BITMAP), (LPSTR) &bmp);
-	
-		BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-    	AlphaBlend(lpDs->hDC, point_x, point_y, bmp.bmWidth, bmp.bmHeight, hMemDC, 0, 0, bmp.bmWidth, bmp.bmHeight, pixelblend); // blend with per-pixel alpha
-	
-		SelectObject(hMemDC, hOld);
-		DeleteObject(hMemDC);
-		///////////////////////////////////////////////////////
-		//	Draw the item caption                            //
-		///////////////////////////////////////////////////////	
-		rcSep.top 		= lpDs->rcItem.top;
-		rcSep.left		= lpDs->rcItem.left  + (SIDEBAR_WIDTH + 4); //menu_data.menu_imgSize.right + 18; //+ text_off - 45 ;
-		rcSep.bottom	= lpDs->rcItem.bottom;
-		rcSep.right		= lpDs->rcItem.right;
-				
-		int PointSize = menu_data.menu_font_size;
-		int DPI = 72;
-		int lfHeight = -MulDiv(PointSize, GetDeviceCaps(lpDs->hDC, LOGPIXELSY), DPI);
-
-		COLORREF prevColor = SetTextColor(lpDs->hDC, menu_data.menu_fontColor); //font color
-		HFONT hfnt = CreateAngledFont(lfHeight, 0, menu_data.menu_font_name,NULL);
-		
-		HFONT hfntPrev = SelectObject(lpDs->hDC, hfnt);
-
-		SetBkMode(lpDs->hDC,TRANSPARENT);
-		DrawText (lpDs->hDC,menu_data.menu_capti, -1, &rcSep,DT_SINGLELINE | DT_LEFT | DT_VCENTER);
-		SelectObject(lpDs->hDC, hfntPrev);
-		SetTextColor(lpDs->hDC, prevColor);
-		DeleteObject(hfnt);
-
-	}
-	return TRUE;
-}
-
-void UpdateAppearance(HWND hWnd, HDC dibitmapDC)
-{
-
-	DWORD exStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
-	if ((exStyle & WS_EX_LAYERED) == 0)
-	{
-		SetWindowLong(hWnd, GWL_EXSTYLE, exStyle | WS_EX_LAYERED);
-	}	
-	HDC dcScreen, dcMemory;
-	dcScreen = GetDC(NULL);
-	dcMemory = CreateCompatibleDC(dcScreen);
-
-	BITMAP bmp;
-	HBITMAP hSkinBmp = (HBITMAP)LoadImage(0, "splash.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-	SelectObject(dcMemory, hSkinBmp);
-	GetObject(hSkinBmp, sizeof(bmp), &bmp);
-
-	RECT	rt;
-	POINT	ptSrc = {0, 0};
-	SIZE	size;
-	GetWindowRect(hWnd, &rt);
-	ptSrc.x = rt.left;
-	ptSrc.y = rt.top;
-
-	size.cx = rt.right - rt.left;
-	size.cy = rt.bottom - rt.top;
-
-	RECT rcWindow;
-        GetWindowRect(hWnd, &rcWindow);
-
-        POINT windowTopLeft;
-        windowTopLeft.x = rcWindow.left;
-        windowTopLeft.y = rcWindow.top;
-
-        SIZE windowSize;
-        windowSize.cx = rcWindow.right - rcWindow.left;
-        windowSize.cy = rcWindow.bottom - rcWindow.top;
-
-        POINT surfaceTopLeft;
-        surfaceTopLeft.x = surfaceTopLeft.y = 0;
-
-        BLENDFUNCTION bf;
-        bf.BlendOp = AC_SRC_OVER;
-        bf.BlendFlags = 0;
-        bf.SourceConstantAlpha = 128;
-        bf.AlphaFormat = AC_SRC_OVER;
-
-	UpdateLayeredWindow(hWnd, dcScreen, NULL, &size, dcMemory, &ptSrc, 0, &bf, ULW_ALPHA);
-        //const WinLayeredWindowAPI* api = WinCoveredCalcApp::GetInstance()->GetLayeredWindowAPI();
-        //UpdateLayeredWindow(hWnd, NULL, &windowTopLeft, &windowSize, dibitmapDC, &surfaceTopLeft, 0, &bf, ULW_ALPHA);
-	DeleteDC(dcMemory);
-}
 //=============================================================================
 //
 //  SetWindowTransparentMode()
@@ -4010,153 +3025,14 @@ void SetWindowTransparentMode(HWND hwnd,BOOL bTransparentMode)
 
   else
     SetWindowLong(hwnd,GWL_EXSTYLE,
-      GetWindowLong(hwnd,GWL_EXSTYLE) & ~/*WS_EX_LAYERED*/0x00080000);
+    GetWindowLong(hwnd,GWL_EXSTYLE) & ~/*WS_EX_LAYERED*/0x00080000);
 }
 
+HRESULT Create32BitHBITMAP(HDC hdc, const SIZE *psize, void **ppvBits, HBITMAP* phBmp);
 
-void updateWindowAlpha(HWND hWnd, HDC hDC, int x, int y, int winWidth, int winHeight, HBITMAP hBmp)
+HRESULT Create32BitHBITMAP(HDC hdc, const SIZE *psize, void **ppvBits, HBITMAP* phBmp)
 {
-	DWORD exStyle = GetWindowLongA(hWnd, GWL_EXSTYLE);
-	//if (exStyle & WS_EX_LAYERED)
-		SetWindowLong(hWnd, GWL_EXSTYLE, exStyle | WS_EX_LAYERED);
-
-		FIBITMAP *dib = FreeImage_Load(FIF_PNG, "inter.png", PNG_DEFAULT);
-		FreeImage_PreMultiplyWithAlpha(dib);
-		// ...
-		HBITMAP bitmap = CreateDIBitmap(hDC, FreeImage_GetInfoHeader(dib),
-		CBM_INIT, FreeImage_GetBits(dib), FreeImage_GetInfo(dib), DIB_RGB_COLORS);
-
-
-	loadPNG("inter.png");
-	unsigned char* data = getBGRA();
-
-	for (int y=0; y<48; y++)
-	{
-		BYTE * pPixel = (BYTE *) data + 48 * 4 * y;
-
-			for (int x=0; x<48; x++)
-			{
-                pPixel[0] = pPixel[0] * pPixel[3] / 255; 
-                pPixel[1] = pPixel[1] * pPixel[3] / 255; 
-                pPixel[2] = pPixel[2] * pPixel[3] / 255; 
-
-                pPixel += 4;
-            }
-	}
-
-	HBITMAP bitmap2 = CreateCompatibleBitmap(hDC, 48, 48);
-	// RGB + Alpha
-	int bsize = 48 * 48 * 4;
-
-	SetBitmapBits(bitmap2, bsize, data);
-
-
-	//HBITMAP bitmap2 = CreateDIBitmap(hDC, FreeImage_GetInfoHeader(dib),
-	//	CBM_INIT, data, FreeImage_GetInfo(dib), DIB_RGB_COLORS);
-
-	HDC     hMemDC = CreateCompatibleDC(hDC);
-    HGDIOBJ hOld   = SelectObject(hMemDC, bitmap2);
-	
-	BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-    AlphaBlend(hDC, x, y, winWidth, winHeight, hMemDC, 0, 0, winWidth, winHeight, pixelblend); // blend with per-pixel alpha
-
-	
-	SIZE size;
-	POINT origin = { 0, 0 };
-	size.cx = winWidth;
-	size.cy = winHeight;
-
-	BLENDFUNCTION blend;
-    blend.BlendOp = AC_SRC_OVER;
-    blend.BlendFlags = 0;
-    blend.SourceConstantAlpha = 255;
-    blend.AlphaFormat = AC_SRC_ALPHA;
-
-	//UpdateLayeredWindow(hWnd, hDC, NULL, &size, hMemDC
-	UpdateLayeredWindow(hWnd, hDC, NULL, &size, hMemDC, &origin, 0, &blend, ULW_ALPHA);
+	*phBmp = NULL;
 
 }
-void AlphaDraw(HDC hDC, int x, int y, int width, int height, HBITMAP hBmp)
-{
-    HDC     hMemDC = CreateCompatibleDC(hDC);
-    HGDIOBJ hOld   = SelectObject(hMemDC, hBmp);
-
-   	
-    HBRUSH hBrush = CreateSolidBrush(RGB(0xFF, 0xFF, 0));
-    SelectObject(hDC, hBrush);
-    Ellipse(hDC, x, y, width*2, height*2);                  // a yellow circle in the background 
-    SelectObject(hDC, GetStockObject(WHITE_BRUSH));
-    DeleteObject(hBrush);
-
-    BitBlt(hDC, x, y, width, height, hMemDC, 0, 0, SRCCOPY);  // display the bitmap
-
-    BLENDFUNCTION pixelblend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-
-    AlphaBlend(hDC, x, y+height, width, height, hMemDC, 0, 0, width, height, pixelblend); // blend with per-pixel alpha
-
-    BLENDFUNCTION blend50 = { AC_SRC_OVER, 0, 128, 0 };
-
-    AlphaBlend(hDC, x+width, y, width, height, hMemDC, 0, 0, width, height, blend50); // 50% blending
-
-    SelectObject(hMemDC, hOld);
-    DeleteObject(hMemDC);
-}
-
-HBITMAP Load32bppTga(const TCHAR * pFileName, BOOL bPreMultiply)
-{
-    HANDLE handle = CreateFile(pFileName, GENERIC_READ, FILE_SHARE_READ, 
-	                NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-	
-    if ( handle == INVALID_HANDLE_VALUE )
-        return NULL;
-
-    TGA_Header header;
-
-    DWORD dwRead = 0;
-    ReadFile(handle, & header, sizeof(header), & dwRead, NULL);
-
-    if ( (header.IDLength!=0) || (header.ColorMapType!=0) || (header.ImageType!=2) ||
-         (header.PixelDepth!=32) || (header.ImageDescriptor!=8) )
-    {
-        CloseHandle(handle);
-        return NULL;
-    }
-
-    BITMAPINFO bmp = { { sizeof(BITMAPINFOHEADER), header.Width, header.Height, 1, 32 } };
-
-    void * pBits = NULL;
-
-    HBITMAP hBmp = CreateDIBSection(NULL, &bmp, DIB_RGB_COLORS,  pBits, NULL, (DWORD)0);
-
-    if ( hBmp == NULL || pBits == NULL)
-    {
-        CloseHandle(handle);
-        return NULL;
-    }
-
-    ReadFile(handle, pBits, header.Width * header.Height * 4, & dwRead, NULL);
-	
-    CloseHandle(handle);
-
-    if ( bPreMultiply )
-    {
-        for (int y=0; y<header.Height; y++)
-        {
-            BYTE * pPixel = (BYTE *) pBits + header.Width * 4 * y;
-
-            for (int x=0; x<header.Width; x++)
-            {
-                pPixel[0] = pPixel[0] * pPixel[3] / 255; 
-                pPixel[1] = pPixel[1] * pPixel[3] / 255; 
-                pPixel[2] = pPixel[2] * pPixel[3] / 255; 
-
-                pPixel += 4;
-            }
-        }
-    }
-
-    return hBmp;
-}
-
 // End of file main_menu.c

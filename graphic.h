@@ -38,7 +38,6 @@ void 				DrawTransparentBitmap			(HDC,HBITMAP,short,short,COLORREF );
 HBITMAP				compositeImage					(HBITMAP fgImage, HBITMAP bgImage);
 // Gradient Generator
 BOOL				gradientFill					(HDC hdc, RECT objBox, COLORREF fromClr, COLORREF toClr);
-void				DrawAlphaBlend					(HWND hWnd, HDC hdcwnd);
 HBITMAP				skinedBox						(HBITMAP leftHbm, HBITMAP middleHbm, HBITMAP rightHbm, int bWidth, int bHeight);
 COLORREF			InterpolateLinear				(COLORREF first, COLORREF second, float position, float start, float end);
 // Others

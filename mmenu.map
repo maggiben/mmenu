@@ -1,1255 +1,675 @@
  mmenu.exe
 
- Timestamp is 4c13baca (Sat Jun 12 13:50:18 2010)
+ Timestamp is 55dbd86f (Mon Aug 24 23:52:31 2015)
 
  Preferred load address is 00400000
 
  Start         Length     Name                   Class
- 0001:00000000 00037bc6H .text                   CODE
- 0002:00000000 00009204H .rdata                  DATA
- 0003:00000000 000015d4H .data                   DATA
- 0003:000015d4 00000542H .data2                  DATA
- 0003:00001b18 000000b4H .idata$2                DATA
- 0003:00001bcc 00000014H .idata$3                DATA
- 0003:00001be0 00000384H .idata$4                DATA
- 0003:00001f64 00000384H .idata$5                DATA
- 0003:000022e8 00000e8aH .idata$6                DATA
- 0003:00003174 00000344H .bss                    DATA
- 0004:00000000 00016eacH .rsrc                   DATA
+ 0001:00000000 00011a8dH .text                   CODE
+ 0002:00000000 00002870H .rdata                  DATA
+ 0003:00000000 00000afcH .data                   DATA
+ 0003:00000afc 000000b4H .idata$2                DATA
+ 0003:00000bb0 00000014H .idata$3                DATA
+ 0003:00000bc4 00000358H .idata$4                DATA
+ 0003:00000f1c 00000358H .idata$5                DATA
+ 0003:00001274 00000ddcH .idata$6                DATA
+ 0003:00002050 000006b0H .bss                    DATA
+ 0004:00000000 00016eb8H .rsrc                   DATA
 
   Address         Publics by Value              Rva+Base     Lib:Object
 
  0000:00000000       __except_list              00000000     <absolute>
- 0001:00000000       _add@8                     00401000 f   main_menu.obj
- 0001:00000010       _msga@4                    00401010 f   main_menu.obj
- 0001:00000030       _mainX@8                   00401030 f   main_menu.obj
- 0001:00000350       _Createmain_menu_WndClassWnd@0 00401350 f   main_menu.obj
- 0001:000003a0       _MainWndProc_OnCommand@16  004013a0 f   main_menu.obj
- 0001:00000580       _MainWndProc@16            00401580 f   main_menu.obj
- 0001:00000aa0       _WinMain@16                00401aa0 f   main_menu.obj
- 0001:00000b70       _create_Controls@12        00401b70 f   main_menu.obj
- 0001:00000c80       _ButtonProc@16             00401c80 f   main_menu.obj
- 0001:00000f10       _MapDialogControlRect@12   00401f10 f   main_menu.obj
- 0001:00001050       _LoadXmlMenu@4             00402050 f   main_menu.obj
- 0001:00001a40       _install_Hook@12           00402a40 f   main_menu.obj
- 0001:00001bb0       _menuproc_sclass@16        00402bb0 f   main_menu.obj
- 0001:00001fe0       _initHook@0                00402fe0 f   main_menu.obj
- 0001:00002010       _unitHook@0                00403010 f   main_menu.obj
- 0001:00002070       _draw_menu@16              00403070 f   main_menu.obj
- 0001:00002390       _draw_buttons@16           00403390 f   main_menu.obj
- 0001:00002550       _MenuType@8                00403550 f   main_menu.obj
- 0001:000025d0       _IsRootMenu@4              004035d0 f   main_menu.obj
- 0001:00002630       _startDragDrop@4           00403630 f   main_menu.obj
- 0001:00002700       _imageOptions@12           00403700 f   main_menu.obj
- 0001:000028e0       _MagnetWindow@4            004038e0 f   main_menu.obj
- 0001:000029d0       _HextoDec@4                004039d0 f   main_menu.obj
- 0001:00002a30       _xstrtoi@4                 00403a30 f   main_menu.obj
- 0001:00002a50       _xmlInitnstance@8          00403a50 f   main_menu.obj
- 0001:00003030       _oleStrToAnsi@8            00404030 f   main_menu.obj
- 0001:00003110       _drawMenuSeparator@16      00404110 f   main_menu.obj
- 0001:00003340       _drawRootMenuItem@16       00404340 f   main_menu.obj
- 0001:00003800       _drawChildMenuItem@16      00404800 f   main_menu.obj
- 0001:00003810       _UpdateAppearance@8        00404810 f   main_menu.obj
- 0001:00003930       _SetWindowTransparentMode@8 00404930 f   main_menu.obj
- 0001:000039a0       _updateWindowAlpha@28      004049a0 f   main_menu.obj
- 0001:00003b90       _AlphaDraw@24              00404b90 f   main_menu.obj
- 0001:00003cb0       _Load32bppTga@8            00404cb0 f   main_menu.obj
- 0001:00003e10       _dhCreateObjectEx@20       00404e10 f   disphelper.obj
- 0001:00003ee0       _dhGetObjectEx@24          00404ee0 f   disphelper.obj
- 0001:00004030       _dhCreateObject@12         00405030 f   disphelper.obj
- 0001:000040a0       _dhGetObject@12            004050a0 f   disphelper.obj
- 0001:000040f0       _dhCallMethod              004050f0 f   disphelper.obj
- 0001:00004140       _dhPutValue                00405140 f   disphelper.obj
- 0001:00004190       _dhPutRef                  00405190 f   disphelper.obj
- 0001:000041e0       _dhGetValue                004051e0 f   disphelper.obj
- 0001:00004230       _dhInvoke                  00405230 f   disphelper.obj
- 0001:00004290       _dhInvokeArray@24          00405290 f   disphelper.obj
- 0001:000043c0       _dhCallMethodV@12          004053c0 f   disphelper.obj
- 0001:00004400       _dhPutValueV@12            00405400 f   disphelper.obj
- 0001:00004440       _dhPutRefV@12              00405440 f   disphelper.obj
- 0001:00004480       _dhGetValueV@20            00405480 f   disphelper.obj
- 0001:000047f0       _dhInvokeV@24              004057f0 f   disphelper.obj
- 0001:00004ee0       _dhEnumBeginV@16           00405ee0 f   disphelper.obj
- 0001:00005030       _dhEnumNextVariant@8       00406030 f   disphelper.obj
- 0001:000050a0       _dhEnumNextObject@8        004060a0 f   disphelper.obj
- 0001:00005150       _dhEnumBegin               00406150 f   disphelper.obj
- 0001:000051a0       _ConvertFileTimeToVariantTime@8 004061a0 f   disphelper.obj
- 0001:00005250       _ConvertVariantTimeToFileTime@12 00406250 f   disphelper.obj
- 0001:000052f0       _ConvertVariantTimeToSystemTime@12 004062f0 f   disphelper.obj
- 0001:00005360       _ConvertSystemTimeToVariantTime@8 00406360 f   disphelper.obj
- 0001:000053c0       _ConvertVariantTimeToTimeT@12 004063c0 f   disphelper.obj
- 0001:00005450       _ConvertTimeTToVariantTime@8 00406450 f   disphelper.obj
- 0001:00005520       _ConvertAnsiStrToBStr@8    00406520 f   disphelper.obj
- 0001:000055f0       _ConvertBStrToAnsiStr@8    004065f0 f   disphelper.obj
- 0001:00005780       _dhEnter@0                 00406780 f   disphelper.obj
- 0001:000057b0       _dhExitEx@28               004067b0 f   disphelper.obj
- 0001:000059c0       _dhShowException@4         004069c0 f   disphelper.obj
- 0001:00005a10       _dhFormatExceptionW@16     00406a10 f   disphelper.obj
- 0001:00005d30       _dhFormatExceptionA@16     00406d30 f   disphelper.obj
- 0001:00005db0       _dhGetLastException@4      00406db0 f   disphelper.obj
- 0001:00005df0       _dhToggleExceptions@4      00406df0 f   disphelper.obj
- 0001:00005e10       _dhSetExceptionOptions@4   00406e10 f   disphelper.obj
- 0001:00005e50       _dhGetExceptionOptions@4   00406e50 f   disphelper.obj
- 0001:00005e90       _dhCleanupThreadException@0 00406e90 f   disphelper.obj
- 0001:00005f00       _dhInitializeImp@8         00406f00 f   disphelper.obj
- 0001:00005f30       _dhUninitialize@4          00406f30 f   disphelper.obj
- 0001:00005f50       _DropTarget_CDropTarget@0  00406f50 f   IDropTarget.obj
- 0001:00005fc0       _DropTarget_QueryInterface@12 00406fc0 f   IDropTarget.obj
- 0001:00006020       _DropTarget_AddRef@4       00407020 f   IDropTarget.obj
- 0001:00006040       _DropTarget_Release@4      00407040 f   IDropTarget.obj
- 0001:00006080       _DropTarget_DragEnter@24   00407080 f   IDropTarget.obj
- 0001:00006100       _DropTarget_DragOver@20    00407100 f   IDropTarget.obj
- 0001:00006140       _DropTarget_DragLeave@4    00407140 f   IDropTarget.obj
- 0001:00006170       _DropTarget_Drop@24        00407170 f   IDropTarget.obj
- 0001:00006220       _QueryDrop@12              00407220 f   IDropTarget.obj
- 0001:000062e0       _DisplayFileNames@8        004072e0 f   IDropTarget.obj
- 0001:00006370       _DataObject_CDataObject@0  00407370 f   IDataObject.obj
- 0001:000063d0       _DataObject_QueryInterface@12 004073d0 f   IDataObject.obj
- 0001:00006430       _DataObject_AddRef@4       00407430 f   IDataObject.obj
- 0001:00006450       _DataObject_Release@4      00407450 f   IDataObject.obj
- 0001:00006480       _DataObject_GetData@12     00407480 f   IDataObject.obj
- 0001:00006530       _DataObject_GetDataHere@12 00407530 f   IDataObject.obj
- 0001:00006540       _DataObject_QueryGetData@8 00407540 f   IDataObject.obj
- 0001:000065c0       _DataObject_GetCanonicalFormatEtc@12 004075c0 f   IDataObject.obj
- 0001:000065d0       _DataObject_SetData@16     004075d0 f   IDataObject.obj
- 0001:00006700       _DataObject_EnumFormatEtc@12 00407700 f   IDataObject.obj
- 0001:00006750       _DataObject_DAdvise@20     00407750 f   IDataObject.obj
- 0001:00006760       _DataObject_DUnadvise@8    00407760 f   IDataObject.obj
- 0001:00006770       _DataObject_EnumDAdvise@8  00407770 f   IDataObject.obj
- 0001:00006780       _DropSource_CDropSource@0  00407780 f   IDropSource.obj
- 0001:000067e0       _DropSource_QueryInterface@12 004077e0 f   IDropSource.obj
- 0001:00006840       _DropSource_AddRef@4       00407840 f   IDropSource.obj
- 0001:00006860       _DropSource_Release@4      00407860 f   IDropSource.obj
- 0001:00006890       _DropSource_GiveFeedback@8 00407890 f   IDropSource.obj
- 0001:000068b0       _DropSource_QueryContinueDrag@12 004078b0 f   IDropSource.obj
- 0001:000068e0       _EnumFORMATETC_CEnumFormatEtc@8 004078e0 f   IEnumFORMATETC.obj
- 0001:00006970       _EnumFORMATETC_QueryInterface@12 00407970 f   IEnumFORMATETC.obj
- 0001:000069d0       _EnumFORMATETC_AddRef@4    004079d0 f   IEnumFORMATETC.obj
- 0001:000069f0       _EnumFORMATETC_Release@4   004079f0 f   IEnumFORMATETC.obj
- 0001:00006a30       _EnumFORMATETC_Next@16     00407a30 f   IEnumFORMATETC.obj
- 0001:00006ad0       _EnumFORMATETC_Skip@8      00407ad0 f   IEnumFORMATETC.obj
- 0001:00006b00       _EnumFORMATETC_Reset@4     00407b00 f   IEnumFORMATETC.obj
- 0001:00006b20       _EnumFORMATETC_Clone@8     00407b20 f   IEnumFORMATETC.obj
- 0001:00006b70       _manage_menu@8             00407b70 f   manage_menu.obj
- 0001:00006cf0       _treeWndProc@16            00407cf0 f   manage_menu.obj
- 0001:00006d00       _main_menu_wndProc@16      00407d00 f   manage_menu.obj
- 0001:000070f0       _createControls@8          004080f0 f   manage_menu.obj
- 0001:00007370       _buildTree@12              00408370 f   manage_menu.obj
- 0001:00007580       _BSTRtoANSI@4              00408580 f   manage_menu.obj
- 0001:000075f0       _ANSItoBSTR@4              004085f0 f   manage_menu.obj
- 0001:00007650       _DrawButtons@16            00408650 f   manage_menu.obj
- 0001:00007710       _btnProc@16                00408710 f   manage_menu.obj
- 0001:00007a90       _initBtnClass@4            00408a90 f   manage_menu.obj
- 0001:00007b30       _wallpaperFromHbitmap@12   00408b30 f   manage_menu.obj
- 0001:00007ba0       _DelPropProc@12            00408ba0 f   manage_menu.obj
- 0001:00007bc0       _DrawMenuShadow@16         00408bc0 f   manage_menu.obj
- 0001:00007d60       _pMask@8                   00408d60 f   manage_menu.obj
- 0001:00007e00       _CaptureScreen@0           00408e00 f   manage_menu.obj
- 0001:00007e90       _blurBitmap2@12            00408e90 f   manage_menu.obj
- 0001:000082b0       _loadXML@4                 004092b0 f   xmleng.obj
- 0001:00008510       _populateNode@4            00409510 f   xmleng.obj
- 0001:000085b0       _populateAttributes@4      004095b0 f   xmleng.obj
- 0001:00008620       _getAttributeValue@12      00409620 f   xmleng.obj
- 0001:000086c0       _AnsiToUnicode@8           004096c0 f   xmleng.obj
- 0001:00008750       _ConvertAnsiStrToBStrx@8   00409750 f   xmleng.obj
- 0001:00008820       _ConvertBStrToAnsiStrx@8   00409820 f   xmleng.obj
- 0001:00008900       _unloadXML@0               00409900 f   xmleng.obj
- 0001:00008910       _iconFromPng@0             00409910 f   graphic.obj
- 0001:00008a80       _create_alpha_bitmap@12    00409a80 f   graphic.obj
- 0001:00008b20       _drawIconToBitmap@16       00409b20 f   graphic.obj
- 0001:00008cf0       _CreateBitmapMask@8        00409cf0 f   graphic.obj
- 0001:00008e00       _DrawTransparentBitmap@20  00409e00 f   graphic.obj
- 0001:000090e0       _compositeImage@8          0040a0e0 f   graphic.obj
- 0001:00009290       _gradientFill@28           0040a290 f   graphic.obj
- 0001:00009420       _compositeMask@12          0040a420 f   graphic.obj
- 0001:00009430       _bitMask8bits@8            0040a430 f   graphic.obj
- 0001:00009590       _DrawAlphaBlend@8          0040a590 f   graphic.obj
- 0001:000097e0       _skinedBox@20              0040a7e0 f   graphic.obj
- 0001:00009950       _InterpolateLinear@20      0040a950 f   graphic.obj
- 0001:00009a90       _wallpaper@12              0040aa90 f   graphic.obj
- 0001:00009ba0       _loadPNG@4                 0040aba0 f   graphic.obj
- 0001:00009cf0       _doCheckFileHeader@4       0040acf0 f   graphic.obj
- 0001:00009d80       _doExtractCanonicData@8    0040ad80 f   graphic.obj
- 0001:00009e10       _doConvertRGBA8@8          0040ae10 f   graphic.obj
- 0001:00009f00       _doConvertGrey8@8          0040af00 f   graphic.obj
- 0001:00009fe0       _doConvertGreyA8@8         0040afe0 f   graphic.obj
- 0001:0000a0d0       _getBGRA                   0040b0d0 f   graphic.obj
- 0001:0000a0e0       _doGlow@4                  0040b0e0 f   graphic.obj
- 0001:0000a2a0       _CreateDrawing@4           0040b2a0 f   graphic.obj
- 0001:0000a480       _CreateGlow@8              0040b480 f   graphic.obj
- 0001:0000b160       _blurBitmap@12             0040c160 f   graphic.obj
- 0001:0000b580       _CreateAngledFont@16       0040c580 f   graphic.obj
- 0001:0000b5f0       _SelectIconA@16            0040c5f0 f   shellHelper.obj
- 0001:0000b710       _SelectIconW@16            0040c710 f   shellHelper.obj
- 0001:0000b800       _png_set_sig_bytes         0040c800 f   png.obj
- 0001:0000b830       _png_sig_cmp               0040c830 f   png.obj
- 0001:0000b8a0       _png_check_sig             0040c8a0 f   png.obj
- 0001:0000b8c0       _png_zalloc@12             0040c8c0 f   png.obj
- 0001:0000b930       _png_zfree@8               0040c930 f   png.obj
- 0001:0000b950       _png_reset_crc@4           0040c950 f   png.obj
- 0001:0000b970       _png_calculate_crc@12      0040c970 f   png.obj
- 0001:0000b9d0       _png_create_info_struct    0040c9d0 f   png.obj
- 0001:0000ba20       _png_destroy_info_struct   0040ca20 f   png.obj
- 0001:0000ba60       _png_info_init             0040ca60 f   png.obj
- 0001:0000ba80       _png_info_init_3           0040ca80 f   png.obj
- 0001:0000bac0       _png_data_freer            0040cac0 f   png.obj
- 0001:0000bb10       _png_free_data             0040cb10 f   png.obj
- 0001:0000bf70       _png_info_destroy@8        0040cf70 f   png.obj
- 0001:0000bfd0       _png_get_io_ptr            0040cfd0 f   png.obj
- 0001:0000bfe0       _png_init_io               0040cfe0 f   png.obj
- 0001:0000bff0       _png_convert_to_rfc1123    0040cff0 f   png.obj
- 0001:0000c090       _png_get_copyright         0040d090 f   png.obj
- 0001:0000c0b0       _png_get_libpng_ver        0040d0b0 f   png.obj
- 0001:0000c0d0       _png_get_header_ver        0040d0d0 f   png.obj
- 0001:0000c0f0       _png_get_header_version    0040d0f0 f   png.obj
- 0001:0000c110       _png_handle_as_unknown     0040d110 f   png.obj
- 0001:0000c180       _png_reset_zstream         0040d180 f   png.obj
- 0001:0000c1a0       _png_access_version_number 0040d1a0 f   png.obj
- 0001:0000c1b0       _png_init_mmx_flags@4      0040d1b0 f   png.obj
- 0001:0000c1e0       _png_mmx_support           0040d1e0 f   png.obj
- 0001:0000c1f0       _png_error                 0040d1f0 f   pngerror.obj
- 0001:0000c280       _png_warning               0040d280 f   pngerror.obj
- 0001:0000c3c0       _png_chunk_error           0040d3c0 f   pngerror.obj
- 0001:0000c3f0       _png_chunk_warning         0040d3f0 f   pngerror.obj
- 0001:0000c550       _png_set_error_fn          0040d550 f   pngerror.obj
- 0001:0000c570       _png_get_error_ptr         0040d570 f   pngerror.obj
- 0001:0000c580       _png_set_strip_error_numbers 0040d580 f   pngerror.obj
- 0001:0000c5a0       _png_get_valid             0040d5a0 f   pngget.obj
- 0001:0000c5c0       _png_get_rowbytes          0040d5c0 f   pngget.obj
- 0001:0000c5e0       _png_get_rows              0040d5e0 f   pngget.obj
- 0001:0000c600       _png_get_image_width       0040d600 f   pngget.obj
- 0001:0000c620       _png_get_image_height      0040d620 f   pngget.obj
- 0001:0000c640       _png_get_bit_depth         0040d640 f   pngget.obj
- 0001:0000c660       _png_get_color_type        0040d660 f   pngget.obj
- 0001:0000c680       _png_get_filter_type       0040d680 f   pngget.obj
- 0001:0000c6a0       _png_get_interlace_type    0040d6a0 f   pngget.obj
- 0001:0000c6c0       _png_get_compression_type  0040d6c0 f   pngget.obj
- 0001:0000c6e0       _png_get_x_pixels_per_meter 0040d6e0 f   pngget.obj
- 0001:0000c710       _png_get_y_pixels_per_meter 0040d710 f   pngget.obj
- 0001:0000c740       _png_get_pixels_per_meter  0040d740 f   pngget.obj
- 0001:0000c770       _png_get_pixel_aspect_ratio 0040d770 f   pngget.obj
- 0001:0000c7c0       _png_get_x_offset_microns  0040d7c0 f   pngget.obj
- 0001:0000c7f0       _png_get_y_offset_microns  0040d7f0 f   pngget.obj
- 0001:0000c820       _png_get_x_offset_pixels   0040d820 f   pngget.obj
- 0001:0000c850       _png_get_y_offset_pixels   0040d850 f   pngget.obj
- 0001:0000c880       _png_get_channels          0040d880 f   pngget.obj
- 0001:0000c8a0       _png_get_signature         0040d8a0 f   pngget.obj
- 0001:0000c8c0       _png_get_bKGD              0040d8c0 f   pngget.obj
- 0001:0000c8f0       _png_get_cHRM              0040d8f0 f   pngget.obj
- 0001:0000c9b0       _png_get_cHRM_fixed        0040d9b0 f   pngget.obj
- 0001:0000ca70       _png_get_gAMA              0040da70 f   pngget.obj
- 0001:0000caa0       _png_get_gAMA_fixed        0040daa0 f   pngget.obj
- 0001:0000cad0       _png_get_sRGB              0040dad0 f   pngget.obj
- 0001:0000cb00       _png_get_iCCP              0040db00 f   pngget.obj
- 0001:0000cb70       _png_get_sPLT              0040db70 f   pngget.obj
- 0001:0000cba0       _png_get_hIST              0040dba0 f   pngget.obj
- 0001:0000cbd0       _png_get_IHDR              0040dbd0 f   pngget.obj
- 0001:0000cd00       _png_get_oFFs              0040dd00 f   pngget.obj
- 0001:0000cd50       _png_get_pCAL              0040dd50 f   pngget.obj
- 0001:0000ce00       _png_get_sCAL              0040de00 f   pngget.obj
- 0001:0000ce50       _png_get_pHYs              0040de50 f   pngget.obj
- 0001:0000ceb0       _png_get_PLTE              0040deb0 f   pngget.obj
- 0001:0000cef0       _png_get_sBIT              0040def0 f   pngget.obj
- 0001:0000cf20       _png_get_text              0040df20 f   pngget.obj
- 0001:0000cf70       _png_get_tIME              0040df70 f   pngget.obj
- 0001:0000cfa0       _png_get_tRNS              0040dfa0 f   pngget.obj
- 0001:0000d020       _png_get_unknown_chunks    0040e020 f   pngget.obj
- 0001:0000d050       _png_get_rgb_to_gray_status 0040e050 f   pngget.obj
- 0001:0000d070       _png_get_user_chunk_ptr    0040e070 f   pngget.obj
- 0001:0000d090       _png_get_compression_buffer_size 0040e090 f   pngget.obj
- 0001:0000d0b0       _png_get_asm_flags         0040e0b0 f   pngget.obj
- 0001:0000d0d0       _png_get_asm_flagmask      0040e0d0 f   pngget.obj
- 0001:0000d0f0       _png_get_mmx_flagmask      0040e0f0 f   pngget.obj
- 0001:0000d120       _png_get_mmx_bitdepth_threshold 0040e120 f   pngget.obj
- 0001:0000d140       _png_get_mmx_rowbytes_threshold 0040e140 f   pngget.obj
- 0001:0000d160       _png_get_user_width_max    0040e160 f   pngget.obj
- 0001:0000d180       _png_get_user_height_max   0040e180 f   pngget.obj
- 0001:0000d1a0       _png_create_struct@4       0040e1a0 f   pngmem.obj
- 0001:0000d1c0       _png_create_struct_2@12    0040e1c0 f   pngmem.obj
- 0001:0000d240       _png_destroy_struct@4      0040e240 f   pngmem.obj
- 0001:0000d260       _png_destroy_struct_2@12   0040e260 f   pngmem.obj
- 0001:0000d2a0       _png_malloc                0040e2a0 f   pngmem.obj
- 0001:0000d300       _png_malloc_default        0040e300 f   pngmem.obj
- 0001:0000d320       _png_free                  0040e320 f   pngmem.obj
- 0001:0000d360       _png_free_default          0040e360 f   pngmem.obj
- 0001:0000d380       _png_malloc_warn           0040e380 f   pngmem.obj
- 0001:0000d3b0       _png_memcpy_check          0040e3b0 f   pngmem.obj
- 0001:0000d3f0       _png_memset_check          0040e3f0 f   pngmem.obj
- 0001:0000d430       _png_set_mem_fn            0040e430 f   pngmem.obj
- 0001:0000d460       _png_get_mem_ptr           0040e460 f   pngmem.obj
- 0001:0000d470       _png_process_data          0040e470 f   pngpread.obj
- 0001:0000d4a0       _png_process_some_data@8   0040e4a0 f   pngpread.obj
- 0001:0000d510       _png_push_read_sig@8       0040e510 f   pngpread.obj
- 0001:0000d5d0       _png_push_read_chunk@8     0040e5d0 f   pngpread.obj
- 0001:0000dd80       _png_push_crc_skip@8       0040ed80 f   pngpread.obj
- 0001:0000dda0       _png_push_crc_finish@4     0040eda0 f   pngpread.obj
- 0001:0000de90       _png_push_fill_buffer      0040ee90 f   pngpread.obj
- 0001:0000df50       _png_push_save_buffer@4    0040ef50 f   pngpread.obj
- 0001:0000e080       _png_push_restore_buffer@12 0040f080 f   pngpread.obj
- 0001:0000e0c0       _png_push_read_IDAT@4      0040f0c0 f   pngpread.obj
- 0001:0000e2b0       _png_process_IDAT_data@12  0040f2b0 f   pngpread.obj
- 0001:0000e3c0       _png_push_process_row@4    0040f3c0 f   pngpread.obj
- 0001:0000e7b0       _png_read_push_finish_row@4 0040f7b0 f   pngpread.obj
- 0001:0000e930       _png_push_handle_tEXt@12   0040f930 f   pngpread.obj
- 0001:0000e9b0       _png_push_read_tEXt@8      0040f9b0 f   pngpread.obj
- 0001:0000ead0       _png_push_handle_zTXt@12   0040fad0 f   pngpread.obj
- 0001:0000eb50       _png_push_read_zTXt@8      0040fb50 f   pngpread.obj
- 0001:0000eec0       _png_push_handle_unknown@12 0040fec0 f   pngpread.obj
- 0001:0000eff0       _png_push_have_info@8      0040fff0 f   pngpread.obj
- 0001:0000f020       _png_push_have_end@8       00410020 f   pngpread.obj
- 0001:0000f050       _png_push_have_row@8       00410050 f   pngpread.obj
- 0001:0000f080       _png_progressive_combine_row 00410080 f   pngpread.obj
- 0001:0000f0b0       _png_set_progressive_read_fn 004100b0 f   pngpread.obj
- 0001:0000f0f0       _png_get_progressive_ptr   004100f0 f   pngpread.obj
- 0001:0000f100       _png_create_read_struct    00410100 f   pngread.obj
- 0001:0000f130       _png_create_read_struct_2  00410130 f   pngread.obj
- 0001:0000f360       _png_read_init             00410360 f   pngread.obj
- 0001:0000f380       _png_read_init_2           00410380 f   pngread.obj
- 0001:0000f470       _png_read_init_3           00410470 f   pngread.obj
- 0001:0000f5c0       _png_read_info             004105c0 f   pngread.obj
- 0001:0000fae0       _png_read_update_info      00410ae0 f   pngread.obj
- 0001:0000fb20       _png_start_read_image      00410b20 f   pngread.obj
- 0001:0000fb40       _png_read_row              00410b40 f   pngread.obj
- 0001:00010000       _png_read_rows             00411000 f   pngread.obj
- 0001:000100c0       _png_read_image            004110c0 f   pngread.obj
- 0001:00010130       _png_read_end              00411130 f   pngread.obj
- 0001:00010520       _png_destroy_read_struct   00411520 f   pngread.obj
- 0001:000105f0       _png_read_destroy@12       004115f0 f   pngread.obj
- 0001:00010880       _png_set_read_status_fn    00411880 f   pngread.obj
- 0001:00010890       _png_read_png              00411890 f   pngread.obj
- 0001:00010a30       _png_read_data@12          00411a30 f   pngrio.obj
- 0001:00010a70       _png_default_read_data     00411a70 f   pngrio.obj
- 0001:00010ab0       _png_set_read_fn           00411ab0 f   pngrio.obj
- 0001:00010b10       _png_set_crc_action        00411b10 f   pngrtran.obj
- 0001:00010bb0       _png_set_background        00411bb0 f   pngrtran.obj
- 0001:00010c50       _png_set_strip_16          00411c50 f   pngrtran.obj
- 0001:00010c60       _png_set_strip_alpha       00411c60 f   pngrtran.obj
- 0001:00010c70       _png_set_dither            00411c70 f   pngrtran.obj
- 0001:000116b0       _png_set_gamma             004126b0 f   pngrtran.obj
- 0001:00011720       _png_set_expand            00412720 f   pngrtran.obj
- 0001:00011730       _png_set_palette_to_rgb    00412730 f   pngrtran.obj
- 0001:00011740       _png_set_gray_1_2_4_to_8   00412740 f   pngrtran.obj
- 0001:00011750       _png_set_tRNS_to_alpha     00412750 f   pngrtran.obj
- 0001:00011760       _png_set_gray_to_rgb       00412760 f   pngrtran.obj
- 0001:00011770       _png_set_rgb_to_gray       00412770 f   pngrtran.obj
- 0001:000117d0       _png_set_rgb_to_gray_fixed 004127d0 f   pngrtran.obj
- 0001:000118c0       _png_set_read_user_transform_fn 004128c0 f   pngrtran.obj
- 0001:000118e0       _png_init_read_transformations@4 004128e0 f   pngrtran.obj
- 0001:000126d0       _png_read_transform_info@8 004136d0 f   pngrtran.obj
- 0001:00012880       _png_do_read_transformations@4 00413880 f   pngrtran.obj
- 0001:00012ce0       _png_do_unpack@8           00413ce0 f   pngrtran.obj
- 0001:00012e60       _png_do_unshift@12         00413e60 f   pngrtran.obj
- 0001:000130b0       _png_do_chop@8             004140b0 f   pngrtran.obj
- 0001:00013100       _png_do_read_swap_alpha@8  00414100 f   pngrtran.obj
- 0001:00013240       _png_do_read_invert_alpha@8 00414240 f   pngrtran.obj
- 0001:000133a0       _png_do_read_filler@16     004143a0 f   pngrtran.obj
- 0001:000137b0       _png_do_gray_to_rgb@8      004147b0 f   pngrtran.obj
- 0001:00013950       _png_do_rgb_to_gray@12     00414950 f   pngrtran.obj
- 0001:000144a0       _png_build_grayscale_palette 004154a0 f   pngrtran.obj
- 0001:00014540       _png_do_background@48      00415540 f   pngrtran.obj
- 0001:000159a0       _png_do_gamma@20           004169a0 f   pngrtran.obj
- 0001:00015e50       _png_do_expand_palette@20  00416e50 f   pngrtran.obj
- 0001:000160e0       _png_do_expand@12          004170e0 f   pngrtran.obj
- 0001:00016530       _png_do_dither@16          00417530 f   pngrtran.obj
- 0001:00016710       _png_build_gamma_table@4   00417710 f   pngrtran.obj
- 0001:00016d40       _png_do_read_intrapixel@8  00417d40 f   pngrtran.obj
- 0001:00016e80       _png_get_uint_31@8         00417e80 f   pngrutil.obj
- 0001:00016ec0       _png_get_uint_32@4         00417ec0 f   pngrutil.obj
- 0001:00016ef0       _png_get_int_32@4          00417ef0 f   pngrutil.obj
- 0001:00016f20       _png_get_uint_16@4         00417f20 f   pngrutil.obj
- 0001:00016f40       _png_crc_read@12           00417f40 f   pngrutil.obj
- 0001:00016f70       _png_crc_finish@8          00417f70 f   pngrutil.obj
- 0001:00017010       _png_crc_error@4           00418010 f   pngrutil.obj
- 0001:00017080       _png_decompress_chunk@24   00418080 f   pngrutil.obj
- 0001:00017440       _png_handle_IHDR@12        00418440 f   pngrutil.obj
- 0001:000175c0       _png_handle_PLTE@12        004185c0 f   pngrutil.obj
- 0001:00017790       _png_handle_IEND@12        00418790 f   pngrutil.obj
- 0001:000177e0       _png_handle_gAMA@12        004187e0 f   pngrutil.obj
- 0001:00017940       _png_handle_sBIT@12        00418940 f   pngrutil.obj
- 0001:00017aa0       _png_handle_cHRM@12        00418aa0 f   pngrutil.obj
- 0001:00017f10       _png_handle_sRGB@12        00418f10 f   pngrutil.obj
- 0001:00018110       _png_handle_iCCP@12        00419110 f   pngrutil.obj
- 0001:000182f0       _png_handle_sPLT@12        004192f0 f   pngrutil.obj
- 0001:00018550       _png_handle_tRNS@12        00419550 f   pngrutil.obj
- 0001:00018760       _png_handle_bKGD@12        00419760 f   pngrutil.obj
- 0001:00018970       _png_handle_hIST@12        00419970 f   pngrutil.obj
- 0001:00018ab0       _png_handle_pHYs@12        00419ab0 f   pngrutil.obj
- 0001:00018b80       _png_handle_oFFs@12        00419b80 f   pngrutil.obj
- 0001:00018c50       _png_handle_pCAL@12        00419c50 f   pngrutil.obj
- 0001:00018f10       _png_handle_sCAL@12        00419f10 f   pngrutil.obj
- 0001:000190c0       _png_handle_tIME@12        0041a0c0 f   pngrutil.obj
- 0001:00019190       _png_handle_tEXt@12        0041a190 f   pngrutil.obj
- 0001:000192b0       _png_handle_zTXt@12        0041a2b0 f   pngrutil.obj
- 0001:00019430       _png_handle_unknown@12     0041a430 f   pngrutil.obj
- 0001:00019580       _png_check_chunk_name@8    0041a580 f   pngrutil.obj
- 0001:000195f0       _png_combine_row@12        0041a5f0 f   pngrutil.obj
- 0001:000199b0       _png_do_read_interlace@4   0041a9b0 f   pngrutil.obj
- 0001:00019f20       _png_read_filter_row@20    0041af20 f   pngrutil.obj
- 0001:0001a1c0       _png_read_finish_row@4     0041b1c0 f   pngrutil.obj
- 0001:0001a490       _png_read_start_row@4      0041b490 f   pngrutil.obj
- 0001:0001a7b0       _png_set_bKGD              0041b7b0 f   pngset.obj
- 0001:0001a7f0       _png_set_cHRM              0041b7f0 f   pngset.obj
- 0001:0001aa60       _png_set_cHRM_fixed        0041ba60 f   pngset.obj
- 0001:0001ac40       _png_set_gAMA              0041bc40 f   pngset.obj
- 0001:0001acd0       _png_set_gAMA_fixed        0041bcd0 f   pngset.obj
- 0001:0001ad30       _png_set_hIST              0041bd30 f   pngset.obj
- 0001:0001ade0       _png_set_IHDR              0041bde0 f   pngset.obj
- 0001:0001b050       _png_set_oFFs              0041c050 f   pngset.obj
- 0001:0001b090       _png_set_pCAL              0041c090 f   pngset.obj
- 0001:0001b260       _png_set_sCAL              0041c260 f   pngset.obj
- 0001:0001b2a0       _png_set_pHYs              0041c2a0 f   pngset.obj
- 0001:0001b2e0       _png_set_PLTE              0041c2e0 f   pngset.obj
- 0001:0001b370       _png_set_sBIT              0041c370 f   pngset.obj
- 0001:0001b3a0       _png_set_sRGB              0041c3a0 f   pngset.obj
- 0001:0001b3d0       _png_set_sRGB_gAMA_and_cHRM 0041c3d0 f   pngset.obj
- 0001:0001b4c0       _png_set_iCCP              0041c4c0 f   pngset.obj
- 0001:0001b5c0       _png_set_text              0041c5c0 f   pngset.obj
- 0001:0001b5f0       _png_set_text_2@16         0041c5f0 f   pngset.obj
- 0001:0001b870       _png_set_tIME              0041c870 f   pngset.obj
- 0001:0001b8b0       _png_set_tRNS              0041c8b0 f   pngset.obj
- 0001:0001b960       _png_set_sPLT              0041c960 f   pngset.obj
- 0001:0001bad0       _png_set_unknown_chunks    0041cad0 f   pngset.obj
- 0001:0001bc30       _png_set_unknown_chunk_location 0041cc30 f   pngset.obj
- 0001:0001bc70       _png_permit_empty_plte     0041cc70 f   pngset.obj
- 0001:0001bca0       _png_permit_mng_features   0041cca0 f   pngset.obj
- 0001:0001bcd0       _png_set_keep_unknown_chunks 0041ccd0 f   pngset.obj
- 0001:0001bde0       _png_set_read_user_chunk_fn 0041cde0 f   pngset.obj
- 0001:0001be00       _png_set_rows              0041ce00 f   pngset.obj
- 0001:0001be50       _png_set_compression_buffer_size 0041ce50 f   pngset.obj
- 0001:0001beb0       _png_set_invalid           0041ceb0 f   pngset.obj
- 0001:0001bed0       _png_set_asm_flags         0041ced0 f   pngset.obj
- 0001:0001bf20       _png_set_mmx_thresholds    0041cf20 f   pngset.obj
- 0001:0001bf40       _png_set_user_limits       0041cf40 f   pngset.obj
- 0001:0001bf60       _png_set_bgr               0041cf60 f   pngtrans.obj
- 0001:0001bf70       _png_set_swap              0041cf70 f   pngtrans.obj
- 0001:0001bf90       _png_set_packing           0041cf90 f   pngtrans.obj
- 0001:0001bfb0       _png_set_packswap          0041cfb0 f   pngtrans.obj
- 0001:0001bfd0       _png_set_shift             0041cfd0 f   pngtrans.obj
- 0001:0001bff0       _png_set_interlace_handling 0041cff0 f   pngtrans.obj
- 0001:0001c010       _png_set_filler            0041d010 f   pngtrans.obj
- 0001:0001c070       _png_set_add_alpha         0041d070 f   pngtrans.obj
- 0001:0001c0a0       _png_set_swap_alpha        0041d0a0 f   pngtrans.obj
- 0001:0001c0b0       _png_set_invert_alpha      0041d0b0 f   pngtrans.obj
- 0001:0001c0c0       _png_set_invert_mono       0041d0c0 f   pngtrans.obj
- 0001:0001c0d0       _png_do_invert@8           0041d0d0 f   pngtrans.obj
- 0001:0001c150       _png_do_swap@8             0041d150 f   pngtrans.obj
- 0001:0001c1a0       _png_do_packswap@8         0041d1a0 f   pngtrans.obj
- 0001:0001c200       _png_do_strip_filler@12    0041d200 f   pngtrans.obj
- 0001:0001c490       _png_do_bgr@8              0041d490 f   pngtrans.obj
- 0001:0001c5a0       _png_set_user_transform_info 0041d5a0 f   pngtrans.obj
- 0001:0001c5c0       _png_get_user_transform_ptr 0041d5c0 f   pngtrans.obj
- 0001:0001c5d0       _png_write_data@12         0041d5d0 f   pngwio.obj
- 0001:0001c610       _png_default_write_data    0041d610 f   pngwio.obj
- 0001:0001c650       _png_flush@4               0041d650 f   pngwio.obj
- 0001:0001c670       _png_default_flush         0041d670 f   pngwio.obj
- 0001:0001c690       _png_set_write_fn          0041d690 f   pngwio.obj
- 0001:0001c700       _png_write_info_before_PLTE 0041d700 f   pngwrite.obj
- 0001:0001c8c0       _png_write_info            0041d8c0 f   pngwrite.obj
- 0001:0001cb90       _png_write_end             0041db90 f   pngwrite.obj
- 0001:0001cd00       _png_convert_from_struct_tm 0041dd00 f   pngwrite.obj
- 0001:0001cd40       _png_convert_from_time_t   0041dd40 f   pngwrite.obj
- 0001:0001cd60       _png_create_write_struct   0041dd60 f   pngwrite.obj
- 0001:0001cd90       _png_create_write_struct_2 0041dd90 f   pngwrite.obj
- 0001:0001cf50       _png_write_init            0041df50 f   pngwrite.obj
- 0001:0001cf70       _png_write_init_2          0041df70 f   pngwrite.obj
- 0001:0001d060       _png_write_init_3          0041e060 f   pngwrite.obj
- 0001:0001d180       _png_write_rows            0041e180 f   pngwrite.obj
- 0001:0001d1b0       _png_write_image           0041e1b0 f   pngwrite.obj
- 0001:0001d210       _png_write_row             0041e210 f   pngwrite.obj
- 0001:0001d480       _png_set_flush             0041e480 f   pngwrite.obj
- 0001:0001d4a0       _png_write_flush           0041e4a0 f   pngwrite.obj
- 0001:0001d590       _png_destroy_write_struct  0041e590 f   pngwrite.obj
- 0001:0001d650       _png_write_destroy@4       0041e650 f   pngwrite.obj
- 0001:0001d790       _png_set_filter            0041e790 f   pngwrite.obj
- 0001:0001d970       _png_set_filter_heuristics 0041e970 f   pngwrite.obj
- 0001:0001dbb0       _png_set_compression_level 0041ebb0 f   pngwrite.obj
- 0001:0001dbd0       _png_set_compression_mem_level 0041ebd0 f   pngwrite.obj
- 0001:0001dbf0       _png_set_compression_strategy 0041ebf0 f   pngwrite.obj
- 0001:0001dc10       _png_set_compression_window_bits 0041ec10 f   pngwrite.obj
- 0001:0001dc70       _png_set_compression_method 0041ec70 f   pngwrite.obj
- 0001:0001dca0       _png_set_write_status_fn   0041eca0 f   pngwrite.obj
- 0001:0001dcb0       _png_set_write_user_transform_fn 0041ecb0 f   pngwrite.obj
- 0001:0001dcd0       _png_write_png             0041ecd0 f   pngwrite.obj
- 0001:0001ddb0       _png_do_write_transformations@4 0041edb0 f   pngwtran.obj
- 0001:0001df00       _png_do_pack@12            0041ef00 f   pngwtran.obj
- 0001:0001e0d0       _png_do_shift@12           0041f0d0 f   pngwtran.obj
- 0001:0001e360       _png_do_write_swap_alpha@8 0041f360 f   pngwtran.obj
- 0001:0001e4a0       _png_do_write_invert_alpha@8 0041f4a0 f   pngwtran.obj
- 0001:0001e640       _png_do_write_intrapixel@8 0041f640 f   pngwtran.obj
- 0001:0001e770       _png_save_uint_32@8        0041f770 f   pngwutil.obj
- 0001:0001e7a0       _png_save_int_32@8         0041f7a0 f   pngwutil.obj
- 0001:0001e7e0       _png_save_uint_16@8        0041f7e0 f   pngwutil.obj
- 0001:0001e800       _png_write_chunk           0041f800 f   pngwutil.obj
- 0001:0001e840       _png_write_chunk_start     0041f840 f   pngwutil.obj
- 0001:0001e890       _png_write_chunk_data      0041f890 f   pngwutil.obj
- 0001:0001e8c0       _png_write_chunk_end       0041f8c0 f   pngwutil.obj
- 0001:0001e8f0       _png_write_sig@4           0041f8f0 f   pngwutil.obj
- 0001:0001ed00       _png_write_IHDR@32         0041fd00 f   pngwutil.obj
- 0001:0001f070       _png_write_PLTE@12         00420070 f   pngwutil.obj
- 0001:0001f150       _png_write_IDAT@12         00420150 f   pngwutil.obj
- 0001:0001f2b0       _png_write_IEND@4          004202b0 f   pngwutil.obj
- 0001:0001f2e0       _png_write_gAMA@12         004202e0 f   pngwutil.obj
- 0001:0001f330       _png_write_gAMA_fixed@8    00420330 f   pngwutil.obj
- 0001:0001f370       _png_write_sRGB@8          00420370 f   pngwutil.obj
- 0001:0001f3c0       _png_write_iCCP@20         004203c0 f   pngwutil.obj
- 0001:0001f490       _png_write_sPLT@8          00420490 f   pngwutil.obj
- 0001:0001f5f0       _png_write_sBIT@12         004205f0 f   pngwutil.obj
- 0001:0001f6f0       _png_write_cHRM@68         004206f0 f   pngwutil.obj
- 0001:0001f9d0       _png_write_cHRM_fixed@36   004209d0 f   pngwutil.obj
- 0001:0001fb50       _png_write_tRNS@20         00420b50 f   pngwutil.obj
- 0001:0001fc90       _png_write_bKGD@12         00420c90 f   pngwutil.obj
- 0001:0001fdc0       _png_write_hIST@12         00420dc0 f   pngwutil.obj
- 0001:0001fe40       _png_check_keyword@12      00420e40 f   pngwutil.obj
- 0001:00020010       _png_write_tEXt@16         00421010 f   pngwutil.obj
- 0001:000200c0       _png_write_zTXt@20         004210c0 f   pngwutil.obj
- 0001:000201c0       _png_write_oFFs@16         004211c0 f   pngwutil.obj
- 0001:00020220       _png_write_pCAL@32         00421220 f   pngwutil.obj
- 0001:00020390       _png_write_sCAL@24         00421390 f   pngwutil.obj
- 0001:00020460       _png_write_pHYs@16         00421460 f   pngwutil.obj
- 0001:000204c0       _png_write_tIME@8          004214c0 f   pngwutil.obj
- 0001:00020550       _png_write_start_row@4     00421550 f   pngwutil.obj
- 0001:00020740       _png_write_finish_row@4    00421740 f   pngwutil.obj
- 0001:00020960       _png_do_write_interlace@12 00421960 f   pngwutil.obj
- 0001:00020c30       _png_write_find_filter@8   00421c30 f   pngwutil.obj
- 0001:00022060       _png_write_filtered_row@8  00423060 f   pngwutil.obj
- 0001:00022140       _adler32@12                00423140 f   adler32.obj
- 0001:00022430       _adler32_combine@12        00423430 f   adler32.obj
- 0001:000224f0       _compress2@20              004234f0 f   compress.obj
- 0001:000225a0       _compress@16               004235a0 f   compress.obj
- 0001:000225c0       _compressBound@4           004235c0 f   compress.obj
- 0001:000225e0       _get_crc_table@0           004235e0 f   crc32.obj
- 0001:000225f0       _crc32@12                  004235f0 f   crc32.obj
- 0001:00022d20       _crc32_combine@12          00423d20 f   crc32.obj
- 0001:00022df0       _deflateInit_@16           00423df0 f   deflate.obj
- 0001:00022e20       _deflateInit2_@32          00423e20 f   deflate.obj
- 0001:00023070       _deflateSetDictionary@12   00424070 f   deflate.obj
- 0001:000231a0       _deflateReset@4            004241a0 f   deflate.obj
- 0001:00023260       _deflateSetHeader@8        00424260 f   deflate.obj
- 0001:000232a0       _deflatePrime@12           004242a0 f   deflate.obj
- 0001:000232f0       _deflateParams@12          004242f0 f   deflate.obj
- 0001:000233f0       _deflateTune@20            004243f0 f   deflate.obj
- 0001:00023440       _deflateBound@8            00424440 f   deflate.obj
- 0001:00023540       _deflate@8                 00424540 f   deflate.obj
- 0001:00023e50       _deflateEnd@4              00424e50 f   deflate.obj
- 0001:00023f30       _deflateCopy@8             00424f30 f   deflate.obj
- 0001:00025280       _gzopen@8                  00426280 f   gzio.obj
- 0001:000252a0       _gzdopen@8                 004262a0 f   gzio.obj
- 0001:000252e0       _gzsetparams@12            004262e0 f   gzio.obj
- 0001:00025600       _gzread@12                 00426600 f   gzio.obj
- 0001:00025870       _gzgetc@4                  00426870 f   gzio.obj
- 0001:000258a0       _gzungetc@8                004268a0 f   gzio.obj
- 0001:00025900       _gzgets@12                 00426900 f   gzio.obj
- 0001:00025960       _gzwrite@12                00426960 f   gzio.obj
- 0001:00025a20       _gzprintf                  00426a20 f   gzio.obj
- 0001:00025a80       _gzputc@8                  00426a80 f   gzio.obj
- 0001:00025ac0       _gzputs@8                  00426ac0 f   gzio.obj
- 0001:00025be0       _gzflush@8                 00426be0 f   gzio.obj
- 0001:00025c20       _gzseek@12                 00426c20 f   gzio.obj
- 0001:00025dd0       _gzrewind@4                00426dd0 f   gzio.obj
- 0001:00025e50       _gztell@4                  00426e50 f   gzio.obj
- 0001:00025e70       _gzeof@4                   00426e70 f   gzio.obj
- 0001:00025eb0       _gzdirect@4                00426eb0 f   gzio.obj
- 0001:00025f50       _gzclose@4                 00426f50 f   gzio.obj
- 0001:00025fb0       _gzerror@8                 00426fb0 f   gzio.obj
- 0001:000260a0       _gzclearerr@4              004270a0 f   gzio.obj
- 0001:000260d0       _inflateBackInit_@20       004270d0 f   infback.obj
- 0001:000261c0       _inflateBack@20            004271c0 f   infback.obj
- 0001:00026f30       _inflateBackEnd@4          00427f30 f   infback.obj
- 0001:00026f70       _inflate_fast@8            00427f70 f   inffast.obj
- 0001:00027450       _inflateReset@4            00428450 f   inflate.obj
- 0001:000274f0       _inflatePrime@12           004284f0 f   inflate.obj
- 0001:00027550       _inflateInit2_@16          00428550 f   inflate.obj
- 0001:00027630       _inflateInit_@12           00428630 f   inflate.obj
- 0001:000277a0       _inflate@8                 004287a0 f   inflate.obj
- 0001:00028ce0       _inflateEnd@4              00429ce0 f   inflate.obj
- 0001:00028d30       _inflateSetDictionary@12   00429d30 f   inflate.obj
- 0001:00028e10       _inflateGetHeader@8        00429e10 f   inflate.obj
- 0001:00028eb0       _inflateSync@4             00429eb0 f   inflate.obj
- 0001:00028fa0       _inflateSyncPoint@4        00429fa0 f   inflate.obj
- 0001:00028fe0       _inflateCopy@8             00429fe0 f   inflate.obj
- 0001:00029180       _inflate_table@24          0042a180 f   inftrees.obj
- 0001:000297a0       __tr_init@4                0042a7a0 f   trees.obj
- 0001:0002ab50       __tr_stored_block@16       0042bb50 f   trees.obj
- 0001:0002ac30       __tr_align@4               0042bc30 f   trees.obj
- 0001:0002af60       __tr_flush_block@16        0042bf60 f   trees.obj
- 0001:0002b1e0       __tr_tally@12              0042c1e0 f   trees.obj
- 0001:0002bab0       _uncompress@16             0042cab0 f   uncompr.obj
- 0001:0002bb70       _zlibVersion@0             0042cb70 f   zutil.obj
- 0001:0002bb80       _zlibCompileFlags@0        0042cb80 f   zutil.obj
- 0001:0002bb90       _zError@4                  0042cb90 f   zutil.obj
- 0001:0002bbb0       _zcalloc@12                0042cbb0 f   zutil.obj
- 0001:0002bbd0       _zcfree@8                  0042cbd0 f   zutil.obj
- 0001:0002bbf0       _DrawMenuChild@8           0042cbf0 f   draw.obj
- 0001:0002c180       _DrawMenuRoot@8            0042d180 f   draw.obj
- 0001:0002c630       _DrawMenuSeparator@8       0042d630 f   draw.obj
- 0001:0002c9f0       _dummy@4                   0042d9f0 f   draw.obj
- 0001:0002ca00       _CopyStgMedium@8           0042da00     urlmon:urlmon.dll
- 0001:0002cc60       __sheap_alloc              0042dc60 f   crt:malloc.obj
- 0001:0002cf60       _malloc                    0042df60 f   crt:malloc.obj
- 0001:0002cfa0       _wcscmp                    0042dfa0 f   crt:wcscmp.obj
- 0001:0002cfd0       _wcschr                    0042dfd0 f   crt:wcschr.obj
- 0001:0002cff0       _floor                     0042dff0 f   crt:floor.obj
- 0001:0002d030       _ceil                      0042e030 f   crt:ceil.obj
- 0001:0002d070       ___ftoll                   0042e070 f   crt:_ftoll.obj
- 0001:0002d0a0       _gmtime                    0042e0a0 f   crt:gmtime.obj
- 0001:0002d0c0       _mktime                    0042e0c0 f   crt:mktime.obj
- 0001:0002d1c0       _localtime                 0042e1c0 f   crt:localtime.obj
- 0001:0002d1e0       ___assert                  0042e1e0 f   crt:_assert.obj
- 0001:0002d310       _memcmp                    0042e310 f   crt:memcmp.obj
- 0001:0002d700       __sheap_free               0042e700 f   crt:free.obj
- 0001:0002da20       _free                      0042ea20 f   crt:free.obj
- 0001:0002da60       ___chkstk                  0042ea60 f   crt:_chkstk.obj
- 0001:0002dab0       _calloc                    0042eab0 f   crt:calloc.obj
- 0001:0002db20       _memcpy                    0042eb20 f   crt:memcpy.obj
- 0001:0002ddf0       _fopen                     0042edf0 f   crt:fopen.obj
- 0001:0002de40       ___init_closeall           0042ee40 f   crt:fclose.obj
- 0001:0002de60       _fclose                    0042ee60 f   crt:fclose.obj
- 0001:0002df50       __setjmp3                  0042ef50 f   crt:setjmp.obj
- 0001:0002e010       _fread                     0042f010 f   crt:fread.obj
- 0001:0002e110       _fabs                      0042f110 f   crt:fabs.obj
- 0001:0002e180       _sprintf                   0042f180 f   crt:sprintf.obj
- 0001:0002e1b0       _strncpy                   0042f1b0 f   crt:strncpy.obj
- 0001:0002e220       _fprintf                   0042f220 f   crt:fprintf.obj
- 0001:0002e240       _longjmp                   0042f240 f   crt:longjmp.obj
- 0001:0002e390       _memset                    0042f390 f   crt:memset.obj
- 0001:0002e4a0       _abort                     0042f4a0 f   crt:abort.obj
- 0001:0002e4c0       _pow                       0042f4c0 f   crt:pow.obj
- 0001:0002ea00       ___stod                    0042fa00 f   crt:_stod.obj
- 0001:0002eb60       _fwrite                    0042fb60 f   crt:fwrite.obj
- 0001:0002ec90       _fflush                    0042fc90 f   crt:fflush.obj
- 0001:0002ece0       __fdopen                   0042fce0 f   crt:fdopen.obj
- 0001:0002ed10       _ftell                     0042fd10 f   crt:ftell.obj
- 0001:0002ed20       _ferror                    0042fd20 f   crt:ferror.obj
- 0001:0002ed30       _fseek                     0042fd30 f   crt:fseek.obj
- 0001:0002ed60       _fputc                     0042fd60 f   crt:fputc.obj
- 0001:0002ede0       _strerror                  0042fde0 f   crt:strerror.obj
- 0001:0002edf0       _strcat                    0042fdf0 f   crt:strcat.obj
- 0001:0002ee20       _clearerr                  0042fe20 f   crt:clearerr.obj
- 0001:0002ee30       _WinMainCRTStartup         0042fe30 f   crt:_wincrt0.obj
- 0001:0002ef50       ___getmem                  0042ff50 f   crt:_getmem.obj
- 0001:0002eff0       ___bheapinit               0042fff0 f   crt:_bigheap.obj
- 0001:0002f020       ___bheapterm               00430020 f   crt:_bigheap.obj
- 0001:0002f040       __bheap_alloc              00430040 f   crt:_bigheap.obj
- 0001:0002f060       __bheap_realloc            00430060 f   crt:_bigheap.obj
- 0001:0002f080       __bheap_free               00430080 f   crt:_bigheap.obj
- 0001:0002f0a0       __bheap_size               004300a0 f   crt:_bigheap.obj
- 0001:0002f0c0       __bheap_validate           004300c0 f   crt:_bigheap.obj
- 0001:0002f0e0       ___fpint                   004300e0 f   crt:_fpint.obj
- 0001:0002f220       ___extradays               00430220 f   crt:_ttotm.obj
- 0001:0002f280       ___ttotm                   00430280 f   crt:_ttotm.obj
- 0001:0002f3d0       ___tzoff                   004303d0 f   crt:_tzoff.obj
- 0001:0002f490       ___gui_assert              00430490 f   crt:__assert.obj
- 0001:0002f540       _fputs                     00430540 f   crt:fputs.obj
- 0001:0002f630       ___fflush                  00430630 f   crt:_fflush.obj
- 0001:0002f700       _raise                     00430700 f   crt:raise.obj
- 0001:0002f800       _exit                      00430800 f   crt:exit.obj
- 0001:0002f8a0       _snprintf                  004308a0 f   crt:snprintf.obj
- 0001:0002f930       _vsnprintf                 00430930 f   crt:vsnprintf.obj
- 0001:0002f9e0       _swprintf                  004309e0 f   crt:swprintf.obj
- 0001:0002fa20       ___features                00430a20 f   crt:features.obj
- 0001:0002fa90       ___fslot                   00430a90 f   crt:_fslot.obj
- 0001:0002fb10       ___fopen                   00430b10 f   crt:_fopen.obj
- 0001:0002fc50       __Atexit                   00430c50 f   crt:_atexit.obj
- 0001:0002fc80       __close                    00430c80 f   crt:close.obj
- 0001:0002fd40       _remove                    00430d40 f   crt:remove.obj
- 0001:0002fd50       __global_unwind2           00430d50 f   crt:seh1.obj
- 0001:0002fd80       __unwind_handler           00430d80 f   crt:seh1.obj
- 0001:0002fdb0       __local_unwind2            00430db0 f   crt:seh1.obj
- 0001:0002fe1b       __NLG_Return2              00430e1b     crt:seh1.obj
- 0001:0002fe30       __abnormal_termination     00430e30 f   crt:seh1.obj
- 0001:0002fe70       __NLG_Notify1              00430e70     crt:seh1.obj
- 0001:0002fe79       __NLG_Notify               00430e79     crt:seh1.obj
- 0001:0002fe99       __NLG_Dispatch             00430e99     crt:seh1.obj
- 0001:0002fea0       ___fread                   00430ea0 f   crt:_fread.obj
- 0001:0002ffd0       ___fptest                  00430fd0 f   crt:_fptest.obj
- 0001:00030040       ___printf                  00431040 f   crt:_printf.obj
- 0001:000302c8       __except_handler3          004312c8 f   crt:seh2.obj
- 0001:000303e0       __seh_longjmp_unwind@4     004313e0 f   crt:seh2.obj
- 0001:00030410       ___fpunscale               00431410 f   crt:_fpunscale.obj
- 0001:000304b0       __matherr                  004314b0 f   crt:_matherr.obj
- 0001:000304c0       ___feraise                 004314c0 f   crt:_feraise.obj
- 0001:00030500       ___log                     00431500 f   crt:_log.obj
- 0001:000306f0       ___exp                     004316f0 f   crt:_exp.obj
- 0001:00030840       ___stopfx                  00431840 f   crt:_stopfx.obj
- 0001:000309a0       ___stoflt                  004319a0 f   crt:_stoflt.obj
- 0001:00030c20       ___fppow10                 00431c20 f   crt:_fppow10.obj
- 0001:00030db0       ___stoxflt                 00431db0 f   crt:_stoxflt.obj
- 0001:00031040       ___fpscale                 00432040 f   crt:_fpscale.obj
- 0001:00031220       ___fwrite                  00432220 f   crt:_fwrite.obj
- 0001:00031310       _memchr                    00432310 f   crt:memchr.obj
- 0001:000313f0       __Nnl                      004323f0 f   crt:_fgetpos.obj
- 0001:00031430       ___fgetpos                 00432430 f   crt:_fgetpos.obj
- 0001:00031560       ___fsetpos                 00432560 f   crt:_fsetpos.obj
- 0001:00031700       ___strerror                00432700 f   crt:_strerror.obj
- 0001:00031940       __Exit                     00432940 f   crt:_exit.obj
- 0001:00031950       ___clockinit               00432950 f   crt:clock.obj
- 0001:00031960       _clock                     00432960 f   crt:clock.obj
- 0001:000319a0       ___ioinit                  004329a0 f   crt:_ioinit.obj
- 0001:00031bc0       ___ioterm                  00432bc0 f   crt:_ioinit.obj
- 0001:00031d80       ___setargv                 00432d80 f   crt:_setargv.obj
- 0001:00031e20       ___setenvp                 00432e20 f   crt:_setenvp.obj
- 0001:00031ee0       ___wincmdln                00432ee0 f   crt:_wincmdln.obj
- 0001:00031f20       ___xcptfilter              00432f20 f   crt:_xcptfilter.obj
- 0001:00031f90       ___isdst                   00432f90 f   crt:_isdst.obj
- 0001:000321f0       ___getzone                 004331f0 f   crt:_getzone.obj
- 0001:00032260       ___gettime                 00433260 f   crt:_gettime.obj
- 0001:000322e0       _strtol                    004332e0 f   crt:strtol.obj
- 0001:000323b0       ___new_osfhnd              004333b0 f   crt:_osfinfo.obj
- 0001:00032470       ___free_osfhnd             00433470 f   crt:_osfinfo.obj
- 0001:00032510       ___set_osfhnd              00433510 f   crt:_osfinfo.obj
- 0001:000325a0       ___get_osfhnd              004335a0 f   crt:_osfinfo.obj
- 0001:000325c0       __get_osfhandle            004335c0 f   crt:_osfinfo.obj
- 0001:00032610       __open_osfhandle           00433610 f   crt:_osfinfo.obj
- 0001:000326c0       _strrchr                   004336c0 f   crt:strrchr.obj
- 0001:000326e0       __write                    004336e0 f   crt:write.obj
- 0001:000329d0       _signal                    004339d0 f   crt:signal.obj
- 0001:00032a30       _wmemcpy                   00433a30 f   crt:wmemcpy.obj
- 0001:00032a60       ___wprintf                 00433a60 f   crt:_wprintf.obj
- 0001:00032cd0       ____fopen                  00433cd0 f   crt:__fopen.obj
- 0001:00032d80       ___maposerr                00433d80 f   crt:_maperr.obj
- 0001:00032f20       __unlink                   00433f20 f   crt:unlink.obj
- 0001:00032f50       __read                     00433f50 f   crt:read.obj
- 0001:00033260       ___mbtowc                  00434260 f   crt:_mbtowc.obj
- 0001:00033530       _strchr                    00434530 f   crt:strchr.obj
- 0001:00033620       ___putfield                00434620 f   crt:_putfield.obj
- 0001:00033d90       ___puttxt                  00434d90 f   crt:_puttxt.obj
- 0001:00034000       ___fpnorm                  00435000 f   crt:_fpnorm.obj
- 0001:00034110       _feraiseexcept             00435110 f   crt:feraiseexcept.obj
- 0001:000341a0       _localeconv                004351a0 f   crt:localeconv.obj
- 0001:000341b0       __lseek64                  004351b0 f   crt:lseek64.obj
- 0001:00034280       ___set_default_crt_heap_size 00435280 f   crt:_dflheap.obj
- 0001:00034290       ___ulldiv                  00435290 f   crt:_ulldiv.obj
- 0001:00034350       ___getdst                  00435350 f   crt:_getdst.obj
- 0001:000344c0       _getenv                    004354c0 f   crt:getenv.obj
- 0001:000345d0       ___tzone                   004355d0 f   crt:_tzone.obj
- 0001:000346f0       ___stoul                   004356f0 f   crt:_stoul.obj
- 0001:00034870       __lseek                    00435870 f   crt:lseek.obj
- 0001:00034910       ___cp_to_cp                00435910 f   crt:_cp2cp.obj
- 0001:000349c0       _wcscspn                   004359c0 f   crt:wcscspn.obj
- 0001:00034a00       ___iswctype                00435a00 f   crt:_iswctype.obj
- 0001:00034a50       ___wputfield               00435a50 f   crt:_wputfield.obj
- 0001:00035250       ___wputtxt                 00436250 f   crt:_wputtxt.obj
- 0001:000354c0       __open                     004364c0 f   crt:open.obj
- 0001:000354f0       __sopen                    004364f0 f   crt:open.obj
- 0001:00035880       ____mbtowc                 00436880 f   crt:__mbtowc.obj
- 0001:000358d0       ___putstr                  004368d0 f   crt:_putstr.obj
- 0001:00035a70       ___litob                   00436a70 f   crt:_litob.obj
- 0001:00035c70       ___fptestl                 00436c70 f   crt:_fptestl.obj
- 0001:00035c80       ___ldtob                   00436c80 f   crt:_ldtob.obj
- 0001:000361d0       _ignore_handler_s          004371d0 f   crt:constraint_handler_s.obj
- 0001:000361e0       _set_constraint_handler_s  004371e0 f   crt:constraint_handler_s.obj
- 0001:00036200       __crt_constraint           00437200 f   crt:constraint_handler_s.obj
- 0001:00036220       __strnicmp                 00437220 f   crt:strnicmp.obj
- 0001:00036280       ___btowc                   00437280 f   crt:_btowc.obj
- 0001:000362e0       ___wlitob                  004372e0 f   crt:_wlitob.obj
- 0001:000364f0       ___wldtob                  004374f0 f   crt:_wldtob.obj
- 0001:00036ad0       _wmemchr                   00437ad0 f   crt:wmemchr.obj
- 0001:00036b00       ___wputstr                 00437b00 f   crt:_wputstr.obj
- 0001:00036c90       __chsize                   00437c90 f   crt:chsize.obj
- 0001:00036e00       ___wctomb                  00437e00 f   crt:_wctomb.obj
- 0001:00037070       ___ullmod                  00438070 f   crt:_ullmod.obj
- 0001:000370f0       ___lldiv                   004380f0 f   crt:_lldiv.obj
- 0001:000371a0       ___llmul                   004381a0 f   crt:_llmul.obj
- 0001:000371e0       ___fpunscalel              004381e0 f   crt:_fpunscalel.obj
- 0001:00037200       ___fpscalel                00438200 f   crt:_fpscalel.obj
- 0001:00037220       _ldiv                      00438220 f   crt:ldiv.obj
- 0001:00037260       ___genld                   00438260 f   crt:_genld.obj
- 0001:00037620       ___wgenld                  00438620 f   crt:_wgenld.obj
- 0001:00037a50       __setmode                  00438a50 f   crt:setmode.obj
- 0001:00037b20       ____wctomb                 00438b20 f   crt:__wctomb.obj
- 0001:00037b80       _div                       00438b80 f   crt:div.obj
- 0001:00037bc0       _RtlUnwind@16              00438bc0     kernel32:KERNEL32.dll
- 0002:00009204       ___xi_a                    00442204     crt:_initex.obj
- 0002:00009204       ___xi_z                    00442204     crt:_initex.obj
- 0002:00009204       ___xt_a                    00442204     crt:_initex.obj
- 0002:00009204       ___xt_z                    00442204     crt:_initex.obj
- 0003:00000000       _my_program                00443000     main_menu.obj
- 0003:000000a4       _test_menu                 004430a4     main_menu.obj
- 0003:000000a8       __WndPropName_OldProc      004430a8     main_menu.obj
- 0003:000000ba       __WndPropName_MenuXP       004430ba     main_menu.obj
- 0003:00000164       _dropTargetVtbl            00443164     IDropTarget.obj
- 0003:00000180       _DropTarget                00443180     IDropTarget.obj
- 0003:00000184       _dataObjectVtbl            00443184     IDataObject.obj
- 0003:000001b4       _DataObject                004431b4     IDataObject.obj
- 0003:000001b8       _dropSourceVtbl            004431b8     IDropSource.obj
- 0003:000001cc       _DropSource                004431cc     IDropSource.obj
- 0003:000001d0       _ienumFORMATETCVtbl        004431d0     IEnumFORMATETC.obj
- 0003:000001ec       _EnumFORMATETC             004431ec     IEnumFORMATETC.obj
- 0003:000001f0       _flagSelected              004431f0     manage_menu.obj
- 0003:000001f4       _gBttnDet                  004431f4     manage_menu.obj
- 0003:00000248       _cip                       00443248     manage_menu.obj
- 0003:00000270       _png_libpng_ver            00443270     png.obj
- 0003:00000282       _png_sig                   00443282     png.obj
- 0003:0000028a       _png_IHDR                  0044328a     png.obj
- 0003:0000028f       _png_IDAT                  0044328f     png.obj
- 0003:00000294       _png_IEND                  00443294     png.obj
- 0003:00000299       _png_PLTE                  00443299     png.obj
- 0003:0000029e       _png_bKGD                  0044329e     png.obj
- 0003:000002a3       _png_cHRM                  004432a3     png.obj
- 0003:000002a8       _png_gAMA                  004432a8     png.obj
- 0003:000002ad       _png_hIST                  004432ad     png.obj
- 0003:000002b2       _png_iCCP                  004432b2     png.obj
- 0003:000002b7       _png_iTXt                  004432b7     png.obj
- 0003:000002bc       _png_oFFs                  004432bc     png.obj
- 0003:000002c1       _png_pCAL                  004432c1     png.obj
- 0003:000002c6       _png_sCAL                  004432c6     png.obj
- 0003:000002cb       _png_pHYs                  004432cb     png.obj
- 0003:000002d0       _png_sBIT                  004432d0     png.obj
- 0003:000002d5       _png_sPLT                  004432d5     png.obj
- 0003:000002da       _png_sRGB                  004432da     png.obj
- 0003:000002df       _png_tEXt                  004432df     png.obj
- 0003:000002e4       _png_tIME                  004432e4     png.obj
- 0003:000002e9       _png_tRNS                  004432e9     png.obj
- 0003:000002ee       _png_zTXt                  004432ee     png.obj
- 0003:000002f4       _png_pass_start            004432f4     png.obj
- 0003:00000310       _png_pass_inc              00443310     png.obj
- 0003:0000032c       _png_pass_ystart           0044332c     png.obj
- 0003:00000348       _png_pass_yinc             00443348     png.obj
- 0003:00000364       _png_pass_mask             00443364     png.obj
- 0003:00000380       _png_pass_dsp_mask         00443380     png.obj
- 0003:000006dc       _deflate_copyright         004436dc     deflate.obj
- 0003:00000714       _inflate_copyright         00443714     inftrees.obj
- 0003:00000744       __dist_code                00443744     trees.obj
- 0003:00000944       __length_code              00443944     trees.obj
- 0003:00000a80       _z_errmsg                  00443a80     zutil.obj
- 0003:00000aa8       _IID_IXMLDOMDocument       00443aa8     uuid:iid_ixmldomdocument.obj
- 0003:00000ab8       _CLSID_DOMDocument         00443ab8     uuid:clsid_domdocument.obj
- 0003:00000ac8       _IID_IClassFactory         00443ac8     uuid:iid_iclassfactory.obj
- 0003:00000ad8       _IID_IPersistFile          00443ad8     uuid:iid_ipersistfile.obj
- 0003:00000ae8       _IID_IDispatch             00443ae8     uuid:iid_idispatch.obj
- 0003:00000af8       _GUID_NULL                 00443af8     uuid:guid_null.obj
- 0003:00000b08       _IID_IEnumVARIANT          00443b08     uuid:iid_ienumvariant.obj
- 0003:00000b18       _IID_IDropTargetHelper     00443b18     uuid:iid_idroptargethelper.obj
- 0003:00000b28       _CLSID_DragDropHelper      00443b28     uuid:clsid_dragdrophelper.obj
- 0003:00000b38       _IID_IUnknown              00443b38     uuid:iid_iunknown.obj
- 0003:00000b48       _IID_IDropTarget           00443b48     uuid:iid_idroptarget.obj
- 0003:00000b58       _IID_IDataObject           00443b58     uuid:iid_idataobject.obj
- 0003:00000b68       _IID_IDropSource           00443b68     uuid:iid_idropsource.obj
- 0003:00000b78       _IID_IEnumFORMATETC        00443b78     uuid:iid_ienumformatetc.obj
- 0003:00000b88       ___malloc_rovers           00443b88     crt:malloc.obj
- 0003:00000bac       ___malloc_hiword           00443bac     crt:malloc.obj
- 0003:00000bb0       ___malloc_loword           00443bb0     crt:malloc.obj
- 0003:00000bb4       ___malloc_mem              00443bb4     crt:malloc.obj
- 0003:00000bb8       ___malloc_binmax           00443bb8     crt:malloc.obj
- 0003:00000bd8       ___malloc_firstbin         00443bd8     crt:malloc.obj
- 0003:00000bdc       ___malloc_lastbin          00443bdc     crt:malloc.obj
- 0003:00000c34       ___stdin                   00443c34     crt:_files.obj
- 0003:00000c84       ___stdout                  00443c84     crt:_files.obj
- 0003:00000cd4       ___stderr                  00443cd4     crt:_files.obj
- 0003:00000d24       ___filetab                 00443d24     crt:_files.obj
- 0003:00001124       _errno                     00444124     crt:errno.obj
- 0003:00001128       ___argc                    00444128     crt:_crt0dat.obj
- 0003:0000112c       ___argv                    0044412c     crt:_crt0dat.obj
- 0003:00001130       ___wargv                   00444130     crt:_crt0dat.obj
- 0003:00001134       ___envp                    00444134     crt:_crt0dat.obj
- 0003:00001138       ___wenvp                   00444138     crt:_crt0dat.obj
- 0003:0000113c       ___crtheap                 0044413c     crt:_crt0dat.obj
- 0003:00001140       ___crtheapsize             00444140     crt:_crt0dat.obj
- 0003:00001144       ___bheap_threshold         00444144     crt:_crt0dat.obj
- 0003:00001148       ___sigtab                  00444148     crt:_crt0dat.obj
- 0003:00001224       __Atfuns                   00444224     crt:exit.obj
- 0003:00001364       __Atcount                  00444364     crt:exit.obj
- 0003:00001368       __Atcount0                 00444368     crt:exit.obj
- 0003:0000136c       ___feature_mask            0044436c     crt:features.obj
- 0003:00001370       __NLG_Destination          00444370     crt:seh1.obj
- 0003:00001380       ___inf                     00444380     crt:_values.obj
- 0003:00001388       ___nan                     00444388     crt:_values.obj
- 0003:00001390       ___eps                     00444390     crt:_values.obj
- 0003:00001398       ___rteps                   00444398     crt:_values.obj
- 0003:000013a0       ___xbig                    004443a0     crt:_values.obj
- 0003:000013a8       ___zero                    004443a8     crt:_values.obj
- 0003:000013bc       ___c_times                 004443bc     crt:_tinfo.obj
- 0003:00001410       ___times                   00444410     crt:_tinfo.obj
- 0003:00001480       ___ctypetab                00444480     crt:_ctypetab.obj
- 0003:00001484       ___locale                  00444484     crt:localeconv.obj
- 0003:000014bc       ___mbcurmax                004444bc     crt:_state.obj
- 0003:000014c0       ___collatetab              004444c0     crt:_state.obj
- 0003:00001500       ___wcollatetab             00444500     crt:_state.obj
- 0003:00001540       ___mbtowctab               00444540     crt:_state.obj
- 0003:00001580       ___wctombtab               00444580     crt:_state.obj
- 0003:000015c0       ___charcp                  004445c0     crt:_state.obj
- 0003:000015c4       ___lcid                    004445c4     crt:_state.obj
- 0003:000015cc       ___tolowertab              004445cc     crt:_tolowertab.obj
- 0003:000015d0       ___wctypetab               004445d0     crt:_wctypetab.obj
- 0003:00001b18       __IMPORT_DESCRIPTOR_KERNEL32 00444b18     kernel32:KERNEL32.dll
- 0003:00001b2c       __IMPORT_DESCRIPTOR_USER32 00444b2c     user32:USER32.dll
- 0003:00001b40       __IMPORT_DESCRIPTOR_GDI32  00444b40     gdi32:GDI32.dll
- 0003:00001b54       __IMPORT_DESCRIPTOR_ole32  00444b54     ole32:ole32.dll
- 0003:00001b68       __IMPORT_DESCRIPTOR_OLEAUT32 00444b68     oleaut32:OLEAUT32.dll
- 0003:00001b7c       __IMPORT_DESCRIPTOR_SHELL32 00444b7c     shell32:SHELL32.dll
- 0003:00001b90       __IMPORT_DESCRIPTOR_FreeImage 00444b90     FreeImage:FreeImage.dll
- 0003:00001ba4       __IMPORT_DESCRIPTOR_urlmon 00444ba4     urlmon:urlmon.dll
- 0003:00001bb8       __IMPORT_DESCRIPTOR_MSIMG32 00444bb8     msimg32:MSIMG32.dll
- 0003:00001bcc       __NULL_IMPORT_DESCRIPTOR   00444bcc     kernel32:KERNEL32.dll
- 0003:00001f64       __imp__GetModuleHandleA@4  00444f64     kernel32:KERNEL32.dll
- 0003:00001f68       __imp__GetModuleFileNameA@12 00444f68     kernel32:KERNEL32.dll
- 0003:00001f6c       __imp__FindResourceA@12    00444f6c     kernel32:KERNEL32.dll
- 0003:00001f70       __imp__LoadResource@8      00444f70     kernel32:KERNEL32.dll
- 0003:00001f74       __imp__LockResource@4      00444f74     kernel32:KERNEL32.dll
- 0003:00001f78       __imp__MulDiv@12           00444f78     kernel32:KERNEL32.dll
- 0003:00001f7c       __imp__lstrlenA@4          00444f7c     kernel32:KERNEL32.dll
- 0003:00001f80       __imp__LoadLibraryA@4      00444f80     kernel32:KERNEL32.dll
- 0003:00001f84       __imp__GetProcAddress@8    00444f84     kernel32:KERNEL32.dll
- 0003:00001f88       __imp__FreeLibrary@4       00444f88     kernel32:KERNEL32.dll
- 0003:00001f8c       __imp__GetCurrentThreadId@0 00444f8c     kernel32:KERNEL32.dll
- 0003:00001f90       __imp__WideCharToMultiByte@32 00444f90     kernel32:KERNEL32.dll
- 0003:00001f94       __imp__GetLastError@0      00444f94     kernel32:KERNEL32.dll
- 0003:00001f98       __imp__CreateFileA@28      00444f98     kernel32:KERNEL32.dll
- 0003:00001f9c       __imp__ReadFile@20         00444f9c     kernel32:KERNEL32.dll
- 0003:00001fa0       __imp__CloseHandle@4       00444fa0     kernel32:KERNEL32.dll
- 0003:00001fa4       __imp__FileTimeToSystemTime@8 00444fa4     kernel32:KERNEL32.dll
- 0003:00001fa8       __imp__SystemTimeToFileTime@8 00444fa8     kernel32:KERNEL32.dll
- 0003:00001fac       __imp__MultiByteToWideChar@24 00444fac     kernel32:KERNEL32.dll
- 0003:00001fb0       __imp__InterlockedIncrement@4 00444fb0     kernel32:KERNEL32.dll
- 0003:00001fb4       __imp__TlsAlloc@0          00444fb4     kernel32:KERNEL32.dll
- 0003:00001fb8       __imp__Sleep@4             00444fb8     kernel32:KERNEL32.dll
- 0003:00001fbc       __imp__TlsGetValue@4       00444fbc     kernel32:KERNEL32.dll
- 0003:00001fc0       __imp__TlsSetValue@8       00444fc0     kernel32:KERNEL32.dll
- 0003:00001fc4       __imp__GetProcessHeap@0    00444fc4     kernel32:KERNEL32.dll
- 0003:00001fc8       __imp__HeapAlloc@12        00444fc8     kernel32:KERNEL32.dll
- 0003:00001fcc       __imp__IsBadCodePtr@4      00444fcc     kernel32:KERNEL32.dll
- 0003:00001fd0       __imp__FormatMessageA@28   00444fd0     kernel32:KERNEL32.dll
- 0003:00001fd4       __imp__HeapFree@12         00444fd4     kernel32:KERNEL32.dll
- 0003:00001fd8       __imp__GetVersionExA@4     00444fd8     kernel32:KERNEL32.dll
- 0003:00001fdc       __imp__lstrcpyA@8          00444fdc     kernel32:KERNEL32.dll
- 0003:00001fe0       __imp__GetStartupInfoA@4   00444fe0     kernel32:KERNEL32.dll
- 0003:00001fe4       __imp__VirtualAlloc@16     00444fe4     kernel32:KERNEL32.dll
- 0003:00001fe8       __imp__VirtualQuery@12     00444fe8     kernel32:KERNEL32.dll
- 0003:00001fec       __imp__HeapCreate@12       00444fec     kernel32:KERNEL32.dll
- 0003:00001ff0       __imp__HeapDestroy@4       00444ff0     kernel32:KERNEL32.dll
- 0003:00001ff4       __imp__HeapReAlloc@16      00444ff4     kernel32:KERNEL32.dll
- 0003:00001ff8       __imp__HeapSize@12         00444ff8     kernel32:KERNEL32.dll
- 0003:00001ffc       __imp__HeapValidate@12     00444ffc     kernel32:KERNEL32.dll
- 0003:00002000       __imp__RtlUnwind@16        00445000     kernel32:KERNEL32.dll
- 0003:00002004       __imp__ExitProcess@4       00445004     kernel32:KERNEL32.dll
- 0003:00002008       __imp__GetSystemTimeAsFileTime@4 00445008     kernel32:KERNEL32.dll
- 0003:0000200c       __imp__GetFileType@4       0044500c     kernel32:KERNEL32.dll
- 0003:00002010       __imp__GetStdHandle@4      00445010     kernel32:KERNEL32.dll
- 0003:00002014       __imp__GetCurrentProcess@0 00445014     kernel32:KERNEL32.dll
- 0003:00002018       __imp__DuplicateHandle@28  00445018     kernel32:KERNEL32.dll
- 0003:0000201c       __imp__SetHandleCount@4    0044501c     kernel32:KERNEL32.dll
- 0003:00002020       __imp__GetCommandLineA@0   00445020     kernel32:KERNEL32.dll
- 0003:00002024       __imp__GetEnvironmentStrings@0 00445024     kernel32:KERNEL32.dll
- 0003:00002028       __imp__FreeEnvironmentStringsA@4 00445028     kernel32:KERNEL32.dll
- 0003:0000202c       __imp__UnhandledExceptionFilter@4 0044502c     kernel32:KERNEL32.dll
- 0003:00002030       __imp__SetStdHandle@8      00445030     kernel32:KERNEL32.dll
- 0003:00002034       __imp__GetConsoleMode@8    00445034     kernel32:KERNEL32.dll
- 0003:00002038       __imp__GetConsoleOutputCP@0 00445038     kernel32:KERNEL32.dll
- 0003:0000203c       __imp__WriteFile@20        0044503c     kernel32:KERNEL32.dll
- 0003:00002040       __imp__SetConsoleCtrlHandler@8 00445040     kernel32:KERNEL32.dll
- 0003:00002044       __imp__DeleteFileA@4       00445044     kernel32:KERNEL32.dll
- 0003:00002048       __imp__GetConsoleCP@0      00445048     kernel32:KERNEL32.dll
- 0003:0000204c       __imp__SetFilePointer@16   0044504c     kernel32:KERNEL32.dll
- 0003:00002050       __imp__GetTimeZoneInformation@4 00445050     kernel32:KERNEL32.dll
- 0003:00002054       __imp__SetEndOfFile@4      00445054     kernel32:KERNEL32.dll
- 0003:00002058       KERNEL32_NULL_THUNK_DATA  00445058     kernel32:KERNEL32.dll
- 0003:0000205c       __imp__MessageBoxA@16      0044505c     user32:USER32.dll
- 0003:00002060       __imp__LoadCursorA@8       00445060     user32:USER32.dll
- 0003:00002064       __imp__LoadIconA@8         00445064     user32:USER32.dll
- 0003:00002068       __imp__LoadImageA@24       00445068     user32:USER32.dll
- 0003:0000206c       __imp__RegisterClassA@4    0044506c     user32:USER32.dll
- 0003:00002070       __imp__CreateWindowExA@48  00445070     user32:USER32.dll
- 0003:00002074       __imp__PostMessageA@16     00445074     user32:USER32.dll
- 0003:00002078       __imp__SystemParametersInfoA@16 00445078     user32:USER32.dll
- 0003:0000207c       __imp__ClientToScreen@8    0044507c     user32:USER32.dll
- 0003:00002080       __imp__GetWindowRect@8     00445080     user32:USER32.dll
- 0003:00002084       __imp__TrackPopupMenu@28   00445084     user32:USER32.dll
- 0003:00002088       __imp__GetSystemMetrics@4  00445088     user32:USER32.dll
- 0003:0000208c       __imp__SetWindowPos@28     0044508c     user32:USER32.dll
- 0003:00002090       __imp__ReleaseCapture@0    00445090     user32:USER32.dll
- 0003:00002094       __imp__SendMessageA@16     00445094     user32:USER32.dll
- 0003:00002098       __imp__BeginPaint@8        00445098     user32:USER32.dll
- 0003:0000209c       __imp__ReleaseDC@8         0044509c     user32:USER32.dll
- 0003:000020a0       __imp__EndPaint@8          004450a0     user32:USER32.dll
- 0003:000020a4       __imp__SetMenuInfo@8       004450a4     user32:USER32.dll
- 0003:000020a8       __imp__GetDC@4             004450a8     user32:USER32.dll
- 0003:000020ac       __imp__PostQuitMessage@4   004450ac     user32:USER32.dll
- 0003:000020b0       __imp__DefWindowProcA@16   004450b0     user32:USER32.dll
- 0003:000020b4       __imp__LoadAcceleratorsA@8 004450b4     user32:USER32.dll
- 0003:000020b8       __imp__ShowWindow@8        004450b8     user32:USER32.dll
- 0003:000020bc       __imp__TranslateAcceleratorA@12 004450bc     user32:USER32.dll
- 0003:000020c0       __imp__TranslateMessage@4  004450c0     user32:USER32.dll
- 0003:000020c4       __imp__DispatchMessageA@4  004450c4     user32:USER32.dll
- 0003:000020c8       __imp__GetMessageA@16      004450c8     user32:USER32.dll
- 0003:000020cc       __imp__SetWindowLongA@12   004450cc     user32:USER32.dll
- 0003:000020d0       __imp__CallWindowProcA@20  004450d0     user32:USER32.dll
- 0003:000020d4       __imp__GetWindowLongA@8    004450d4     user32:USER32.dll
- 0003:000020d8       __imp__GetDlgItem@8        004450d8     user32:USER32.dll
- 0003:000020dc       __imp__GetClientRect@8     004450dc     user32:USER32.dll
- 0003:000020e0       __imp__CreatePopupMenu@0   004450e0     user32:USER32.dll
- 0003:000020e4       __imp__AppendMenuA@16      004450e4     user32:USER32.dll
- 0003:000020e8       __imp__GetMenuItemInfoA@16 004450e8     user32:USER32.dll
- 0003:000020ec       __imp__GetForegroundWindow@0 004450ec     user32:USER32.dll
- 0003:000020f0       __imp__GetClassNameA@12    004450f0     user32:USER32.dll
- 0003:000020f4       __imp__SetLayeredWindowAttributes@16 004450f4     user32:USER32.dll
- 0003:000020f8       __imp__GetPropA@8          004450f8     user32:USER32.dll
- 0003:000020fc       __imp__SetPropA@12         004450fc     user32:USER32.dll
- 0003:00002100       __imp__RemovePropA@8       00445100     user32:USER32.dll
- 0003:00002104       __imp__CallNextHookEx@16   00445104     user32:USER32.dll
- 0003:00002108       __imp__GetWindowDC@4       00445108     user32:USER32.dll
- 0003:0000210c       __imp__FrameRect@12        0044510c     user32:USER32.dll
- 0003:00002110       __imp__InflateRect@12      00445110     user32:USER32.dll
- 0003:00002114       __imp__FillRect@12         00445114     user32:USER32.dll
- 0003:00002118       __imp__SetWindowsHookExA@16 00445118     user32:USER32.dll
- 0003:0000211c       __imp__UnhookWindowsHookEx@4 0044511c     user32:USER32.dll
- 0003:00002120       __imp__GetMenuItemCount@4  00445120     user32:USER32.dll
- 0003:00002124       __imp__GetMenuItemID@8     00445124     user32:USER32.dll
- 0003:00002128       __imp__GetSubMenu@8        00445128     user32:USER32.dll
- 0003:0000212c       __imp__RegisterClipboardFormatA@4 0044512c     user32:USER32.dll
- 0003:00002130       __imp__wsprintfA           00445130     user32:USER32.dll
- 0003:00002134       __imp__MessageBoxW@16      00445134     user32:USER32.dll
- 0003:00002138       __imp__AppendMenuW@16      00445138     user32:USER32.dll
- 0003:0000213c       __imp__CopyRect@8          0044513c     user32:USER32.dll
- 0003:00002140       __imp__DrawTextA@20        00445140     user32:USER32.dll
- 0003:00002144       __imp__UpdateLayeredWindow@36 00445144     user32:USER32.dll
- 0003:00002148       __imp__MessageBeep@4       00445148     user32:USER32.dll
- 0003:0000214c       __imp__SetCursor@4         0044514c     user32:USER32.dll
- 0003:00002150       __imp__RegisterClassExA@4  00445150     user32:USER32.dll
- 0003:00002154       __imp__UpdateWindow@4      00445154     user32:USER32.dll
- 0003:00002158       __imp__LoadBitmapA@8       00445158     user32:USER32.dll
- 0003:0000215c       __imp__SendDlgItemMessageA@20 0044515c     user32:USER32.dll
- 0003:00002160       __imp__SetRect@20          00445160     user32:USER32.dll
- 0003:00002164       __imp__DestroyWindow@4     00445164     user32:USER32.dll
- 0003:00002168       __imp__EnumPropsExA@12     00445168     user32:USER32.dll
- 0003:0000216c       __imp__GetClassInfoExA@12  0044516c     user32:USER32.dll
- 0003:00002170       __imp__GetDesktopWindow@0  00445170     user32:USER32.dll
- 0003:00002174       __imp__CreateIconIndirect@4 00445174     user32:USER32.dll
- 0003:00002178       __imp__DrawIconEx@36       00445178     user32:USER32.dll
- 0003:0000217c       __imp__GetIconInfo@8       0044517c     user32:USER32.dll
- 0003:00002180       __imp__DestroyIcon@4       00445180     user32:USER32.dll
- 0003:00002184       __imp__DrawFrameControl@16 00445184     user32:USER32.dll
- 0003:00002188       USER32_NULL_THUNK_DATA    00445188     user32:USER32.dll
- 0003:0000218c       __imp__GetObjectA@12       0044518c     gdi32:GDI32.dll
- 0003:00002190       __imp__CreateSolidBrush@4  00445190     gdi32:GDI32.dll
- 0003:00002194       __imp__CreateCompatibleDC@4 00445194     gdi32:GDI32.dll
- 0003:00002198       __imp__SelectObject@8      00445198     gdi32:GDI32.dll
- 0003:0000219c       __imp__BitBlt@36           0044519c     gdi32:GDI32.dll
- 0003:000021a0       __imp__DeleteDC@4          004451a0     gdi32:GDI32.dll
- 0003:000021a4       __imp__SetBkMode@8         004451a4     gdi32:GDI32.dll
- 0003:000021a8       __imp__DeleteObject@4      004451a8     gdi32:GDI32.dll
- 0003:000021ac       __imp__GetTextMetricsA@8   004451ac     gdi32:GDI32.dll
- 0003:000021b0       __imp__GetDeviceCaps@8     004451b0     gdi32:GDI32.dll
- 0003:000021b4       __imp__GetTextExtentPoint32A@16 004451b4     gdi32:GDI32.dll
- 0003:000021b8       __imp__CreateCompatibleBitmap@12 004451b8     gdi32:GDI32.dll
- 0003:000021bc       __imp__GetClipBox@8        004451bc     gdi32:GDI32.dll
- 0003:000021c0       __imp__CreatePen@12        004451c0     gdi32:GDI32.dll
- 0003:000021c4       __imp__MoveToEx@16         004451c4     gdi32:GDI32.dll
- 0003:000021c8       __imp__LineTo@12           004451c8     gdi32:GDI32.dll
- 0003:000021cc       __imp__SetTextColor@8      004451cc     gdi32:GDI32.dll
- 0003:000021d0       __imp__TextOutA@20         004451d0     gdi32:GDI32.dll
- 0003:000021d4       __imp__CreateDIBitmap@24   004451d4     gdi32:GDI32.dll
- 0003:000021d8       __imp__RoundRect@28        004451d8     gdi32:GDI32.dll
- 0003:000021dc       __imp__SetBitmapBits@12    004451dc     gdi32:GDI32.dll
- 0003:000021e0       __imp__Ellipse@20          004451e0     gdi32:GDI32.dll
- 0003:000021e4       __imp__GetStockObject@4    004451e4     gdi32:GDI32.dll
- 0003:000021e8       __imp__CreateDIBSection@24 004451e8     gdi32:GDI32.dll
- 0003:000021ec       __imp__GetPixel@12         004451ec     gdi32:GDI32.dll
- 0003:000021f0       __imp__SetPixel@16         004451f0     gdi32:GDI32.dll
- 0003:000021f4       __imp__GetDIBits@28        004451f4     gdi32:GDI32.dll
- 0003:000021f8       __imp__SetDIBits@28        004451f8     gdi32:GDI32.dll
- 0003:000021fc       __imp__CreateBitmap@20     004451fc     gdi32:GDI32.dll
- 0003:00002200       __imp__SetBkColor@8        00445200     gdi32:GDI32.dll
- 0003:00002204       __imp__DPtoLP@12           00445204     gdi32:GDI32.dll
- 0003:00002208       __imp__GetMapMode@4        00445208     gdi32:GDI32.dll
- 0003:0000220c       __imp__SetMapMode@8        0044520c     gdi32:GDI32.dll
- 0003:00002210       __imp__CreateFontIndirectA@4 00445210     gdi32:GDI32.dll
- 0003:00002214       __imp__Rectangle@20        00445214     gdi32:GDI32.dll
- 0003:00002218       __imp__GetBitmapBits@12    00445218     gdi32:GDI32.dll
- 0003:0000221c       __imp__ExcludeClipRect@20  0044521c     gdi32:GDI32.dll
- 0003:00002220       GDI32_NULL_THUNK_DATA     00445220     gdi32:GDI32.dll
- 0003:00002224       __imp__OleInitialize@4     00445224     ole32:ole32.dll
- 0003:00002228       __imp__OleUninitialize@0   00445228     ole32:ole32.dll
- 0003:0000222c       __imp__DoDragDrop@16       0044522c     ole32:ole32.dll
- 0003:00002230       __imp__CoInitialize@4      00445230     ole32:ole32.dll
- 0003:00002234       __imp__CoCreateInstance@20 00445234     ole32:ole32.dll
- 0003:00002238       __imp__CoTaskMemFree@4     00445238     ole32:ole32.dll
- 0003:0000223c       __imp__CLSIDFromString@8   0044523c     ole32:ole32.dll
- 0003:00002240       __imp__CLSIDFromProgID@8   00445240     ole32:ole32.dll
- 0003:00002244       __imp__CoGetClassObject@20 00445244     ole32:ole32.dll
- 0003:00002248       __imp__CoGetObject@16      00445248     ole32:ole32.dll
- 0003:0000224c       __imp__CoUninitialize@0    0044524c     ole32:ole32.dll
- 0003:00002250       __imp__ReleaseStgMedium@4  00445250     ole32:ole32.dll
- 0003:00002254       __imp__CoTaskMemAlloc@4    00445254     ole32:ole32.dll
- 0003:00002258       ole32_NULL_THUNK_DATA     00445258     ole32:ole32.dll
- 0003:0000225c       __imp__SysFreeString@4     0044525c     oleaut32:OLEAUT32.dll
- 0003:00002260       __imp__VariantInit@4       00445260     oleaut32:OLEAUT32.dll
- 0003:00002264       __imp__SysAllocString@4    00445264     oleaut32:OLEAUT32.dll
- 0003:00002268       __imp__VariantClear@4      00445268     oleaut32:OLEAUT32.dll
- 0003:0000226c       __imp__SysAllocStringByteLen@8 0044526c     oleaut32:OLEAUT32.dll
- 0003:00002270       __imp__GetActiveObject@12  00445270     oleaut32:OLEAUT32.dll
- 0003:00002274       __imp__VariantChangeType@16 00445274     oleaut32:OLEAUT32.dll
- 0003:00002278       __imp__SysAllocStringLen@8 00445278     oleaut32:OLEAUT32.dll
- 0003:0000227c       __imp__SysStringLen@4      0044527c     oleaut32:OLEAUT32.dll
- 0003:00002280       OLEAUT32_NULL_THUNK_DATA  00445280     oleaut32:OLEAUT32.dll
- 0003:00002284       __imp__ShellExecuteA@24    00445284     shell32:SHELL32.dll
- 0003:00002288       __imp__DragQueryFileA@16   00445288     shell32:SHELL32.dll
- 0003:0000228c       __imp__SHGetFileInfoA@20   0044528c     shell32:SHELL32.dll
- 0003:00002290       SHELL32_NULL_THUNK_DATA   00445290     shell32:SHELL32.dll
- 0003:00002294       __imp__FreeImage_Initialise@4 00445294     FreeImage:FreeImage.dll
- 0003:00002298       __imp__FreeImage_GetFileType@8 00445298     FreeImage:FreeImage.dll
- 0003:0000229c       __imp__FreeImage_Load@12   0044529c     FreeImage:FreeImage.dll
- 0003:000022a0       __imp__FreeImage_GetWidth@4 004452a0     FreeImage:FreeImage.dll
- 0003:000022a4       __imp__FreeImage_GetHeight@4 004452a4     FreeImage:FreeImage.dll
- 0003:000022a8       __imp__FreeImage_Unload@4  004452a8     FreeImage:FreeImage.dll
- 0003:000022ac       __imp__FreeImage_PreMultiplyWithAlpha@4 004452ac     FreeImage:FreeImage.dll
- 0003:000022b0       __imp__FreeImage_GetInfoHeader@4 004452b0     FreeImage:FreeImage.dll
- 0003:000022b4       __imp__FreeImage_GetBits@4 004452b4     FreeImage:FreeImage.dll
- 0003:000022b8       __imp__FreeImage_GetInfo@4 004452b8     FreeImage:FreeImage.dll
- 0003:000022bc       __imp__FreeImage_HasBackgroundColor@4 004452bc     FreeImage:FreeImage.dll
- 0003:000022c0       __imp__FreeImage_IsTransparent@4 004452c0     FreeImage:FreeImage.dll
- 0003:000022c4       __imp__FreeImage_Allocate@24 004452c4     FreeImage:FreeImage.dll
- 0003:000022c8       __imp__FreeImage_GetColorsUsed@4 004452c8     FreeImage:FreeImage.dll
- 0003:000022cc       __imp__FreeImage_Composite@16 004452cc     FreeImage:FreeImage.dll
- 0003:000022d0       FreeImage_NULL_THUNK_DATA 004452d0     FreeImage:FreeImage.dll
- 0003:000022d4       __imp__CopyStgMedium@8     004452d4     urlmon:urlmon.dll
- 0003:000022d8       urlmon_NULL_THUNK_DATA    004452d8     urlmon:urlmon.dll
- 0003:000022dc       __imp__AlphaBlend@44       004452dc     msimg32:MSIMG32.dll
- 0003:000022e0       __imp__TransparentBlt@44   004452e0     msimg32:MSIMG32.dll
- 0003:000022e4       MSIMG32_NULL_THUNK_DATA   004452e4     msimg32:MSIMG32.dll
- 0003:000031e0       _damm_handle               004461e0     <common>
- 0003:000031e4       _mnu_hwnd                  004461e4     <common>
- 0003:000031e8       _old_menu_proc             004461e8     <common>
- 0003:000031ec       __hHook                    004461ec     <common>
- 0003:000031f0       _g_BmpHeight               004461f0     <common>
- 0003:000031f4       _g_BmpWidth                004461f4     <common>
- 0003:000031f8       _MainBitmap                004461f8     <common>
- 0003:000031fc       _lpBits                    004461fc     <common>
- 0003:00003200       _lpBitmap                  00446200     <common>
- 0003:00003204       _opti_ht                   00446204     <common>
- 0003:00003208       _opti_dw                   00446208     <common>
- 0003:0000320c       _opti_up                   0044620c     <common>
- 0003:00003210       _plus_ht                   00446210     <common>
- 0003:00003214       _plus_dw                   00446214     <common>
- 0003:00003218       _plus_up                   00446218     <common>
- 0003:0000321c       _g_hBmpHot                 0044621c     <common>
- 0003:00003220       _g_hBmpDown                00446220     <common>
- 0003:00003224       _g_hBmpUp                  00446224     <common>
- 0003:00003228       _main_menu_theme           00446228     <common>
- 0003:00003270       _buttons_proc              00446270     <common>
- 0003:00003298       _main_menu                 00446298     <common>
- 0003:0000329c       _plus_button               0044629c     <common>
- 0003:000032a0       _opti_button               004462a0     <common>
- 0003:000032a4       _menu_objects              004462a4     <common>
- 0003:000032a8       _menu_button               004462a8     <common>
- 0003:000032ac       _main_window               004462ac     <common>
- 0003:000032b0       _hwndMain                  004462b0     <common>
- 0003:000032b4       _hInst                     004462b4     <common>
- 0003:000032b8       _first_menu_data           004462b8     <common>
- 0003:000032bc       _primary_menu_data         004462bc     <common>
- 0003:000032c0       _btnOldProc                004462c0     <common>
- 0003:000032c4       _xmlTreeDoc                004462c4     <common>
- 0003:000032c8       _dh_g_bIsUnicodeMode       004462c8     <common>
- 0003:000032cc       __fltused                  004462cc     <common>
- 0003:000032d0       _hEdit                     004462d0     <common>
- 0003:000032d4       _Dragging                  004462d4     <common>
- 0003:000032d8       _Pos                       004462d8     <common>
- 0003:000032dc       _hitTarget                 004462dc     <common>
- 0003:000032e0       _tvht                      004462e0     <common>
- 0003:000032f0       _hTree                     004462f0     <common>
- 0003:000032f4       _hBitMap                   004462f4     <common>
- 0003:000032f8       _hImageList                004462f8     <common>
- 0003:000032fc       _Root                      004462fc     <common>
- 0003:00003300       _Before                    00446300     <common>
- 0003:00003304       _Parent                    00446304     <common>
- 0003:00003308       _tvinsert                  00446308     <common>
- 0003:00003348       _Selected                  00446348     <common>
- 0003:0000334c       _tvi                       0044634c     <common>
- 0003:00003374       _m_hMemDC                  00446374     <common>
- 0003:00003378       _m_hMemBitmap              00446378     <common>
- 0003:0000337c       _m_hOldMemBitmap           0044637c     <common>
- 0003:00003380       _m_hGlowDC                 00446380     <common>
- 0003:00003384       _m_hGlowBitmap             00446384     <common>
- 0003:00003388       _m_hOldGlowBitmap          00446388     <common>
- 0003:0000338c       _m_hShadowDC               0044638c     <common>
- 0003:00003390       _m_hShadowBitmap           00446390     <common>
- 0003:00003394       _m_hOldShadowBitmap        00446394     <common>
- 0003:00003398       _m_hBgDC                   00446398     <common>
- 0003:0000339c       _m_hBgBitmap               0044639c     <common>
- 0003:000033a0       _m_hOldBgBitmap            004463a0     <common>
- 0003:000033a4       _m_bgra                    004463a4     <common>
- 0003:000033a8       _m_height                  004463a8     <common>
- 0003:000033ac       _m_width                   004463ac     <common>
- 0003:000033b0       _m_good                    004463b0     <common>
- 0003:000033b4       ___iolim                   004463b4     <common>
- 0003:000033b8       ___iotab                   004463b8     <common>
+ 0001:00000000       _dhCreateObjectEx@20       00401000 f   disphelper.obj
+ 0001:000000d0       _dhGetObjectEx@24          004010d0 f   disphelper.obj
+ 0001:00000220       _dhCreateObject@12         00401220 f   disphelper.obj
+ 0001:000002a0       _dhGetObject@12            004012a0 f   disphelper.obj
+ 0001:000002f0       _dhCallMethod              004012f0 f   disphelper.obj
+ 0001:00000340       _dhPutValue                00401340 f   disphelper.obj
+ 0001:00000390       _dhPutRef                  00401390 f   disphelper.obj
+ 0001:000003e0       _dhGetValue                004013e0 f   disphelper.obj
+ 0001:00000440       _dhInvoke                  00401440 f   disphelper.obj
+ 0001:000004a0       _dhInvokeArray@24          004014a0 f   disphelper.obj
+ 0001:000005d0       _dhCallMethodV@12          004015d0 f   disphelper.obj
+ 0001:00000610       _dhPutValueV@12            00401610 f   disphelper.obj
+ 0001:00000650       _dhPutRefV@12              00401650 f   disphelper.obj
+ 0001:00000690       _dhGetValueV@20            00401690 f   disphelper.obj
+ 0001:00000950       _dhInvokeV@24              00401950 f   disphelper.obj
+ 0001:00000fb0       _dhEnumBeginV@16           00401fb0 f   disphelper.obj
+ 0001:00001110       _dhEnumNextVariant@8       00402110 f   disphelper.obj
+ 0001:00001180       _dhEnumNextObject@8        00402180 f   disphelper.obj
+ 0001:00001220       _dhEnumBegin               00402220 f   disphelper.obj
+ 0001:00001270       _ConvertFileTimeToVariantTime@8 00402270 f   disphelper.obj
+ 0001:00001320       _ConvertVariantTimeToFileTime@12 00402320 f   disphelper.obj
+ 0001:000013c0       _ConvertVariantTimeToSystemTime@12 004023c0 f   disphelper.obj
+ 0001:00001430       _ConvertSystemTimeToVariantTime@8 00402430 f   disphelper.obj
+ 0001:00001490       _ConvertVariantTimeToTimeT@12 00402490 f   disphelper.obj
+ 0001:00001510       _ConvertTimeTToVariantTime@8 00402510 f   disphelper.obj
+ 0001:000015d0       _ConvertAnsiStrToBStr@8    004025d0 f   disphelper.obj
+ 0001:000016a0       _ConvertBStrToAnsiStr@8    004026a0 f   disphelper.obj
+ 0001:00001830       _dhEnter@0                 00402830 f   disphelper.obj
+ 0001:00001860       _dhExitEx@28               00402860 f   disphelper.obj
+ 0001:00001a40       _dhShowException@4         00402a40 f   disphelper.obj
+ 0001:00001a90       _dhFormatExceptionW@16     00402a90 f   disphelper.obj
+ 0001:00001dc0       _dhFormatExceptionA@16     00402dc0 f   disphelper.obj
+ 0001:00001e40       _dhGetLastException@4      00402e40 f   disphelper.obj
+ 0001:00001e80       _dhToggleExceptions@4      00402e80 f   disphelper.obj
+ 0001:00001ea0       _dhSetExceptionOptions@4   00402ea0 f   disphelper.obj
+ 0001:00001ee0       _dhGetExceptionOptions@4   00402ee0 f   disphelper.obj
+ 0001:00001f20       _dhCleanupThreadException@0 00402f20 f   disphelper.obj
+ 0001:00001f90       _dhInitializeImp@8         00402f90 f   disphelper.obj
+ 0001:00001fc0       _dhUninitialize@4          00402fc0 f   disphelper.obj
+ 0001:00001fe0       _DrawMenuChild@8           00402fe0 f   draw.obj
+ 0001:000024d0       _DrawMenuRoot@8            004034d0 f   draw.obj
+ 0001:000028a0       _DrawMenuSeparator@8       004038a0 f   draw.obj
+ 0001:00002c20       _drawIconToBitmap@16       00403c20 f   graphic.obj
+ 0001:00002db0       _CreateBitmapMask@8        00403db0 f   graphic.obj
+ 0001:00002eb0       _DrawTransparentBitmap@20  00403eb0 f   graphic.obj
+ 0001:00003150       _compositeImage@8          00404150 f   graphic.obj
+ 0001:00003300       _gradientFill@28           00404300 f   graphic.obj
+ 0001:00003490       _skinedBox@20              00404490 f   graphic.obj
+ 0001:000035f0       _InterpolateLinear@20      004045f0 f   graphic.obj
+ 0001:00003710       _wallpaper@12              00404710 f   graphic.obj
+ 0001:00003820       _getBGRA                   00404820 f   graphic.obj
+ 0001:00003830       _blurBitmap@12             00404830 f   graphic.obj
+ 0001:00003ba0       _CreateAngledFont@16       00404ba0 f   graphic.obj
+ 0001:00003c10       _DataObject_CDataObject@0  00404c10 f   IDataObject.obj
+ 0001:00003c70       _DataObject_QueryInterface@12 00404c70 f   IDataObject.obj
+ 0001:00003ce0       _DataObject_AddRef@4       00404ce0 f   IDataObject.obj
+ 0001:00003d00       _DataObject_Release@4      00404d00 f   IDataObject.obj
+ 0001:00003d30       _DataObject_GetData@12     00404d30 f   IDataObject.obj
+ 0001:00003df0       _DataObject_GetDataHere@12 00404df0 f   IDataObject.obj
+ 0001:00003e00       _DataObject_QueryGetData@8 00404e00 f   IDataObject.obj
+ 0001:00003e80       _DataObject_GetCanonicalFormatEtc@12 00404e80 f   IDataObject.obj
+ 0001:00003e90       _DataObject_SetData@16     00404e90 f   IDataObject.obj
+ 0001:00003fb0       _DataObject_EnumFormatEtc@12 00404fb0 f   IDataObject.obj
+ 0001:00003ff0       _DataObject_DAdvise@20     00404ff0 f   IDataObject.obj
+ 0001:00004000       _DataObject_DUnadvise@8    00405000 f   IDataObject.obj
+ 0001:00004010       _DataObject_EnumDAdvise@8  00405010 f   IDataObject.obj
+ 0001:00004020       _DropSource_CDropSource@0  00405020 f   IDropSource.obj
+ 0001:00004080       _DropSource_QueryInterface@12 00405080 f   IDropSource.obj
+ 0001:000040f0       _DropSource_AddRef@4       004050f0 f   IDropSource.obj
+ 0001:00004110       _DropSource_Release@4      00405110 f   IDropSource.obj
+ 0001:00004140       _DropSource_GiveFeedback@8 00405140 f   IDropSource.obj
+ 0001:00004160       _DropSource_QueryContinueDrag@12 00405160 f   IDropSource.obj
+ 0001:00004190       _DropTarget_CDropTarget@0  00405190 f   IDropTarget.obj
+ 0001:00004200       _DropTarget_QueryInterface@12 00405200 f   IDropTarget.obj
+ 0001:00004270       _DropTarget_AddRef@4       00405270 f   IDropTarget.obj
+ 0001:00004290       _DropTarget_Release@4      00405290 f   IDropTarget.obj
+ 0001:000042e0       _DropTarget_DragEnter@24   004052e0 f   IDropTarget.obj
+ 0001:00004360       _DropTarget_DragOver@20    00405360 f   IDropTarget.obj
+ 0001:000043a0       _DropTarget_DragLeave@4    004053a0 f   IDropTarget.obj
+ 0001:000043d0       _DropTarget_Drop@24        004053d0 f   IDropTarget.obj
+ 0001:00004480       _QueryDrop@12              00405480 f   IDropTarget.obj
+ 0001:00004530       _DisplayFileNames@8        00405530 f   IDropTarget.obj
+ 0001:000045b0       _EnumFORMATETC_CEnumFormatEtc@8 004055b0 f   IEnumFORMATETC.obj
+ 0001:00004620       _EnumFORMATETC_QueryInterface@12 00405620 f   IEnumFORMATETC.obj
+ 0001:00004690       _EnumFORMATETC_AddRef@4    00405690 f   IEnumFORMATETC.obj
+ 0001:000046b0       _EnumFORMATETC_Release@4   004056b0 f   IEnumFORMATETC.obj
+ 0001:000046f0       _EnumFORMATETC_Next@16     004056f0 f   IEnumFORMATETC.obj
+ 0001:00004790       _EnumFORMATETC_Skip@8      00405790 f   IEnumFORMATETC.obj
+ 0001:000047c0       _EnumFORMATETC_Reset@4     004057c0 f   IEnumFORMATETC.obj
+ 0001:000047d0       _EnumFORMATETC_Clone@8     004057d0 f   IEnumFORMATETC.obj
+ 0001:00004b30       _Createmain_menu_WndClassWnd@0 00405b30 f   main_menu.obj
+ 0001:00004b80       _MainWndProc_OnCommand@16  00405b80 f   main_menu.obj
+ 0001:00004cf0       _MainWndProc@16            00405cf0 f   main_menu.obj
+ 0001:000051e0       _WinMain@16                004061e0 f   main_menu.obj
+ 0001:000052a0       _create_Controls@12        004062a0 f   main_menu.obj
+ 0001:000053b0       _ButtonProc@16             004063b0 f   main_menu.obj
+ 0001:00005620       _MapDialogControlRect@12   00406620 f   main_menu.obj
+ 0001:00005750       _LoadXmlMenu@4             00406750 f   main_menu.obj
+ 0001:000060b0       _install_Hook@12           004070b0 f   main_menu.obj
+ 0001:00006210       _menuproc_sclass@16        00407210 f   main_menu.obj
+ 0001:000065a0       _initHook@0                004075a0 f   main_menu.obj
+ 0001:000065d0       _unitHook@0                004075d0 f   main_menu.obj
+ 0001:00006630       _draw_menu@16              00407630 f   main_menu.obj
+ 0001:00006920       _draw_buttons@16           00407920 f   main_menu.obj
+ 0001:00006aa0       _MenuType@8                00407aa0 f   main_menu.obj
+ 0001:00006b10       _IsRootMenu@4              00407b10 f   main_menu.obj
+ 0001:00006b70       _startDragDrop@4           00407b70 f   main_menu.obj
+ 0001:00006c40       _imageOptions@12           00407c40 f   main_menu.obj
+ 0001:00006de0       _MagnetWindow@4            00407de0 f   main_menu.obj
+ 0001:00006ed0       _HextoDec@4                00407ed0 f   main_menu.obj
+ 0001:00006f30       _xstrtoi@4                 00407f30 f   main_menu.obj
+ 0001:00006f50       _xmlInitnstance@8          00407f50 f   main_menu.obj
+ 0001:00007560       _drawMenuSeparator@16      00408560 f   main_menu.obj
+ 0001:00007770       _drawRootMenuItem@16       00408770 f   main_menu.obj
+ 0001:00007b80       _SetWindowTransparentMode@8 00408b80 f   main_menu.obj
+ 0001:00007bf0       _Create32BitHBITMAP@16     00408bf0 f   main_menu.obj
+ 0001:00007c00       _manage_menu@8             00408c00 f   manage_menu.obj
+ 0001:00007d80       _treeWndProc@16            00408d80 f   manage_menu.obj
+ 0001:00007d90       _main_menu_wndProc@16      00408d90 f   manage_menu.obj
+ 0001:00008170       _createControls@8          00409170 f   manage_menu.obj
+ 0001:000083a0       _buildTree@12              004093a0 f   manage_menu.obj
+ 0001:000085a0       _BSTRtoANSI@4              004095a0 f   manage_menu.obj
+ 0001:00008610       _ANSItoBSTR@4              00409610 f   manage_menu.obj
+ 0001:00008670       _DrawButtons@16            00409670 f   manage_menu.obj
+ 0001:00008710       _btnProc@16                00409710 f   manage_menu.obj
+ 0001:00008a40       _initBtnClass@4            00409a40 f   manage_menu.obj
+ 0001:00008ae0       _wallpaperFromHbitmap@12   00409ae0 f   manage_menu.obj
+ 0001:00008b50       _DelPropProc@12            00409b50 f   manage_menu.obj
+ 0001:00008b70       _DrawMenuShadow@16         00409b70 f   manage_menu.obj
+ 0001:00008ce0       _pMask@8                   00409ce0 f   manage_menu.obj
+ 0001:00008d70       _CaptureScreen@0           00409d70 f   manage_menu.obj
+ 0001:00008e00       _blurBitmap2@12            00409e00 f   manage_menu.obj
+ 0001:00009170       _SelectIconA@16            0040a170 f   shellHelper.obj
+ 0001:00009270       _SelectIconW@16            0040a270 f   shellHelper.obj
+ 0001:00009350       _loadXML@4                 0040a350 f   xmleng.obj
+ 0001:000095c0       _populateNode@4            0040a5c0 f   xmleng.obj
+ 0001:00009660       _populateAttributes@4      0040a660 f   xmleng.obj
+ 0001:000096e0       _getAttributeValue@12      0040a6e0 f   xmleng.obj
+ 0001:00009780       _AnsiToUnicode@8           0040a780 f   xmleng.obj
+ 0001:00009810       _ConvertAnsiStrToBStrx@8   0040a810 f   xmleng.obj
+ 0001:000098e0       _ConvertBStrToAnsiStrx@8   0040a8e0 f   xmleng.obj
+ 0001:000099c0       _unloadXML@0               0040a9c0 f   xmleng.obj
+ 0001:000099cb       _CopyStgMedium@8           0040a9cb     urlmon:urlmon.dll
+ 0001:000099e0       _wcschr                    0040a9e0 f   crt:wcschr.obj
+ 0001:00009a00       _floor                     0040aa00 f   crt:floor.obj
+ 0001:00009a40       _ceil                      0040aa40 f   crt:ceil.obj
+ 0001:00009a80       ___ftoll                   0040aa80 f   crt:_ftoll.obj
+ 0001:00009ab0       _gmtime                    0040aab0 f   crt:gmtime.obj
+ 0001:00009ad0       _mktime                    0040aad0 f   crt:mktime.obj
+ 0001:00009bd0       _localtime                 0040abd0 f   crt:localtime.obj
+ 0001:00009bf0       ___assert                  0040abf0 f   crt:_assert.obj
+ 0001:00009d20       _abort                     0040ad20 f   crt:abort.obj
+ 0001:00009f50       __sheap_alloc              0040af50 f   crt:malloc.obj
+ 0001:0000a260       _malloc                    0040b260 f   crt:malloc.obj
+ 0001:0000a2a0       __sheap_free               0040b2a0 f   crt:free.obj
+ 0001:0000a620       _free                      0040b620 f   crt:free.obj
+ 0001:0000a650       _calloc                    0040b650 f   crt:calloc.obj
+ 0001:0000a690       ___chkstk                  0040b690 f   crt:_chkstk.obj
+ 0001:0000a6c0       _wcscmp                    0040b6c0 f   crt:wcscmp.obj
+ 0001:0000a6f0       _WinMainCRTStartup         0040b6f0 f   crt:_wincrt0.obj
+ 0001:0000a810       ___fpint                   0040b810 f   crt:_fpint.obj
+ 0001:0000a950       ___extradays               0040b950 f   crt:_ttotm.obj
+ 0001:0000a9b0       ___ttotm                   0040b9b0 f   crt:_ttotm.obj
+ 0001:0000aaf0       ___tzoff                   0040baf0 f   crt:_tzoff.obj
+ 0001:0000abb0       ___gui_assert              0040bbb0 f   crt:__assert.obj
+ 0001:0000ad50       _fputs                     0040bd50 f   crt:fputs.obj
+ 0001:0000ad80       ___fflush                  0040bd80 f   crt:_fflush.obj
+ 0001:0000ae50       _raise                     0040be50 f   crt:raise.obj
+ 0001:0000af50       _exit                      0040bf50 f   crt:exit.obj
+ 0001:0000afe0       _snprintf                  0040bfe0 f   crt:snprintf.obj
+ 0001:0000b060       _vsnprintf                 0040c060 f   crt:vsnprintf.obj
+ 0001:0000b0f0       _swprintf                  0040c0f0 f   crt:swprintf.obj
+ 0001:0000b130       ___getmem                  0040c130 f   crt:_getmem.obj
+ 0001:0000b1d0       ___bheapinit               0040c1d0 f   crt:_bigheap.obj
+ 0001:0000b1f0       ___bheapterm               0040c1f0 f   crt:_bigheap.obj
+ 0001:0000b210       __bheap_aligned_alloc      0040c210 f   crt:_bigheap.obj
+ 0001:0000b270       __bheap_aligned_realloc    0040c270 f   crt:_bigheap.obj
+ 0001:0000b350       __bheap_alloc              0040c350 f   crt:_bigheap.obj
+ 0001:0000b360       __bheap_realloc            0040c360 f   crt:_bigheap.obj
+ 0001:0000b380       __bheap_free               0040c380 f   crt:_bigheap.obj
+ 0001:0000b3a0       __bheap_size               0040c3a0 f   crt:_bigheap.obj
+ 0001:0000b3d0       __bheap_validate           0040c3d0 f   crt:_bigheap.obj
+ 0001:0000b400       _memset                    0040c400 f   crt:memset.obj
+ 0001:0000b4f8       __except_handler3          0040c4f8 f   crt:seh2.obj
+ 0001:0000b5d0       __seh_longjmp_unwind@4     0040c5d0 f   crt:seh2.obj
+ 0001:0000b5f0       __global_unwind2           0040c5f0 f   crt:seh1.obj
+ 0001:0000b610       __unwind_handler           0040c610 f   crt:seh1.obj
+ 0001:0000b640       __local_unwind2            0040c640 f   crt:seh1.obj
+ 0001:0000b69f       __NLG_Return2              0040c69f     crt:seh1.obj
+ 0001:0000b6b0       __abnormal_termination     0040c6b0 f   crt:seh1.obj
+ 0001:0000b6e0       __NLG_Notify1              0040c6e0     crt:seh1.obj
+ 0001:0000b6e9       __NLG_Notify               0040c6e9     crt:seh1.obj
+ 0001:0000b6fd       __NLG_Dispatch             0040c6fd     crt:seh1.obj
+ 0001:0000b710       ___features                0040c710 f   crt:features.obj
+ 0001:0000b7d0       ___clockinit               0040c7d0 f   crt:clock.obj
+ 0001:0000b7e0       _clock                     0040c7e0 f   crt:clock.obj
+ 0001:0000b820       ___ioinit                  0040c820 f   crt:_ioinit.obj
+ 0001:0000ba60       ___ioterm                  0040ca60 f   crt:_ioinit.obj
+ 0001:0000bc30       ___setargv                 0040cc30 f   crt:_setargv.obj
+ 0001:0000bcd0       ___setenvp                 0040ccd0 f   crt:_setenvp.obj
+ 0001:0000bd90       ___crt_abort               0040cd90 f   crt:_crtabort.obj
+ 0001:0000be70       ___wincmdln                0040ce70 f   crt:_wincmdln.obj
+ 0001:0000beb0       ___xcptfilter              0040ceb0 f   crt:_xcptfilter.obj
+ 0001:0000bf20       ___isdst                   0040cf20 f   crt:_isdst.obj
+ 0001:0000c160       ___getzone                 0040d160 f   crt:_getzone.obj
+ 0001:0000c1d0       ___gettime                 0040d1d0 f   crt:_gettime.obj
+ 0001:0000c240       _strtol                    0040d240 f   crt:strtol.obj
+ 0001:0000c2f0       ___new_osfhnd              0040d2f0 f   crt:_osfinfo.obj
+ 0001:0000c3a0       ___free_osfhnd             0040d3a0 f   crt:_osfinfo.obj
+ 0001:0000c430       ___set_osfhnd              0040d430 f   crt:_osfinfo.obj
+ 0001:0000c4b0       ___get_osfhnd              0040d4b0 f   crt:_osfinfo.obj
+ 0001:0000c4d0       __get_osfhandle            0040d4d0 f   crt:_osfinfo.obj
+ 0001:0000c510       __open_osfhandle           0040d510 f   crt:_osfinfo.obj
+ 0001:0000c5c0       ___fwrite                  0040d5c0 f   crt:_fwrite.obj
+ 0001:0000c6b0       _strrchr                   0040d6b0 f   crt:strrchr.obj
+ 0001:0000c6d0       ___buf_stream              0040d6d0 f   crt:_stbuf.obj
+ 0001:0000c740       ___unbuf_stream            0040d740 f   crt:_stbuf.obj
+ 0001:0000c790       __write                    0040d790 f   crt:write.obj
+ 0001:0000ca70       _signal                    0040da70 f   crt:signal.obj
+ 0001:0000cad0       __Exit                     0040dad0 f   crt:_exit.obj
+ 0001:0000cae0       ___printf                  0040dae0 f   crt:_printf.obj
+ 0001:0000cd50       ___wprintf                 0040dd50 f   crt:_wprintf.obj
+ 0001:0000cfc0       _memcpy                    0040dfc0 f   crt:memcpy.obj
+ 0001:0000d1b0       ___set_default_crt_heap_size 0040e1b0 f   crt:_dflheap.obj
+ 0001:0000d1c0       ___ulldiv                  0040e1c0 f   crt:_ulldiv.obj
+ 0001:0000d270       ___getdst                  0040e270 f   crt:_getdst.obj
+ 0001:0000d3e0       _getenv                    0040e3e0 f   crt:getenv.obj
+ 0001:0000d570       ___tzone                   0040e570 f   crt:_tzone.obj
+ 0001:0000d6a0       _strchr                    0040e6a0 f   crt:strchr.obj
+ 0001:0000d770       ___stoul                   0040e770 f   crt:_stoul.obj
+ 0001:0000d8f0       ___maposerr                0040e8f0 f   crt:_maperr.obj
+ 0001:0000da90       ___init_closeall           0040ea90 f   crt:fclose.obj
+ 0001:0000dab0       _fclose                    0040eab0 f   crt:fclose.obj
+ 0001:0000dbb0       __isatty                   0040ebb0 f   crt:isatty.obj
+ 0001:0000dbe0       __lseek                    0040ebe0 f   crt:lseek.obj
+ 0001:0000dc70       ___cp_to_cp                0040ec70 f   crt:_cp2cp.obj
+ 0001:0000dd20       ___mbtowc                  0040ed20 f   crt:_mbtowc.obj
+ 0001:0000dff0       ___putfield                0040eff0 f   crt:_putfield.obj
+ 0001:0000e610       ___puttxt                  0040f610 f   crt:_puttxt.obj
+ 0001:0000e810       _wcscspn                   0040f810 f   crt:wcscspn.obj
+ 0001:0000e850       ___iswctype                0040f850 f   crt:_iswctype.obj
+ 0001:0000e8a0       ___wputfield               0040f8a0 f   crt:_wputfield.obj
+ 0001:0000ef50       ___wputtxt                 0040ff50 f   crt:_wputtxt.obj
+ 0001:0000f150       __strnicmp                 00410150 f   crt:strnicmp.obj
+ 0001:0000f1c0       _sprintf                   004101c0 f   crt:sprintf.obj
+ 0001:0000f1f0       _strcat                    004101f0 f   crt:strcat.obj
+ 0001:0000f220       _memchr                    00410220 f   crt:memchr.obj
+ 0001:0000f2e0       __Atexit                   004102e0 f   crt:_atexit.obj
+ 0001:0000f310       __close                    00410310 f   crt:close.obj
+ 0001:0000f3d0       _remove                    004103d0 f   crt:remove.obj
+ 0001:0000f3e0       ____mbtowc                 004103e0 f   crt:__mbtowc.obj
+ 0001:0000f440       ___putstr                  00410440 f   crt:_putstr.obj
+ 0001:0000f5e0       ___litob                   004105e0 f   crt:_litob.obj
+ 0001:0000f7c0       ___fptestl                 004107c0 f   crt:_fptestl.obj
+ 0001:0000f7d0       ___ldtob                   004107d0 f   crt:_ldtob.obj
+ 0001:0000fd10       _ignore_handler_s          00410d10 f   crt:constraint_handler_s.obj
+ 0001:0000fd20       _set_constraint_handler_s  00410d20 f   crt:constraint_handler_s.obj
+ 0001:0000fd40       __crt_constraint           00410d40 f   crt:constraint_handler_s.obj
+ 0001:0000fd60       ___btowc                   00410d60 f   crt:_btowc.obj
+ 0001:0000fdb0       ___wlitob                  00410db0 f   crt:_wlitob.obj
+ 0001:0000ffb0       ___wldtob                  00410fb0 f   crt:_wldtob.obj
+ 0001:00010540       _wmemchr                   00411540 f   crt:wmemchr.obj
+ 0001:00010560       ___wputstr                 00411560 f   crt:_wputstr.obj
+ 0001:000106e0       __unlink                   004116e0 f   crt:unlink.obj
+ 0001:00010710       ___wctomb                  00411710 f   crt:_wctomb.obj
+ 0001:00010950       ___ullmod                  00411950 f   crt:_ullmod.obj
+ 0001:000109d0       ___lldiv                   004119d0 f   crt:_lldiv.obj
+ 0001:00010a80       ___llmul                   00411a80 f   crt:_llmul.obj
+ 0001:00010ac0       ___fptest                  00411ac0 f   crt:_fptest.obj
+ 0001:00010b20       ___fpunscalel              00411b20 f   crt:_fpunscalel.obj
+ 0001:00010b40       ___fpscalel                00411b40 f   crt:_fpscalel.obj
+ 0001:00010b60       ___genld                   00411b60 f   crt:_genld.obj
+ 0001:00010f60       _ldiv                      00411f60 f   crt:ldiv.obj
+ 0001:00010f90       ___strerror                00411f90 f   crt:_strerror.obj
+ 0001:000111e0       ___wgenld                  004121e0 f   crt:_wgenld.obj
+ 0001:00011660       ____wctomb                 00412660 f   crt:__wctomb.obj
+ 0001:000116c0       ___fpunscale               004126c0 f   crt:_fpunscale.obj
+ 0001:00011760       ___fpscale                 00412760 f   crt:_fpscale.obj
+ 0001:00011930       _localeconv                00412930 f   crt:localeconv.obj
+ 0001:00011940       _div                       00412940 f   crt:div.obj
+ 0001:00011970       ___fpnorm                  00412970 f   crt:_fpnorm.obj
+ 0001:00011a87       _RtlUnwind@16              00412a87     kernel32:KERNEL32.dll
+ 0002:000006bc       __WndPropName_OldProc      004136bc     main_menu.obj
+ 0002:000006ce       __WndPropName_MenuXP       004136ce     main_menu.obj
+ 0002:00000f48       _IID_IClassFactory         00413f48     uuid:ID_IClassFactory.obj
+ 0002:00000f58       _IID_IPersistFile          00413f58     uuid:ID_IPersistFile.obj
+ 0002:00000f68       _IID_IDispatch             00413f68     uuid:ID_IDispatch.obj
+ 0002:00000f78       _GUID_NULL                 00413f78     uuid:UID_NULL.obj
+ 0002:00000f88       _IID_IEnumVARIANT          00413f88     uuid:ID_IEnumVARIANT.obj
+ 0002:00000f98       _IID_IUnknown              00413f98     uuid:ID_IUnknown.obj
+ 0002:00000fa8       _IID_IDataObject           00413fa8     uuid:ID_IDataObject.obj
+ 0002:00000fb8       _IID_IDropSource           00413fb8     uuid:ID_IDropSource.obj
+ 0002:00000fc8       _IID_IDropTargetHelper     00413fc8     uuid:ID_IDropTargetHelper.obj
+ 0002:00000fd8       _CLSID_DragDropHelper      00413fd8     uuid:LSID_DragDropHelper.obj
+ 0002:00000fe8       _IID_IDropTarget           00413fe8     uuid:ID_IDropTarget.obj
+ 0002:00000ff8       _IID_IEnumFORMATETC        00413ff8     uuid:ID_IEnumFORMATETC.obj
+ 0002:00001008       _IID_IXMLDOMDocument       00414008     uuid:ID_IXMLDOMDocument.obj
+ 0002:00001018       _CLSID_DOMDocument         00414018     uuid:LSID_DOMDocument.obj
+ 0002:00001080       ___malloc_binmax           00414080     crt:malloc.obj
+ 0002:00001588       ___c_times                 00414588     crt:_tinfo.obj
+ 0002:000027d0       ___inf                     004157d0     crt:_values.obj
+ 0002:000027d8       ___nan                     004157d8     crt:_values.obj
+ 0002:000027e0       ___eps                     004157e0     crt:_values.obj
+ 0002:000027e8       ___rteps                   004157e8     crt:_values.obj
+ 0002:000027f0       ___xbig                    004157f0     crt:_values.obj
+ 0002:000027f8       ___zero                    004157f8     crt:_values.obj
+ 0002:00002870       ___xi_a                    00415870     crt:_initex.obj
+ 0002:00002870       ___xi_z                    00415870     crt:_initex.obj
+ 0002:00002870       ___xt_a                    00415870     crt:_initex.obj
+ 0002:00002870       ___xt_z                    00415870     crt:_initex.obj
+ 0003:00000060       _dataObjectVtbl            00416060     IDataObject.obj
+ 0003:00000090       _DataObject                00416090     IDataObject.obj
+ 0003:00000094       _dropSourceVtbl            00416094     IDropSource.obj
+ 0003:000000a8       _DropSource                004160a8     IDropSource.obj
+ 0003:000000ac       _dropTargetVtbl            004160ac     IDropTarget.obj
+ 0003:000000c8       _DropTarget                004160c8     IDropTarget.obj
+ 0003:000000cc       _ienumFORMATETCVtbl        004160cc     IEnumFORMATETC.obj
+ 0003:000000e8       _EnumFORMATETC             004160e8     IEnumFORMATETC.obj
+ 0003:000000ec       _test_menu                 004160ec     main_menu.obj
+ 0003:00000128       _flagSelected              00416128     manage_menu.obj
+ 0003:0000012c       _gBttnDet                  0041612c     manage_menu.obj
+ 0003:00000180       _cip                       00416180     manage_menu.obj
+ 0003:000001a4       ___malloc_rovers           004161a4     crt:malloc.obj
+ 0003:000001c8       ___malloc_hiword           004161c8     crt:malloc.obj
+ 0003:000001cc       ___malloc_loword           004161cc     crt:malloc.obj
+ 0003:000001d0       ___malloc_mem              004161d0     crt:malloc.obj
+ 0003:000001d4       ___malloc_firstbin         004161d4     crt:malloc.obj
+ 0003:000001d8       ___malloc_lastbin          004161d8     crt:malloc.obj
+ 0003:00000208       ___stdin                   00416208     crt:_files.obj
+ 0003:00000258       ___stdout                  00416258     crt:_files.obj
+ 0003:000002a8       ___stderr                  004162a8     crt:_files.obj
+ 0003:000002f8       ___filetab                 004162f8     crt:_files.obj
+ 0003:000006f8       __Atfuns                   004166f8     crt:exit.obj
+ 0003:00000838       __Atcount                  00416838     crt:exit.obj
+ 0003:0000083c       __Atcount0                 0041683c     crt:exit.obj
+ 0003:00000840       ___argc                    00416840     crt:_crt0dat.obj
+ 0003:00000844       ___argv                    00416844     crt:_crt0dat.obj
+ 0003:00000848       ___wargv                   00416848     crt:_crt0dat.obj
+ 0003:0000084c       ___envp                    0041684c     crt:_crt0dat.obj
+ 0003:00000850       ___wenvp                   00416850     crt:_crt0dat.obj
+ 0003:00000854       ___crtheap                 00416854     crt:_crt0dat.obj
+ 0003:00000858       ___crtheapsize             00416858     crt:_crt0dat.obj
+ 0003:0000085c       ___bheap_threshold         0041685c     crt:_crt0dat.obj
+ 0003:00000860       ___sigtab                  00416860     crt:_crt0dat.obj
+ 0003:00000910       _errno                     00416910     crt:errno.obj
+ 0003:00000914       __NLG_Destination          00416914     crt:seh1.obj
+ 0003:00000924       ___feature_mask            00416924     crt:features.obj
+ 0003:00000934       ___times                   00416934     crt:_tinfo.obj
+ 0003:000009a4       ___ctypetab                004169a4     crt:_ctypetab.obj
+ 0003:000009ac       ___mbcurmax                004169ac     crt:_state.obj
+ 0003:000009b0       ___collatetab              004169b0     crt:_state.obj
+ 0003:000009f0       ___wcollatetab             004169f0     crt:_state.obj
+ 0003:00000a30       ___mbtowctab               00416a30     crt:_state.obj
+ 0003:00000a70       ___wctombtab               00416a70     crt:_state.obj
+ 0003:00000ab0       ___charcp                  00416ab0     crt:_state.obj
+ 0003:00000ab4       ___lcid                    00416ab4     crt:_state.obj
+ 0003:00000ab8       ___tolowertab              00416ab8     crt:_tolowertab.obj
+ 0003:00000ac0       ___wctypetab               00416ac0     crt:_wctypetab.obj
+ 0003:00000ac4       ___locale                  00416ac4     crt:localeconv.obj
+ 0003:00000afc       __IMPORT_DESCRIPTOR_KERNEL32 00416afc     kernel32:KERNEL32.dll
+ 0003:00000b10       __IMPORT_DESCRIPTOR_USER32 00416b10     user32:USER32.dll
+ 0003:00000b24       __IMPORT_DESCRIPTOR_GDI32  00416b24     gdi32:GDI32.dll
+ 0003:00000b38       __IMPORT_DESCRIPTOR_ole32  00416b38     ole32:ole32.dll
+ 0003:00000b4c       __IMPORT_DESCRIPTOR_OLEAUT32 00416b4c     oleaut32:OLEAUT32.dll
+ 0003:00000b60       __IMPORT_DESCRIPTOR_SHELL32 00416b60     shell32:SHELL32.dll
+ 0003:00000b74       __IMPORT_DESCRIPTOR_FreeImage 00416b74     FreeImage:FreeImage.dll
+ 0003:00000b88       __IMPORT_DESCRIPTOR_urlmon 00416b88     urlmon:urlmon.dll
+ 0003:00000b9c       __IMPORT_DESCRIPTOR_MSIMG32 00416b9c     msimg32:MSIMG32.dll
+ 0003:00000bb0       __NULL_IMPORT_DESCRIPTOR   00416bb0     kernel32:KERNEL32.dll
+ 0003:00000f1c       __imp__FileTimeToSystemTime@8 00416f1c     kernel32:KERNEL32.dll
+ 0003:00000f20       __imp__GetLastError@0      00416f20     kernel32:KERNEL32.dll
+ 0003:00000f24       __imp__SystemTimeToFileTime@8 00416f24     kernel32:KERNEL32.dll
+ 0003:00000f28       __imp__MultiByteToWideChar@24 00416f28     kernel32:KERNEL32.dll
+ 0003:00000f2c       __imp__WideCharToMultiByte@32 00416f2c     kernel32:KERNEL32.dll
+ 0003:00000f30       __imp__InterlockedIncrement@4 00416f30     kernel32:KERNEL32.dll
+ 0003:00000f34       __imp__TlsAlloc@0          00416f34     kernel32:KERNEL32.dll
+ 0003:00000f38       __imp__Sleep@4             00416f38     kernel32:KERNEL32.dll
+ 0003:00000f3c       __imp__TlsGetValue@4       00416f3c     kernel32:KERNEL32.dll
+ 0003:00000f40       __imp__TlsSetValue@8       00416f40     kernel32:KERNEL32.dll
+ 0003:00000f44       __imp__GetProcessHeap@0    00416f44     kernel32:KERNEL32.dll
+ 0003:00000f48       __imp__HeapAlloc@12        00416f48     kernel32:KERNEL32.dll
+ 0003:00000f4c       __imp__IsBadCodePtr@4      00416f4c     kernel32:KERNEL32.dll
+ 0003:00000f50       __imp__FormatMessageA@28   00416f50     kernel32:KERNEL32.dll
+ 0003:00000f54       __imp__HeapFree@12         00416f54     kernel32:KERNEL32.dll
+ 0003:00000f58       __imp__MulDiv@12           00416f58     kernel32:KERNEL32.dll
+ 0003:00000f5c       __imp__lstrlenA@4          00416f5c     kernel32:KERNEL32.dll
+ 0003:00000f60       __imp__LoadLibraryA@4      00416f60     kernel32:KERNEL32.dll
+ 0003:00000f64       __imp__GetProcAddress@8    00416f64     kernel32:KERNEL32.dll
+ 0003:00000f68       __imp__FreeLibrary@4       00416f68     kernel32:KERNEL32.dll
+ 0003:00000f6c       __imp__GetModuleHandleA@4  00416f6c     kernel32:KERNEL32.dll
+ 0003:00000f70       __imp__lstrcpyA@8          00416f70     kernel32:KERNEL32.dll
+ 0003:00000f74       __imp__GetModuleFileNameA@12 00416f74     kernel32:KERNEL32.dll
+ 0003:00000f78       __imp__FindResourceA@12    00416f78     kernel32:KERNEL32.dll
+ 0003:00000f7c       __imp__LoadResource@8      00416f7c     kernel32:KERNEL32.dll
+ 0003:00000f80       __imp__LockResource@4      00416f80     kernel32:KERNEL32.dll
+ 0003:00000f84       __imp__GetCurrentThreadId@0 00416f84     kernel32:KERNEL32.dll
+ 0003:00000f88       __imp__GetVersionExA@4     00416f88     kernel32:KERNEL32.dll
+ 0003:00000f8c       __imp__GetStartupInfoA@4   00416f8c     kernel32:KERNEL32.dll
+ 0003:00000f90       __imp__VirtualAlloc@16     00416f90     kernel32:KERNEL32.dll
+ 0003:00000f94       __imp__VirtualQuery@12     00416f94     kernel32:KERNEL32.dll
+ 0003:00000f98       __imp__HeapCreate@12       00416f98     kernel32:KERNEL32.dll
+ 0003:00000f9c       __imp__HeapDestroy@4       00416f9c     kernel32:KERNEL32.dll
+ 0003:00000fa0       __imp__HeapReAlloc@16      00416fa0     kernel32:KERNEL32.dll
+ 0003:00000fa4       __imp__HeapSize@12         00416fa4     kernel32:KERNEL32.dll
+ 0003:00000fa8       __imp__HeapValidate@12     00416fa8     kernel32:KERNEL32.dll
+ 0003:00000fac       __imp__RtlUnwind@16        00416fac     kernel32:KERNEL32.dll
+ 0003:00000fb0       __imp__GetSystemTimeAsFileTime@4 00416fb0     kernel32:KERNEL32.dll
+ 0003:00000fb4       __imp__GetFileType@4       00416fb4     kernel32:KERNEL32.dll
+ 0003:00000fb8       __imp__GetStdHandle@4      00416fb8     kernel32:KERNEL32.dll
+ 0003:00000fbc       __imp__GetCurrentProcess@0 00416fbc     kernel32:KERNEL32.dll
+ 0003:00000fc0       __imp__DuplicateHandle@28  00416fc0     kernel32:KERNEL32.dll
+ 0003:00000fc4       __imp__SetHandleCount@4    00416fc4     kernel32:KERNEL32.dll
+ 0003:00000fc8       __imp__GetCommandLineA@0   00416fc8     kernel32:KERNEL32.dll
+ 0003:00000fcc       __imp__GetEnvironmentStrings@0 00416fcc     kernel32:KERNEL32.dll
+ 0003:00000fd0       __imp__FreeEnvironmentStringsA@4 00416fd0     kernel32:KERNEL32.dll
+ 0003:00000fd4       __imp__OutputDebugStringA@4 00416fd4     kernel32:KERNEL32.dll
+ 0003:00000fd8       __imp__UnhandledExceptionFilter@4 00416fd8     kernel32:KERNEL32.dll
+ 0003:00000fdc       __imp__SetStdHandle@8      00416fdc     kernel32:KERNEL32.dll
+ 0003:00000fe0       __imp__GetConsoleMode@8    00416fe0     kernel32:KERNEL32.dll
+ 0003:00000fe4       __imp__GetConsoleOutputCP@0 00416fe4     kernel32:KERNEL32.dll
+ 0003:00000fe8       __imp__WriteFile@20        00416fe8     kernel32:KERNEL32.dll
+ 0003:00000fec       __imp__SetConsoleCtrlHandler@8 00416fec     kernel32:KERNEL32.dll
+ 0003:00000ff0       __imp__ExitProcess@4       00416ff0     kernel32:KERNEL32.dll
+ 0003:00000ff4       __imp__GetSystemTime@4     00416ff4     kernel32:KERNEL32.dll
+ 0003:00000ff8       __imp__GetTimeZoneInformation@4 00416ff8     kernel32:KERNEL32.dll
+ 0003:00000ffc       __imp__SetFilePointer@16   00416ffc     kernel32:KERNEL32.dll
+ 0003:00001000       __imp__CloseHandle@4       00417000     kernel32:KERNEL32.dll
+ 0003:00001004       __imp__DeleteFileA@4       00417004     kernel32:KERNEL32.dll
+ 0003:00001008       KERNEL32_NULL_THUNK_DATA  00417008     kernel32:KERNEL32.dll
+ 0003:0000100c       __imp__MessageBoxW@16      0041700c     user32:USER32.dll
+ 0003:00001010       __imp__FillRect@12         00417010     user32:USER32.dll
+ 0003:00001014       __imp__DrawTextA@20        00417014     user32:USER32.dll
+ 0003:00001018       __imp__LoadImageA@24       00417018     user32:USER32.dll
+ 0003:0000101c       __imp__CopyRect@8          0041701c     user32:USER32.dll
+ 0003:00001020       __imp__SetRect@20          00417020     user32:USER32.dll
+ 0003:00001024       __imp__DrawFrameControl@16 00417024     user32:USER32.dll
+ 0003:00001028       __imp__GetDesktopWindow@0  00417028     user32:USER32.dll
+ 0003:0000102c       __imp__GetDC@4             0041702c     user32:USER32.dll
+ 0003:00001030       __imp__ReleaseDC@8         00417030     user32:USER32.dll
+ 0003:00001034       __imp__DrawIconEx@36       00417034     user32:USER32.dll
+ 0003:00001038       __imp__GetIconInfo@8       00417038     user32:USER32.dll
+ 0003:0000103c       __imp__DestroyIcon@4       0041703c     user32:USER32.dll
+ 0003:00001040       __imp__LoadCursorA@8       00417040     user32:USER32.dll
+ 0003:00001044       __imp__SetCursor@4         00417044     user32:USER32.dll
+ 0003:00001048       __imp__MessageBeep@4       00417048     user32:USER32.dll
+ 0003:0000104c       __imp__MessageBoxA@16      0041704c     user32:USER32.dll
+ 0003:00001050       __imp__LoadIconA@8         00417050     user32:USER32.dll
+ 0003:00001054       __imp__RegisterClassA@4    00417054     user32:USER32.dll
+ 0003:00001058       __imp__CreateWindowExA@48  00417058     user32:USER32.dll
+ 0003:0000105c       __imp__PostMessageA@16     0041705c     user32:USER32.dll
+ 0003:00001060       __imp__SystemParametersInfoA@16 00417060     user32:USER32.dll
+ 0003:00001064       __imp__ClientToScreen@8    00417064     user32:USER32.dll
+ 0003:00001068       __imp__GetWindowRect@8     00417068     user32:USER32.dll
+ 0003:0000106c       __imp__TrackPopupMenu@28   0041706c     user32:USER32.dll
+ 0003:00001070       __imp__GetSystemMetrics@4  00417070     user32:USER32.dll
+ 0003:00001074       __imp__SetWindowPos@28     00417074     user32:USER32.dll
+ 0003:00001078       __imp__ReleaseCapture@0    00417078     user32:USER32.dll
+ 0003:0000107c       __imp__SendMessageA@16     0041707c     user32:USER32.dll
+ 0003:00001080       __imp__BeginPaint@8        00417080     user32:USER32.dll
+ 0003:00001084       __imp__EndPaint@8          00417084     user32:USER32.dll
+ 0003:00001088       __imp__SetMenuInfo@8       00417088     user32:USER32.dll
+ 0003:0000108c       __imp__PostQuitMessage@4   0041708c     user32:USER32.dll
+ 0003:00001090       __imp__DefWindowProcA@16   00417090     user32:USER32.dll
+ 0003:00001094       __imp__LoadAcceleratorsA@8 00417094     user32:USER32.dll
+ 0003:00001098       __imp__ShowWindow@8        00417098     user32:USER32.dll
+ 0003:0000109c       __imp__TranslateAcceleratorA@12 0041709c     user32:USER32.dll
+ 0003:000010a0       __imp__TranslateMessage@4  004170a0     user32:USER32.dll
+ 0003:000010a4       __imp__DispatchMessageA@4  004170a4     user32:USER32.dll
+ 0003:000010a8       __imp__GetMessageA@16      004170a8     user32:USER32.dll
+ 0003:000010ac       __imp__SetWindowLongA@12   004170ac     user32:USER32.dll
+ 0003:000010b0       __imp__CallWindowProcA@20  004170b0     user32:USER32.dll
+ 0003:000010b4       __imp__GetWindowLongA@8    004170b4     user32:USER32.dll
+ 0003:000010b8       __imp__GetDlgItem@8        004170b8     user32:USER32.dll
+ 0003:000010bc       __imp__GetClientRect@8     004170bc     user32:USER32.dll
+ 0003:000010c0       __imp__CreatePopupMenu@0   004170c0     user32:USER32.dll
+ 0003:000010c4       __imp__AppendMenuA@16      004170c4     user32:USER32.dll
+ 0003:000010c8       __imp__GetMenuItemInfoA@16 004170c8     user32:USER32.dll
+ 0003:000010cc       __imp__GetForegroundWindow@0 004170cc     user32:USER32.dll
+ 0003:000010d0       __imp__GetClassNameA@12    004170d0     user32:USER32.dll
+ 0003:000010d4       __imp__SetLayeredWindowAttributes@16 004170d4     user32:USER32.dll
+ 0003:000010d8       __imp__GetPropA@8          004170d8     user32:USER32.dll
+ 0003:000010dc       __imp__SetPropA@12         004170dc     user32:USER32.dll
+ 0003:000010e0       __imp__RemovePropA@8       004170e0     user32:USER32.dll
+ 0003:000010e4       __imp__CallNextHookEx@16   004170e4     user32:USER32.dll
+ 0003:000010e8       __imp__GetWindowDC@4       004170e8     user32:USER32.dll
+ 0003:000010ec       __imp__FrameRect@12        004170ec     user32:USER32.dll
+ 0003:000010f0       __imp__InflateRect@12      004170f0     user32:USER32.dll
+ 0003:000010f4       __imp__SetWindowsHookExA@16 004170f4     user32:USER32.dll
+ 0003:000010f8       __imp__UnhookWindowsHookEx@4 004170f8     user32:USER32.dll
+ 0003:000010fc       __imp__GetMenuItemCount@4  004170fc     user32:USER32.dll
+ 0003:00001100       __imp__GetMenuItemID@8     00417100     user32:USER32.dll
+ 0003:00001104       __imp__GetSubMenu@8        00417104     user32:USER32.dll
+ 0003:00001108       __imp__RegisterClipboardFormatA@4 00417108     user32:USER32.dll
+ 0003:0000110c       __imp__wsprintfA           0041710c     user32:USER32.dll
+ 0003:00001110       __imp__AppendMenuW@16      00417110     user32:USER32.dll
+ 0003:00001114       __imp__RegisterClassExA@4  00417114     user32:USER32.dll
+ 0003:00001118       __imp__UpdateWindow@4      00417118     user32:USER32.dll
+ 0003:0000111c       __imp__LoadBitmapA@8       0041711c     user32:USER32.dll
+ 0003:00001120       __imp__SendDlgItemMessageA@20 00417120     user32:USER32.dll
+ 0003:00001124       __imp__DestroyWindow@4     00417124     user32:USER32.dll
+ 0003:00001128       __imp__EnumPropsExA@12     00417128     user32:USER32.dll
+ 0003:0000112c       __imp__GetClassInfoExA@12  0041712c     user32:USER32.dll
+ 0003:00001130       USER32_NULL_THUNK_DATA    00417130     user32:USER32.dll
+ 0003:00001134       __imp__CreateSolidBrush@4  00417134     gdi32:GDI32.dll
+ 0003:00001138       __imp__DeleteObject@4      00417138     gdi32:GDI32.dll
+ 0003:0000113c       __imp__SelectObject@8      0041713c     gdi32:GDI32.dll
+ 0003:00001140       __imp__RoundRect@28        00417140     gdi32:GDI32.dll
+ 0003:00001144       __imp__GetObjectA@12       00417144     gdi32:GDI32.dll
+ 0003:00001148       __imp__CreateCompatibleDC@4 00417148     gdi32:GDI32.dll
+ 0003:0000114c       __imp__GetDeviceCaps@8     0041714c     gdi32:GDI32.dll
+ 0003:00001150       __imp__SetTextColor@8      00417150     gdi32:GDI32.dll
+ 0003:00001154       __imp__SetBkMode@8         00417154     gdi32:GDI32.dll
+ 0003:00001158       __imp__CreatePen@12        00417158     gdi32:GDI32.dll
+ 0003:0000115c       __imp__MoveToEx@16         0041715c     gdi32:GDI32.dll
+ 0003:00001160       __imp__LineTo@12           00417160     gdi32:GDI32.dll
+ 0003:00001164       __imp__ExcludeClipRect@20  00417164     gdi32:GDI32.dll
+ 0003:00001168       __imp__GetTextExtentPoint32A@16 00417168     gdi32:GDI32.dll
+ 0003:0000116c       __imp__CreateCompatibleBitmap@12 0041716c     gdi32:GDI32.dll
+ 0003:00001170       __imp__BitBlt@36           00417170     gdi32:GDI32.dll
+ 0003:00001174       __imp__DeleteDC@4          00417174     gdi32:GDI32.dll
+ 0003:00001178       __imp__GetDIBits@28        00417178     gdi32:GDI32.dll
+ 0003:0000117c       __imp__CreateBitmap@20     0041717c     gdi32:GDI32.dll
+ 0003:00001180       __imp__SetBkColor@8        00417180     gdi32:GDI32.dll
+ 0003:00001184       __imp__DPtoLP@12           00417184     gdi32:GDI32.dll
+ 0003:00001188       __imp__GetMapMode@4        00417188     gdi32:GDI32.dll
+ 0003:0000118c       __imp__SetMapMode@8        0041718c     gdi32:GDI32.dll
+ 0003:00001190       __imp__CreateDIBitmap@24   00417190     gdi32:GDI32.dll
+ 0003:00001194       __imp__SetDIBits@28        00417194     gdi32:GDI32.dll
+ 0003:00001198       __imp__CreateFontIndirectA@4 00417198     gdi32:GDI32.dll
+ 0003:0000119c       __imp__GetTextMetricsA@8   0041719c     gdi32:GDI32.dll
+ 0003:000011a0       __imp__GetClipBox@8        004171a0     gdi32:GDI32.dll
+ 0003:000011a4       __imp__TextOutA@20         004171a4     gdi32:GDI32.dll
+ 0003:000011a8       __imp__GetPixel@12         004171a8     gdi32:GDI32.dll
+ 0003:000011ac       __imp__SetPixel@16         004171ac     gdi32:GDI32.dll
+ 0003:000011b0       GDI32_NULL_THUNK_DATA     004171b0     gdi32:GDI32.dll
+ 0003:000011b4       __imp__CLSIDFromString@8   004171b4     ole32:ole32.dll
+ 0003:000011b8       __imp__CLSIDFromProgID@8   004171b8     ole32:ole32.dll
+ 0003:000011bc       __imp__CoGetClassObject@20 004171bc     ole32:ole32.dll
+ 0003:000011c0       __imp__CoGetObject@16      004171c0     ole32:ole32.dll
+ 0003:000011c4       __imp__CoInitialize@4      004171c4     ole32:ole32.dll
+ 0003:000011c8       __imp__CoUninitialize@0    004171c8     ole32:ole32.dll
+ 0003:000011cc       __imp__CoCreateInstance@20 004171cc     ole32:ole32.dll
+ 0003:000011d0       __imp__ReleaseStgMedium@4  004171d0     ole32:ole32.dll
+ 0003:000011d4       __imp__OleInitialize@4     004171d4     ole32:ole32.dll
+ 0003:000011d8       __imp__OleUninitialize@0   004171d8     ole32:ole32.dll
+ 0003:000011dc       __imp__DoDragDrop@16       004171dc     ole32:ole32.dll
+ 0003:000011e0       __imp__CoTaskMemFree@4     004171e0     ole32:ole32.dll
+ 0003:000011e4       __imp__CoTaskMemAlloc@4    004171e4     ole32:ole32.dll
+ 0003:000011e8       ole32_NULL_THUNK_DATA     004171e8     ole32:ole32.dll
+ 0003:000011ec       __imp__GetActiveObject@12  004171ec     oleaut32:OLEAUT32.dll
+ 0003:000011f0       __imp__VariantInit@4       004171f0     oleaut32:OLEAUT32.dll
+ 0003:000011f4       __imp__SysFreeString@4     004171f4     oleaut32:OLEAUT32.dll
+ 0003:000011f8       __imp__VariantClear@4      004171f8     oleaut32:OLEAUT32.dll
+ 0003:000011fc       __imp__VariantChangeType@16 004171fc     oleaut32:OLEAUT32.dll
+ 0003:00001200       __imp__SysAllocString@4    00417200     oleaut32:OLEAUT32.dll
+ 0003:00001204       __imp__SysAllocStringLen@8 00417204     oleaut32:OLEAUT32.dll
+ 0003:00001208       __imp__SysAllocStringByteLen@8 00417208     oleaut32:OLEAUT32.dll
+ 0003:0000120c       __imp__SysStringLen@4      0041720c     oleaut32:OLEAUT32.dll
+ 0003:00001210       OLEAUT32_NULL_THUNK_DATA  00417210     oleaut32:OLEAUT32.dll
+ 0003:00001214       __imp__SHGetFileInfoA@20   00417214     shell32:SHELL32.dll
+ 0003:00001218       __imp__DragQueryFileA@16   00417218     shell32:SHELL32.dll
+ 0003:0000121c       __imp__ShellExecuteA@24    0041721c     shell32:SHELL32.dll
+ 0003:00001220       SHELL32_NULL_THUNK_DATA   00417220     shell32:SHELL32.dll
+ 0003:00001224       __imp__FreeImage_Allocate@24 00417224     FreeImage:FreeImage.dll
+ 0003:00001228       __imp__FreeImage_GetColorsUsed@4 00417228     FreeImage:FreeImage.dll
+ 0003:0000122c       __imp__FreeImage_GetHeight@4 0041722c     FreeImage:FreeImage.dll
+ 0003:00001230       __imp__FreeImage_GetBits@4 00417230     FreeImage:FreeImage.dll
+ 0003:00001234       __imp__FreeImage_GetInfo@4 00417234     FreeImage:FreeImage.dll
+ 0003:00001238       __imp__FreeImage_GetInfoHeader@4 00417238     FreeImage:FreeImage.dll
+ 0003:0000123c       __imp__FreeImage_Composite@16 0041723c     FreeImage:FreeImage.dll
+ 0003:00001240       __imp__FreeImage_Unload@4  00417240     FreeImage:FreeImage.dll
+ 0003:00001244       __imp__FreeImage_Initialise@4 00417244     FreeImage:FreeImage.dll
+ 0003:00001248       __imp__FreeImage_GetFileType@8 00417248     FreeImage:FreeImage.dll
+ 0003:0000124c       __imp__FreeImage_Load@12   0041724c     FreeImage:FreeImage.dll
+ 0003:00001250       __imp__FreeImage_GetWidth@4 00417250     FreeImage:FreeImage.dll
+ 0003:00001254       __imp__FreeImage_PreMultiplyWithAlpha@4 00417254     FreeImage:FreeImage.dll
+ 0003:00001258       __imp__FreeImage_HasBackgroundColor@4 00417258     FreeImage:FreeImage.dll
+ 0003:0000125c       __imp__FreeImage_IsTransparent@4 0041725c     FreeImage:FreeImage.dll
+ 0003:00001260       FreeImage_NULL_THUNK_DATA 00417260     FreeImage:FreeImage.dll
+ 0003:00001264       __imp__CopyStgMedium@8     00417264     urlmon:urlmon.dll
+ 0003:00001268       urlmon_NULL_THUNK_DATA    00417268     urlmon:urlmon.dll
+ 0003:0000126c       __imp__AlphaBlend@44       0041726c     msimg32:MSIMG32.dll
+ 0003:00001270       MSIMG32_NULL_THUNK_DATA   00417270     msimg32:MSIMG32.dll
+ 0003:0000250c       _dh_g_bIsUnicodeMode       0041850c     <common>
+ 0003:00002510       __fltused                  00418510     <common>
+ 0003:00002514       _main_menu_theme           00418514     <common>
+ 0003:0000255c       _main_menu                 0041855c     <common>
+ 0003:00002560       _m_bgra                    00418560     <common>
+ 0003:00002564       _hwndMain                  00418564     <common>
+ 0003:00002568       _damm_handle               00418568     <common>
+ 0003:0000256c       _mnu_hwnd                  0041856c     <common>
+ 0003:00002570       _old_menu_proc             00418570     <common>
+ 0003:00002574       __hHook                    00418574     <common>
+ 0003:00002578       _g_BmpHeight               00418578     <common>
+ 0003:0000257c       _g_BmpWidth                0041857c     <common>
+ 0003:00002580       _MainBitmap                00418580     <common>
+ 0003:00002584       _lpBits                    00418584     <common>
+ 0003:00002588       _lpBitmap                  00418588     <common>
+ 0003:0000258c       _opti_ht                   0041858c     <common>
+ 0003:00002590       _opti_dw                   00418590     <common>
+ 0003:00002594       _opti_up                   00418594     <common>
+ 0003:00002598       _plus_ht                   00418598     <common>
+ 0003:0000259c       _plus_dw                   0041859c     <common>
+ 0003:000025a0       _plus_up                   004185a0     <common>
+ 0003:000025a4       _g_hBmpHot                 004185a4     <common>
+ 0003:000025a8       _g_hBmpDown                004185a8     <common>
+ 0003:000025ac       _g_hBmpUp                  004185ac     <common>
+ 0003:000025b0       _buttons_proc              004185b0     <common>
+ 0003:000025d8       _plus_button               004185d8     <common>
+ 0003:000025dc       _opti_button               004185dc     <common>
+ 0003:000025e0       _menu_objects              004185e0     <common>
+ 0003:000025e4       _menu_button               004185e4     <common>
+ 0003:000025e8       _main_window               004185e8     <common>
+ 0003:000025ec       _hInst                     004185ec     <common>
+ 0003:000025f0       _first_menu_data           004185f0     <common>
+ 0003:000025f4       _primary_menu_data         004185f4     <common>
+ 0003:000025f8       _btnOldProc                004185f8     <common>
+ 0003:000025fc       ___iotab                   004185fc     <common>
+ 0003:000026fc       ___iolim                   004186fc     <common>
 
- entry point at        0001:0002ee30
+ entry point at        0001:0000a6f0
 
  Static symbols
 
- 0001:00000040       _InitApplication@0         00401040 f   main_menu.obj
- 0001:000010a0       _CreateAndAppendNode@16    004020a0 f   main_menu.obj
- 0001:00001130       _LoadXML@8                 00402130 f   main_menu.obj
- 0001:000011f0       _get_menu_formWID@8        004021f0 f   main_menu.obj
- 0001:000012d0       __GetMenu@8                004022d0 f   main_menu.obj
- 0001:00001300       _redim_items@8             00402300 f   main_menu.obj
- 0001:000013b0       _append_menuItem@20        004023b0 f   main_menu.obj
- 0001:00001420       _parse_XML@8               00402420 f   main_menu.obj
- 0001:000024b0       _FindMenuFromID@8          004034b0 f   main_menu.obj
- 0001:00002cb0       _buildMenu@8               00403cb0 f   main_menu.obj
- 0001:000048e0       _TraverseSubObjects@12     004058e0 f   disphelper.obj
- 0001:000049c0       _InternalInvokeV@24        004059c0 f   disphelper.obj
- 0001:00004ac0       _CreateArgumentArray@20    00405ac0 f   disphelper.obj
- 0001:00004bd0       _ExtractArgument@16        00405bd0 f   disphelper.obj
- 0001:000056d0       _hlprStringCchCopyW@12     004066d0 f   disphelper.obj
- 0001:00005730       _InitializeTlsIndexes@0    00406730 f   disphelper.obj
- 0001:0000c2e0       _png_format_buffer@12      0040d2e0 f   pngerror.obj
- 0001:0000c420       _png_default_error@8       0040d420 f   pngerror.obj
- 0001:0000c4c0       _png_default_warning@8     0040d4c0 f   pngerror.obj
- 0001:0001e940       _png_text_compress@20      0041f940 f   pngwutil.obj
- 0001:0001ec40       _png_write_compressed_data_out@8 0041fc40 f   pngwutil.obj
- 0001:00022640       _crc32_little@12           00423640 f   crc32.obj
- 0001:00022950       _crc32_big@12              00423950 f   crc32.obj
- 0001:00022cc0       _gf2_matrix_times@8        00423cc0 f   crc32.obj
- 0001:00022cf0       _gf2_matrix_square@8       00423cf0 f   crc32.obj
- 0001:00023490       _putShortMSB@8             00424490 f   deflate.obj
- 0001:000234d0       _flush_pending@4           004244d0 f   deflate.obj
- 0001:00024100       _read_buf@12               00425100 f   deflate.obj
- 0001:00024180       _lm_init@4                 00425180 f   deflate.obj
- 0001:00024240       _longest_match@8           00425240 f   deflate.obj
- 0001:00024460       _longest_match_fast@8      00425460 f   deflate.obj
- 0001:00024590       _fill_window@4             00425590 f   deflate.obj
- 0001:000246b0       _deflate_stored@8          004256b0 f   deflate.obj
- 0001:00024820       _deflate_fast@8            00425820 f   deflate.obj
- 0001:00024b70       _deflate_slow@8            00425b70 f   deflate.obj
- 0001:00024fa0       _gz_open@12                00425fa0 f   gzio.obj
- 0001:00025350       _get_byte@4                00426350 f   gzio.obj
- 0001:000253d0       _check_header@4            004263d0 f   gzio.obj
- 0001:00025550       _destroy@4                 00426550 f   gzio.obj
- 0001:00025af0       _do_flush@8                00426af0 f   gzio.obj
- 0001:00025ed0       _putLong@8                 00426ed0 f   gzio.obj
- 0001:00025f00       _getLong@4                 00426f00 f   gzio.obj
- 0001:00026190       _fixedtables@4             00427190 f   infback.obj
- 0001:00027650       _fixedtables@4             00428650 f   inflate.obj
- 0001:00027680       _updatewindow@8            00428680 f   inflate.obj
- 0001:00028e50       _syncsearch@12             00429e50 f   inflate.obj
- 0001:00029790       _tr_static_init@0          0042a790 f   trees.obj
- 0001:00029820       _init_block@4              0042a820 f   trees.obj
- 0001:000298a0       _pqdownheap@12             0042a8a0 f   trees.obj
- 0001:00029990       _gen_bitlen@8              0042a990 f   trees.obj
- 0001:00029bd0       _gen_codes@12              0042abd0 f   trees.obj
- 0001:00029c50       _build_tree@8              0042ac50 f   trees.obj
- 0001:00029ee0       _scan_tree@12              0042aee0 f   trees.obj
- 0001:0002a010       _send_tree@12              0042b010 f   trees.obj
- 0001:0002a790       _build_bl_tree@4           0042b790 f   trees.obj
- 0001:0002a800       _send_all_trees@16         0042b800 f   trees.obj
- 0001:0002b290       _compress_block@12         0042c290 f   trees.obj
- 0001:0002b860       _set_data_type@4           0042c860 f   trees.obj
- 0001:0002b8b0       _bi_reverse@8              0042c8b0 f   trees.obj
- 0001:0002b8e0       _bi_flush@4                0042c8e0 f   trees.obj
- 0001:0002b970       _bi_windup@4               0042c970 f   trees.obj
- 0001:0002b9f0       _copy_block@16             0042c9f0 f   trees.obj
- 0001:0002c860       __drawMenuArrow@12         0042d860 f   draw.obj
- 0001:0002ca10       _grabhunk                  0042da10 f   crt:malloc.obj
- 0001:0002de20       _closeall                  0042ee20 f   crt:fclose.obj
- 0001:0002e160       _prout                     0042f160 f   crt:sprintf.obj
- 0001:0002e1f0       _prout                     0042f1f0 f   crt:fprintf.obj
- 0001:0002f860       _prout                     00430860 f   crt:snprintf.obj
- 0001:0002f8f0       _prout                     004308f0 f   crt:vsnprintf.obj
- 0001:0002f990       _prout                     00430990 f   crt:swprintf.obj
- 0001:00030be0       _dmul                      00431be0 f   crt:_fppow10.obj
- 0001:00031bf0       _parse_cmdline             00432bf0 f   crt:_setargv.obj
- 0001:00032100       _reformat                  00433100 f   crt:_getzone.obj
- 0001:00032990       _ctrlevent_capture@4       00433990 f   crt:signal.obj
- 0001:00034300       _getint                    00435300 f   crt:_getdst.obj
- 0001:00034520       _dst_date                  00435520 f   crt:_tzone.obj
+ 0001:00000a40       _TraverseSubObjects@12     00401a40 f   disphelper.obj
+ 0001:00000b30       _InternalInvokeV@24        00401b30 f   disphelper.obj
+ 0001:00000c20       _CreateArgumentArray@20    00401c20 f   disphelper.obj
+ 0001:00000d20       _ExtractArgument@16        00401d20 f   disphelper.obj
+ 0001:00001780       _hlprStringCchCopyW@12     00402780 f   disphelper.obj
+ 0001:000017e0       _InitializeTlsIndexes@0    004027e0 f   disphelper.obj
+ 0001:00002ac0       __drawMenuArrow@12         00403ac0 f   draw.obj
+ 0001:00004820       _InitApplication@0         00405820 f   main_menu.obj
+ 0001:000057a0       _CreateAndAppendNode@16    004067a0 f   main_menu.obj
+ 0001:00005830       _LoadXML@8                 00406830 f   main_menu.obj
+ 0001:000058f0       _get_menu_formWID@8        004068f0 f   main_menu.obj
+ 0001:000059c0       __GetMenu@8                004069c0 f   main_menu.obj
+ 0001:000059f0       _redim_items@8             004069f0 f   main_menu.obj
+ 0001:00005a80       _append_menuItem@20        00406a80 f   main_menu.obj
+ 0001:00005ae0       _parse_XML@8               00406ae0 f   main_menu.obj
+ 0001:00006a10       _FindMenuFromID@8          00407a10 f   main_menu.obj
+ 0001:000071c0       _buildMenu@8               004081c0 f   main_menu.obj
+ 0001:00009d40       _grabhunk                  0040ad40 f   crt:malloc.obj
+ 0001:0000ac80       ___my_fputs                0040bc80 f   crt:fputs.obj
+ 0001:0000afb0       _prout                     0040bfb0 f   crt:snprintf.obj
+ 0001:0000b030       _prout                     0040c030 f   crt:vsnprintf.obj
+ 0001:0000b0b0       _prout                     0040c0b0 f   crt:swprintf.obj
+ 0001:0000ba90       _parse_cmdline             0040ca90 f   crt:_setargv.obj
+ 0001:0000c090       _reformat                  0040d090 f   crt:_getzone.obj
+ 0001:0000ca30       _ctrlevent_capture@4       0040da30 f   crt:signal.obj
+ 0001:0000d230       _getint                    0040e230 f   crt:_getdst.obj
+ 0001:0000d4d0       _dst_date                  0040e4d0 f   crt:_tzone.obj
+ 0001:0000d440       _day_of_month              0040e440 f   crt:_tzone.obj
+ 0001:0000da60       _closeall                  0040ea60 f   crt:fclose.obj
+ 0001:0000f1a0       _prout                     004101a0 f   crt:sprintf.obj

@@ -30,5 +30,5 @@ BOOL DrawMenuChild      (DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuRoot       (DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuSeparator  (DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
 BOOL DrawMenuSidebar    (DRAWITEMSTRUCT *lpDrawItem, MENU_DATA *lpMenuData);
-void dummy(MENU_DATA *lpMenuData);
+
 #endif
